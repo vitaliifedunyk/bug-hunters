@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla App Template</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <load src="./partials/header.html" />
+
+    <main class="main">
+      <section class="hero section">
+        <div class="container">
+          <p class="eyebrow">Starter Template</p>
+          <h1 class="hero-title">Build your next vanilla project from here.</h1>
+          <p class="hero-text">
+            Replace this starter content with your own sections, components, and
+            logic. The template already includes shared styles, partials, and a
+            Vite workflow for development and deployment.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#start">Start editing</a>
+            <a class="button button-secondary" href="#structure"
+              >View structure</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="start">
+        <div class="container cards">
+          <article class="card">
+            <h2 class="card-title">Reusable Layout</h2>
+            <p class="card-text">
+              Header and footer partials are already connected and ready to be
+              replaced with project-specific markup.
+            </p>
+          </article>
+          <article class="card">
+            <h2 class="card-title">Base Styling</h2>
+            <p class="card-text">
+              Reset styles, container rules, and a neutral visual foundation are
+              included to speed up new builds.
+            </p>
+          </article>
+          <article class="card">
+            <h2 class="card-title">Fast Workflow</h2>
+            <p class="card-text">
+              Use `npm run dev` for development and `npm run build` for a
+              production-ready output.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-muted" id="structure">
+        <div class="container">
+          <h2 class="section-title">Suggested next steps</h2>
+          <ol class="steps">
+            <li>Rename the project in `package.json`.</li>
+            <li>Replace the starter sections in `src/index.html`.</li>
+            <li>Add your own styles and scripts in `src/css` and `src/js`.</li>
+            <li>Deploy the finished project to GitHub Pages.</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <load src="./partials/footer.html" />
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
