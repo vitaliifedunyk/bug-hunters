@@ -1,11 +1,12 @@
 {
-  "name": "vanilla-template",
+  "name": "bug-hunters",
   "private": true,
   "version": "1.0.0",
+  "packageManager": "npm@11.9.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base=/bug-hunters/",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -17,7 +18,14 @@
   "author": "Vitalii Fedunyk",
   "license": "ISC",
   "dependencies": {
+    "accordion-js": "3.4.1",
+    "axios": "1.14.0",
+    "izitoast": "1.4.0",
+    "raty-js": "4.3.0",
     "vite-plugin-full-reload": "^1.2.0",
     "vite-plugin-html-inject": "^1.1.2"
+  },
+  "overrides": {
+    "axios": "1.14.0"
   }
 }
