@@ -1,0 +1,53 @@
+/* Common styles */
+@import url('./reset.css');
+@import url('./container.css');
+
+/* Sections style */
+@import url('../sections/header.css');
+@import url('../sections/hero.css');
+@import url('../sections/about.css');
+@import url('../sections/catalog.css');
+@import url('../sections/reviews.css');
+@import url('../sections/faq.css');
+@import url('../sections/order-modal.css');
+@import url('../sections/product-modal.css');
+@import url('../sections/footer.css');
+
+:root {
+  --font-family-base: 'Raleway', 'Segoe UI', sans-serif;
+  --font-family-heading: 'Raleway', 'Segoe UI', sans-serif;
+
+  --color-neutral-950: #080c09;
+  --color-white: #ffffff;
+  --color-brand-primary: #6b0609;
+  --color-surface-muted: #f0e6e6;
+  --color-surface-soft: #f2f2f2;
+  --color-border-subtle: rgba(8, 12, 9, 0.15);
+  --color-shadow-soft: rgba(8, 12, 9, 0.05);
+
+  font-family: var(--font-family-base);
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--color-neutral-950);
+  background-color: var(--color-white);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-neutral-950);
+  background-color: var(--color-white);
+}
