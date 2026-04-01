@@ -1,17 +1,18 @@
 /* Common styles */
 @import url('./reset.css');
-@import url('./container.css');
+@import url('../components/container.css');
 
 /* Sections style */
-@import url('../sections/header.css');
+@import url('../layout/header.css');
 @import url('../sections/hero.css');
 @import url('../sections/about.css');
-@import url('../sections/catalog.css');
+@import url('../sections/categories.css');
+@import url('../sections/products.css');
 @import url('../sections/reviews.css');
 @import url('../sections/faq.css');
-@import url('../sections/order-modal.css');
-@import url('../sections/product-modal.css');
-@import url('../sections/footer.css');
+@import url('../components/order-modal.css');
+@import url('../components/product-modal.css');
+@import url('../layout/footer.css');
 
 :root {
   --font-family-base: 'Raleway', 'Segoe UI', sans-serif;
@@ -50,4 +51,8 @@ body {
   line-height: 1.6;
   color: var(--color-neutral-950);
   background-color: var(--color-white);
+}
+
+.hidden {
+  display: none;
 }
