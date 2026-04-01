@@ -1,9 +1,17 @@
-@import "node_modules/modern-normalize/modern-normalize.css";
+@import "modern-normalize/modern-normalize.css";
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
 }
 
 h1,
@@ -12,21 +20,17 @@ h3,
 h4,
 h5,
 h6,
-p {
+p,
+ul,
+ol,
+dl,
+dd {
   margin: 0;
-}
-
-p:last-child {
-  margin-bottom: 0;
 }
 
 ul,
 ol {
-  margin: 0;
   padding: 0;
-}
-
-ul {
   list-style: none;
 }
 
@@ -36,10 +40,10 @@ a {
 }
 
 button {
+  border: none;
   padding: 0;
-  border: 0;
-  color: inherit;
   background-color: transparent;
+  color: inherit;
   font: inherit;
   cursor: pointer;
 }
@@ -48,9 +52,16 @@ input,
 textarea,
 select {
   font: inherit;
+  color: inherit;
 }
 
-img {
+textarea {
+  resize: vertical;
+}
+
+img,
+svg,
+picture {
   display: block;
   max-width: 100%;
   height: auto;

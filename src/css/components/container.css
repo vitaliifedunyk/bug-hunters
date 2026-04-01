@@ -1,25 +1,24 @@
 .container {
   width: 100%;
-  margin: 0 auto;
-  padding-inline: 16px;
-}
-
-@media only screen and (min-width: 375px) {
-  .container {
-    width: 375px;
-  }
+  max-width: var(--container-mobile);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-mobile);
+  padding-right: var(--container-padding-mobile);
 }
 
 @media only screen and (min-width: 768px) {
   .container {
-    width: 768px;
-    padding-inline: 24px;
+    max-width: var(--container-tablet);
+    padding-left: var(--container-padding-tablet);
+    padding-right: var(--container-padding-tablet);
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .container {
-    width: 1440px;
-    padding-inline: 64px;
+    max-width: var(--container-desktop);
+    padding-left: var(--container-padding-desktop);
+    padding-right: var(--container-padding-desktop);
   }
 }

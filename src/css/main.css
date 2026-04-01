@@ -1,2 +1,19 @@
-@import url('./base/fonts.css');
-@import url('./base/common.css');
+@import url("./base/fonts.css");
+@import url("./base/variables.css");
+@import url("./base/reset.css");
+@import url("./base/common.css");
+
+@import url("./components/container.css");
+@import url("./components/button.css");
+@import url("./components/form.css");
+@import url("./components/card.css");
+@import url("./components/modal.css");
+
+@import url("./layout/header.css");
+@import url("./layout/footer.css");
+@import url("./sections/hero.css");
+@import url("./sections/categories.css");
+@import url("./sections/products.css");
+@import url("./sections/about.css");
+@import url("./sections/faq.css");
+@import url("./sections/reviews.css");
