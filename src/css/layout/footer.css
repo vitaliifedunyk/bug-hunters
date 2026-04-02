@@ -1,1 +1,129 @@
+.footer {
+  background-color: var(--color-brand-primary);
+  color: var(--color-white);
+}
 
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 32px;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.footer-logo-icon {
+  fill: currentColor;
+}
+
+.footer-logo-text {
+  font-size: var(--fs-24);
+  font-weight: var(--fw-semiBold);
+  line-height: var(--lh-120);
+}
+
+.footer-nav {
+  margin-bottom: 24px;
+}
+
+.footer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.footer-link {
+  font-size: var(--fs-16);
+  line-height: var(--lh-150);
+  color: var(--color-white);
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-socials {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.footer-social-link svg {
+  fill: currentColor;
+}
+
+.footer-social-link:hover,
+.footer-social-link:focus-visible {
+  color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+.footer-copy {
+  font-size: var(--fs-12);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media screen and (min-width: 768px) {
+  .footer-container {
+    padding-top: 24px;
+    padding-bottom: 32px;
+  }
+
+  .footer-nav-list {
+    flex-direction: row;
+    gap: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .footer-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    padding-top: 35px;
+    padding-bottom: 35px;
+  }
+
+  .footer-logo {
+    margin-bottom: 0;
+  }
+
+  .footer-nav {
+    margin-bottom: 0;
+  }
+
+  .footer-socials {
+    margin-bottom: 0;
+  }
+
+  .footer-copy {
+    order: 2;
+    margin-left: 40px;
+  }
+
+  .footer-nav {
+    order: 3;
+  }
+
+  .footer-socials {
+    order: 4;
+  }
+}
