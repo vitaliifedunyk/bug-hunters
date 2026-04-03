@@ -14,7 +14,7 @@
 
 .footer-logo {
   display: block;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .footer-logo-icon {
@@ -81,7 +81,7 @@
 }
 
 .footer-copy {
-  font-size: var(--fs-12);
+  font-size: var(--fs-14);
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -103,8 +103,8 @@
     align-items: center;
     justify-content: space-between;
     text-align: left;
-    padding-top: 35px;
-    padding-bottom: 35px;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .footer-logo {
