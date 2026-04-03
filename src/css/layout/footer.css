@@ -13,20 +13,14 @@
 }
 
 .footer-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
+  display: block;
   margin-bottom: 32px;
 }
 
 .footer-logo-icon {
+  width: 228px;
+  height: auto;
   fill: currentColor;
-}
-
-.footer-logo-text {
-  font-size: var(--fs-24);
-  font-weight: var(--fw-semiBold);
-  line-height: var(--lh-120);
 }
 
 .footer-nav {
@@ -43,6 +37,8 @@
   font-size: var(--fs-16);
   line-height: var(--lh-150);
   color: var(--color-white);
+  transition: color 250ms ease;
+  cursor: pointer;
 }
 
 .footer-link:hover,
@@ -63,6 +59,10 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  transition:
+    color 250ms ease,
+    transform 250ms ease;
+  cursor: pointer;
 }
 
 .footer-social-link svg {
@@ -73,6 +73,11 @@
 .footer-social-link:focus-visible {
   color: rgba(255, 255, 255, 0.7);
   transform: translateY(-2px);
+}
+
+.footer-social-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .footer-copy {
