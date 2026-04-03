@@ -13,6 +13,16 @@
   padding: 20px;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
+.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
 .product-modal {
   position: relative;
   background: #fff;
