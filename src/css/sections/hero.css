@@ -47,6 +47,11 @@ margin-bottom: 32px;
         inset 0 32px 24px rgba(255, 255, 255, 0.05);
 }
 
+.hero-btn:hover,
+.hero-btn:focus-visible{
+  background-color: #c69a9b;
+}
+
 
 
 /* Tablet styles */
