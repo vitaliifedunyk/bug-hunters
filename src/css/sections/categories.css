@@ -1,1 +1,145 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+.furniture {
+  padding: 80px 64px; 
+}
+
+@media (max-width: 1024px) { 
+  .furniture {
+    padding: 48px 32px; 
+  }
+}
+
+@media (max-width: 480px) { 
+  .furniture {
+    padding: 48px 20px; 
+  }
+}
+
+.section-header {
+  max-width: 1312px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.furniture-title {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  color: rgba(8, 12, 9, 1);
+  font-size: 48px; 
+}
+
+@media (max-width: 1024px) { 
+  .furniture-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) { 
+  .furniture-title {
+    font-size: 28px;
+  }
+}
+
+.furniture-subtitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  color: rgba(8, 12, 9, 1);
+  margin-bottom: 20px;
+}
+
+.furniture-filters {
+  margin-top: 40px;
+}
+
+#categories {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 122px;
+  aspect-ratio: 4 / 3; 
+  border-radius: 8px;
+  border: 8px solid transparent;
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  background: none;
+  transition: all 0.3s ease;
+}
+
+.category-btn.active {
+  border-color: rgba(107, 6, 9, 1);
+  font-weight: bold;
+  color: #fff;
+}
+
+.category-btn:hover,
+.category-btn:focus {
+  border-color: rgba(150, 20, 25, 1);
+  font-weight: bold;
+}
+
+.category-btn .fill-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.category-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.category-btn span {
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+@media (max-width: 1300px) {
+  .section-header {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .furniture-title {
+    font-size: 28px;
+  }
+  .furniture-subtitle {
+    font-size: 16px;
+  }
+  .category-btn {
+    width: 120px;
+    height: 90px;
+    font-size: 14px;
+  }
+}
