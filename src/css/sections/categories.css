@@ -1,1 +1,153 @@
+.furniture {
+  padding: 48px 20px;
+}
 
+.section-header {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.furniture-title {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  color: rgba(8, 12, 9, 1);
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.furniture-subtitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  color: rgba(8, 12, 9, 1);
+  margin-bottom: 40px;
+}
+
+.categories-list {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.categories-list__item {
+  list-style: none;
+}
+
+.category-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  width: 160px;
+  height: 122px;
+  padding-block: 32px;
+  padding-inline: 16px;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.1;
+  cursor: pointer;
+  overflow: hidden;
+  color: var(--color-white);
+  text-align: center;
+  background-color: #6e6257;
+  transition:
+    box-shadow var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.category-btn:focus-visible {
+  outline: none;
+}
+
+.category-btn.is-active::before {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.category-btn .fill-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.category-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.36);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  transition:
+    background var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+.category-btn:hover::before,
+.category-btn:focus-visible::before {
+  box-shadow: inset 0 0 0 8px var(--color-brand-primary-hover);
+}
+
+.category-btn.is-active::before {
+  box-shadow: inset 0 0 0 8px var(--color-brand-primary-active);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.category-btn span {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: var(--color-white);
+  position: relative;
+  z-index: 2;
+  white-space: normal;
+}
+
+@media (min-width: 768px) {
+  .furniture {
+    padding: 48px 32px;
+  }
+
+  .furniture-subtitle {
+    font-size: 16px;
+  }
+
+  .categories-list {
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .furniture {
+    padding: 80px 64px;
+  }
+
+  .section-header {
+    max-width: 1312px;
+  }
+
+  .furniture-title {
+    font-size: 48px;
+  }
+
+  .furniture-subtitle {
+    font-size: 18px;
+  }
+}
