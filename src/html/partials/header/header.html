@@ -1,1 +1,52 @@
+<header class="header">
+  <div class="container header-box">
+    <a
+      class="header-logo-link"
+      href="./index.html"
+      aria-label="Перейти на головну сторінку Меблерія"
+    >
+      <img
+        class="header-logo"
+        src="./src/images/logo/logo.svg"
+        alt="Меблерія"
+        width="163"
+        height="70"
+      />
+    </a>
 
+    <nav class="header-nav" aria-label="Основна навігація">
+      <ul class="header-nav-list">
+        <li class="header-nav-item">
+          <a class="header-nav-link" href="#products" data-nav-link>Наші меблі</a>
+        </li>
+        <li class="header-nav-item">
+          <a class="header-nav-link" href="#about" data-nav-link>Про нас</a>
+        </li>
+        <li class="header-nav-item">
+          <a class="header-nav-link" href="#faq" data-nav-link>Часті питання</a>
+        </li>
+        <li class="header-nav-item">
+          <a class="header-nav-link" href="#reviews" data-nav-link>Відгуки</a>
+        </li>
+        <li class="header-nav-item">
+          <a class="header-nav-btn btn btn--primary btn--small" href="#products" data-nav-link>
+            До покупок
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <button
+      class="header-menu-btn"
+      type="button"
+      data-menu-open
+      aria-label="Відкрити меню"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+    >
+      <svg class="header-menu-icon" width="32" height="32" aria-hidden="true">
+        <use href="./src/images/icons/icons.svg#icon-menu"></use>
+      </svg>
+    </button>
+  </div>
+</header>
