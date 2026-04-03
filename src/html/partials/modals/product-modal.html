@@ -1,96 +1,92 @@
-<!-- SVG символи (хрестик та зірка) -->
-<svg style="display:none;">
-  <symbol id="icon-x" viewBox="0 0 32 32">
-    <path d="M21.589 8.459l-5.657 5.656-5.656-5.656-1.885 1.885 5.656 5.656-5.656 5.656 1.885 1.885 5.656-5.656 5.657 5.656 1.885-1.885-5.656-5.656 5.656-5.656-1.885-1.885z"></path>
-  </symbol>
+<section id="product-modal">
+  <div class="backdrop">
+    <div class="product-modal">
+      <!-- кнопка для закриття -->
+      <button class="modal-close-btn" type="button">
+        <svg class="modal-close-icon" width="32" height="32">
+          <use href="/src/images/icons/icons.svg#icon-x"></use>
+        </svg>
+      </button>
 
-  <symbol id="icon-star" viewBox="0 0 32 32">
-    <path d="M8.688 19.097l-1.987 8.603c-0.062 0.261-0.043 0.533 0.053 0.783s0.265 0.465 0.485 0.617c0.22 0.152 0.481 0.235 0.749 0.236s0.53-0.078 0.752-0.227l7.26-4.84 7.26 4.84c0.227 0.151 0.495 0.228 0.768 0.222s0.537-0.095 0.757-0.256c0.22-0.161 0.386-0.385 0.475-0.642s0.097-0.536 0.023-0.799l-2.439-8.533 6.048-5.443c0.194-0.174 0.332-0.402 0.398-0.654s0.056-0.518-0.027-0.765-0.238-0.464-0.444-0.624c-0.206-0.16-0.454-0.256-0.714-0.277l-7.601-0.605-3.289-7.281c-0.105-0.234-0.275-0.434-0.491-0.573s-0.467-0.214-0.724-0.214c-0.257 0-0.508 0.074-0.724 0.214s-0.386 0.339-0.491 0.573l-3.289 7.281-7.601 0.604c-0.255 0.020-0.5 0.114-0.703 0.269s-0.358 0.366-0.445 0.607c-0.087 0.241-0.103 0.502-0.046 0.752s0.185 0.478 0.369 0.656l5.619 5.476zM12.492 13.329c0.238-0.019 0.467-0.101 0.662-0.239s0.35-0.325 0.448-0.543l2.399-5.308 2.399 5.308c0.098 0.218 0.252 0.405 0.448 0.543s0.424 0.22 0.662 0.239l5.296 0.42-4.361 3.925c-0.379 0.341-0.529 0.867-0.391 1.357l1.671 5.847-4.981-3.321c-0.219-0.147-0.476-0.225-0.739-0.225s-0.521 0.078-0.739 0.225l-5.205 3.471 1.4-6.061c0.051-0.223 0.044-0.455-0.020-0.675s-0.184-0.419-0.348-0.579l-4.051-3.949 5.453-0.435z"></path>
-  </symbol>
-</svg>
+      <div class="product-info-block">
+        <!-- блок для картинок -->
+        <div class="product-images">
+          <div class="product-gallery">
+            <!-- велике фото -->
+            <img class="main-img" src="/src/images/categories/tables.webp" width="295" height="297"
+              srcset="/src/images/categories/tables.webp 1x, /src/images/categories/tables@2x.webp 2x"
+              alt="Product image" />
 
-<div class="backdrop is-hidden">
-  <div class="product-modal">
-    <!-- кнопка для закриття -->
-    <button class="modal-close-btn" type="button">
-      <svg class="modal-close-icon" width="32" height="32">
-        <use href="#icon-x"></use>
-      </svg>
-    </button>
-
-    <div class="product-info-block">
-      <!-- блок для картинок -->
-      <div class="product-images">
-        <div class="product-gallery">
-          <!-- велике фото -->
-          <img
-            class="main-img"
-            src="/src/images/categories/tables.webp"
-            srcset="/src/images/categories/tables.webp 1x, /src/images/categories/tables@2x.webp 2x"
-            alt="Product image"
-          />
-
-          <!-- маленькі фото -->
-          <div class="thumbs">
-            <img
-              src="/src/images/categories/wardrobe.webp"
-              srcset="/src/images/categories/wardrobe.webp 1x, /src/images/categories/wardrobe@2x.webp 2x"
-              alt="Thumbnail 1"
-            />
-            <img
-              src="/src/images/categories/wardrobe.webp"
-              srcset="/src/images/categories/wardrobe.webp 1x, /src/images/categories/wardrobe@2x.webp 2x"
-              alt="Thumbnail 2"
-            />
+            <!-- маленькі фото -->
+            <div class="thumbs">
+              <img src="/src/images/categories/wardrobe.webp" width="140" height="197"
+                srcset="/src/images/categories/wardrobe.webp 1x, /src/images/categories/wardrobe@2x.webp 2x"
+                alt="Thumbnail 1" />
+              <img src="/src/images/categories/wardrobe.webp" width="140" height="197"
+                srcset="/src/images/categories/wardrobe.webp 1x, /src/images/categories/wardrobe@2x.webp 2x"
+                alt="Thumbnail 2" />
+            </div>
           </div>
         </div>
-      </div>
-         <!-- картка продукту -->
-      <div class="product-card">
-        <h3 class="product-title">Софа Oslo</h3>
-        <p class="product-type">Дивани</p>
-        <p class="product-price">9 999 грн</p>
+        <!-- картка продукту -->
+        <div class="product-card">
+          <h3 class="product-title">Софа Oslo</h3>
+          <p class="product-type">Дивани</p>
+          <p class="product-price">9 999 грн</p>
 
-        <!-- зірочки -->
-        <div class="stars-reviews">
-          <div class="stars">
-            <svg width="16" height="20"><use href="#icon-star"></use></svg>
-            <svg width="16" height="20"><use href="#icon-star"></use></svg>
-            <svg width="16" height="20"><use href="#icon-star"></use></svg>
-            <svg width="16" height="20"><use href="#icon-star"></use></svg>
-            <svg width="16" height="20"><use href="#icon-star"></use></svg>
+          <!-- зірочки -->
+          <div class="stars-reviews">
+            <div class="stars">
+              <svg width="16" height="20">
+                <use href="/src/images/icons/icons.svg#icon-star"></use>
+              </svg>
+              <svg width="16" height="20">
+                <use href="/src/images/icons/icons.svg#icon-star"></use>
+              </svg>
+              <svg width="16" height="20">
+                <use href="/src/images/icons/icons.svg#icon-star"></use>
+              </svg>
+              <svg width="16" height="20">
+                <use href="/src/images/icons/icons.svg#icon-star"></use>
+              </svg>
+              <svg width="16" height="20">
+                <use href="/src/images/icons/icons.svg#icon-star"></use>
+              </svg>
+            </div>
           </div>
+
+          <p class="product-color">Колір</p>
+          <ul class="color-list">
+            <li>
+              <label class="color-item">
+                <input type="radio" name="color" value="gray" checked />
+                <span class="color-circle" style="background-color: #c7c3bb;"></span>
+              </label>
+            </li>
+            <li>
+              <label class="color-item">
+                <input type="radio" name="color" value="beige" />
+                <span class="color-circle" style="background-color: #c7aa80;;"></span>
+              </label>
+            </li>
+            <li>
+              <label class="color-item">
+                <input type="radio" name="color" value="blue" />
+                <span class="color-circle" style="background-color: #201a19;;"></span>
+              </label>
+            </li>
+          </ul>
+
+          <p class="product-description">
+            Класичний диван з м'якими подушками та високою спинкою, ідеальний для сімейного відпочинку. Оббивка з
+            якісної
+            зносостійкої тканини.
+          </p>
+          <p class="product-size">Розміри: 280x180x85</p>
+
+          <button class="order-btn">Перейти до замовлення</button>
         </div>
-
-        <p class="product-color">Колір</p>
-        <ul class="color-list">
-          <li>
-            <label class="color-item">
-              <input type="radio" name="color" value="gray" />
-              <span class="color-circle" style="background-color: #c7c3bb;"></span>
-            </label>
-          </li>
-          <li>
-            <label class="color-item">
-              <input type="radio" name="color" value="beige" />
-              <span class="color-circle" style="background-color: #c7aa80;;"></span>
-            </label>
-          </li>
-          <li>
-            <label class="color-item">
-              <input type="radio" name="color" value="blue" />
-              <span class="color-circle" style="background-color: #201a19;;"></span>
-            </label>
-          </li>
-        </ul>
-
-        <p class="product-description">
-          Класичний диван з м'якими подушками та високою спинкою, ідеальний для сімейного відпочинку. Оббивка з якісної зносостійкої тканини.
-        </p>
-        <p class="product-size">Розміри: 280x180x85</p>
-
-        <button class="order-btn">Перейти до замовлення</button>
       </div>
     </div>
   </div>
-</div>
+</section>
