@@ -9,19 +9,19 @@
 .feedback-container {
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
 .feedback-title {
   margin-bottom: 24px;
+  font-size: 36px;
 }
 /* підзаголовок */
 .feedback-subtitle {
-  max-width: 320px;
+  width: 320px;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.6;
   color: var(--color-text-primary);
-  margin-bottom: 56px;
+  margin-bottom: 80px;
 }
 
 /* =======================
@@ -49,7 +49,8 @@
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
+  margin-bottom: 60px;
 }
 
 /* =======================
@@ -96,7 +97,6 @@
 .feedback-author {
   font-size: var(--fs-14, 14px);
   font-weight: var(--fw-bold);
-  margin-bottom: 24px;
 }
 
 /* =======================
@@ -105,8 +105,9 @@
 
 .feedback-controls {
   display: flex;
-  justify-content: space-between;
+  gap: 16px;
   align-items: center;
+  justify-content: flex-end;
 }
 
 /* пагінація (зліва) */
@@ -173,12 +174,17 @@
 ======================= */
 
 @media only screen and (min-width: 768px) {
-  .feedback-container {
-    gap: 32px;
+  .feedback {
+    padding: 32px 0;
   }
+
   .feedback-list {
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .feedback-subtitle {
+    width: 560px;
   }
 
   .feedback-item {
@@ -192,6 +198,10 @@
     justify-content: flex-end;
     gap: 20px;
   }
+
+  .feedback-card {
+    margin-bottom: 48px;
+  }
 }
 
 /* =======================
@@ -199,17 +209,14 @@
 ======================= */
 
 @media only screen and (min-width: 1440px) {
-  .feedback-container {
-    gap: 40px;
+  .feedback {
+    padding: 64px 0;
+  }
+  .feedback-title {
+    font-size: 48px;
   }
 
-  .feedback-card {
-    padding: 32px;
-  }
   .feedback-item {
     width: calc((100% - 32px) / 3);
-  }
-  .feedback-subtitle {
-    max-width: 480px;
   }
 }
