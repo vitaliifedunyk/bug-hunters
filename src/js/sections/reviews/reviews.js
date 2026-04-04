@@ -17,8 +17,8 @@ function normalizeRating(rating) {
 // ==========================
 // 🔥 CREATE CARD
 // ==========================
-function createCard({ author, text, rate }) {
-  const normalized = normalizeRating(rate);
+function createCard({ author, text, rating }) {
+  const normalized = normalizeRating(rating);
 
   return `
     <li class="feedback-item swiper-slide">
@@ -57,6 +57,7 @@ export async function initReviews() {
   const container = document.querySelector('.feedback-list');
 
   try {
+    // 👉 API повертає { reviews, total, page, limit }
     const { reviews } = await getFeedbacks();
 
     if (!Array.isArray(reviews) || reviews.length === 0) {
@@ -64,14 +65,19 @@ export async function initReviews() {
       return;
     }
 
+    // 🔥 беремо тільки 10
     const sliced = reviews.slice(0, 10);
 
+    // 🔥 рендер
     container.innerHTML = sliced.map(createCard).join('');
 
+    // 🔥 класи для swiper
     container.classList.add('swiper-wrapper');
 
+    // 🔥 рейтинг
     initRating(container);
 
+    // 🔥 swiper
     new Swiper('.feedback-slider', {
       slidesPerView: 1,
       spaceBetween: 20,
