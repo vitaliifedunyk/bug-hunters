@@ -26,13 +26,21 @@
 }
 
 .mobile-menu-top {
+  width: 100%;
+  min-height: 72px;
+  background-color: var(--color-bg-primary);
+}
+
+.mobile-menu-top-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  width: 100%;
+  max-width: var(--container-mobile);
   min-height: 72px;
-  padding: 0 16px;
-  background-color: var(--color-bg-primary);
+  margin-inline: auto;
+  padding-inline: 32px;
 }
 
 .mobile-menu-logo-link {
@@ -126,7 +134,7 @@
 
   .mobile-menu-backdrop {
     inset: 72px 0 0;
-    background-color: rgba(8, 12, 9, 0.28);
+    background-color: rgba(8, 12, 9, 0.5);
     opacity: 1;
     pointer-events: auto;
   }
@@ -136,11 +144,13 @@
   }
 
   .mobile-menu-top {
-    width: 100%;
-    min-height: 72px;
-    padding: 0 32px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     pointer-events: auto;
+  }
+
+  .mobile-menu-top-inner {
+    max-width: var(--container-tablet);
+    padding-inline: 32px;
   }
 
   .mobile-menu-panel {
