@@ -94,6 +94,9 @@
   /* Header */
   --header-height-mobile: 72px;
   --header-height-desktop: 88px;
+  --navbar-inline-mobile: 20px;
+  --navbar-inline-tablet: 32px;
+  --navbar-inline-desktop: 64px;
 
   /* Animation */
   --transition-fast: 250ms ease;
