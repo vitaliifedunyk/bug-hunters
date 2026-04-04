@@ -1,1 +1,134 @@
+.faq-item {
+    margin: 0 auto;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(8, 12, 9, 0.15); 
+}
 
+.border-item-top {
+    border-top: 1px solid rgba(8, 12, 9, 0.15);
+}
+
+.faq-question {
+    display: block;
+    flex: 1;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #080c09;
+}
+
+.faq {
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+.faq-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px 0px;
+    border: none;
+    text-align: left;
+}
+
+.faq-trigger .faq-icon-svg {
+    flex-shrink: 0;
+}
+
+.icon-close {
+    display: none;
+}
+
+.faq-title {
+    margin-bottom: 32px;
+
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-align: center;
+    color: #080c09;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+
+.faq-answer {
+    font-family: "Raleway", sans-serif;
+
+    margin-bottom: 24px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #080c09;
+}
+
+.faq-panel {
+    overflow: hidden;
+    transition-property: height;
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+}
+
+.faq-item.is-open .faq-panel {
+    padding-bottom: 24px;
+}
+
+@media (min-width: 375px) {
+    .faq-item {
+        max-width: 335px;
+    }
+
+    .faq-question {
+        max-width: 279px;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .faq-item {
+        max-width: 704px;
+    }
+
+    .faq-question {
+        max-width: 649px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .faq {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .faq-item {
+        max-width: 865px;
+    }
+
+    .faq-question {
+        max-width: 809px;
+        font-size: 18px;
+    }
+
+    .faq-title {
+        font-size: 48px;
+    }
+
+    .faq-list {
+        max-width: 865px;
+        margin: 0 auto;
+    }
+
+    .test-item {
+        min-width: 865px;
+    }
+
+}
