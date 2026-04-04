@@ -1,17 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/bug-hunters/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Меблерія</title>
+    <script type="module" crossorigin src="/bug-hunters/index.js"></script>
+    <link rel="stylesheet" crossorigin href="/bug-hunters/assets/index-DA1Uhobb.css">
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/bug-hunters/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Меблерія</title>
-  <script type="module" crossorigin src="/bug-hunters/index.js"></script>
-  <link rel="stylesheet" crossorigin href="/bug-hunters/assets/index-9l7TNtKZ.css">
-</head>
-
-<body>
-  <header class="header">
+  <body>
+    <header class="header">
   <div class="container header-box">
     <a class="header-logo-link" href="./index.html" aria-label="Перейти на головну сторінку Меблерія">
       <img class="header-logo" src="/bug-hunters/assets/logo-D5WLGvhc.svg" alt="Меблерія" width="163" height="70" />
@@ -47,52 +46,9 @@
     </button>
   </div>
 </header>
-  <div class="mobile-menu is-hidden " id="mobile-menu" data-mobile-menu aria-hidden="true" aria-modal="true"
-  aria-label="Мобільне меню" role="dialog">
-  <div class="mobile-menu-backdrop" data-menu-backdrop aria-hidden="true"></div>
 
-  <div class="mobile-menu-shell">
-    <div class="mobile-menu-top">
-      <div class="mobile-menu-top-inner">
-        <a class="mobile-menu-logo-link" href="./index.html" aria-label="Перейти на головну сторінку Меблерія">
-          <img class="mobile-menu-logo" src="/bug-hunters/assets/logo-D5WLGvhc.svg" alt="Меблерія" width="163" height="70" />
-        </a>
-
-        <button class="mobile-menu-close-btn" type="button" data-menu-close aria-label="Закрити меню">
-          <svg class="mobile-menu-close-icon" width="32" height="32" aria-hidden="true">
-            <use href="/bug-hunters/assets/icons-B05t0GHi.svg#icon-x"></use>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <aside class="mobile-menu-panel" aria-label="Мобільне меню">
-      <nav class="mobile-menu-nav" aria-label="Мобільна навігація">
-        <ul class="mobile-menu-list">
-          <li class="mobile-menu-item">
-            <a class="mobile-menu-link" href="#products" data-nav-link>Наші меблі</a>
-          </li>
-          <li class="mobile-menu-item">
-            <a class="mobile-menu-link" href="#about" data-nav-link>Про нас</a>
-          </li>
-          <li class="mobile-menu-item">
-            <a class="mobile-menu-link" href="#faq" data-nav-link>Часті питання</a>
-          </li>
-          <li class="mobile-menu-item">
-            <a class="mobile-menu-link" href="#reviews" data-nav-link>Відгуки</a>
-          </li>
-        </ul>
-      </nav>
-
-      <a class="mobile-menu-btn btn btn--primary" href="#products" data-nav-link>
-        До покупок
-      </a>
-    </aside>
-  </div>
-</div>
-
-  <main class="main">
-    <section id="hero" class="hero">
+    <main class="main">
+      <section id="hero" class="hero">
     <div class="container">
         <div class="hero-title-wrapper">
             <h2 class="hero-title">Створіть свій ідеальний дім</h2>
@@ -106,7 +62,7 @@
     </div>
 </section>
 
-    <section class="furniture container" id="categories" aria-labelledby="categories-title">
+      <section class="furniture container" id="categories" aria-labelledby="categories-title">
   <div class="section-header">
     <h2 class="furniture-title" id="categories-title">Наші меблі</h2>
     <p class="furniture-subtitle">
@@ -126,7 +82,7 @@
     </div>
   </div>
 </section>
-    <section class="products">
+      <section class="products">
     <div class="container">
 
         <ul class="products-list">
@@ -175,7 +131,7 @@
 
     </div>
 </section>
-    <section class="about" id="about">
+      <section class="about" id="about">
   <div class="container about-container">
     <div class="about-content">
       <h2 class="about-title">Про Меблерію</h2>
@@ -213,7 +169,7 @@
   </div>
 </section>
 
-    <section class="faq" id="faq">
+      <section class="faq" id="faq">
   <div class="container">
     <h2 class="faq-title">Часті питання</h2>
 
@@ -320,7 +276,7 @@
   </div>
 </section>
 
-    <section id="feedback" class="feedback">
+      <section id="feedback" class="feedback">
   <div class="container feedback-container">
     <h2 class="feedback-title">Відгуки клієнтів</h2>
 
@@ -392,9 +348,9 @@
     <div class="feedback-pagination"></div>
   </div>
 </section>
-  </main>
+    </main>
 
-  <footer class="footer">
+    <footer class="footer">
   <div class="container footer-container">
     <a href="./index.html" class="footer-logo" aria-label="На головну">
       <svg class="footer-logo-icon" width="112" height="48" aria-hidden="true">
@@ -442,9 +398,71 @@
     <p class="footer-copy">© 2026 Меблерія. Всі права захищені.</p>
   </div>
 </footer>
-  
+    <div class="backdrop is-open" data-order-modal>
+  <div class="modal">
+    <button
+      type="button"
+      class="modal__close"
+      data-order-modal-close
+      aria-label="Close modal"
+    >
+      <svg class="modal__close-icon" width="24" height="24">
+        <use href="/bug-hunters/assets/icons-B05t0GHi.svg#icon-x"></use>
+      </svg>
+    </button>
 
-  <section id="product-modal" class="none">
+    <p class="modal__title">Замовити</p>
+
+    <form class="form js-order-form" data-order-form>
+      <div class="form-field">
+        <label for="user-name" class="form-label">Ім'я*</label>
+        <input
+          type="text"
+          name="name"
+          id="user-name"
+          class="form-input"
+          placeholder="Дмитро"
+          minlength="2"
+          maxlength="30"
+          required
+        />
+        <span class="form-error">Це поле є обов'язковим</span>
+      </div>
+
+      <div class="form-field">
+        <label for="user-tel" class="form-label">Телефон*</label>
+        <input
+          type="tel"
+          name="phone"
+          id="user-tel"
+          class="form-input"
+          placeholder="38 099 123 22 11"
+          pattern="^[0-9]{10,12}$"
+          required
+        />
+        <span class="form-error">Введіть коректний номер телефону</span>
+      </div>
+
+      <div class="form-field">
+        <label for="user-comment" class="form-label">Коментар</label>
+        <textarea
+          name="comment"
+          id="user-comment"
+          class="form-textarea"
+          placeholder="Введіть ваш коментар"
+          minlength="5"
+          maxlength="500"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="button button--primary form-submit">
+        Надіслати заявку
+      </button>
+    </form>
+  </div>
+</div>
+
+    <section id="product-modal" class="none">
   <div class="backdrop is-hidden">
     <div class="product-modal">
       <!-- кнопка для закриття -->
@@ -537,6 +555,6 @@
   </div>
 </section>
 
-</body>
 
+  </body>
 </html>
