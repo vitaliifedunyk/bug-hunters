@@ -154,14 +154,13 @@
   }
 
   .mobile-menu-panel {
-    width: clamp(248px, 32vw, 336px);
-    max-width: 100%;
+    width: calc(249px + ((100vw - 768px) / 2));
     min-height: calc(100dvh - 72px);
     align-self: flex-end;
     margin-left: auto;
     align-items: flex-start;
     pointer-events: auto;
-    padding: 18px 32px 24px;
+    padding: 18px calc(32px + ((100vw - 768px) / 2)) 24px 32px;
     overflow-y: auto;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
   }
