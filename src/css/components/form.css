@@ -56,8 +56,9 @@
 }
 .form-textarea {
   min-height: 120px;
-    resize: vertical;
-    max-height: 200px;
+  padding: 12px;
+  resize: vertical;
+  max-height: 200px;
 }
 
 .form-input::placeholder,
