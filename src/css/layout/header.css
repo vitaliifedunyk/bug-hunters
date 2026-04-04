@@ -1,4 +1,6 @@
 .header {
+  position: relative;
+  z-index: var(--z-header);
   background-color: var(--color-bg-primary);
 }
 
@@ -89,9 +91,6 @@
 }
 
 @media only screen and (min-width: 1440px) {
-  .header-box {
-  }
-
   .header-nav {
     display: block;
   }
