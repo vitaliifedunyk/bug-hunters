@@ -3,23 +3,22 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { getFeedbacks } from './feedbacks-api.js';
+import { getFeedbacks } from '../../api/feedbacks-api.js';
 
 // ==========================
-// 🔥 ОКРУГЛЕННЯ ПО ТЗ
+// 🔥 NORMALIZE RATING
 // ==========================
-function normalizeRating(value) {
-  if (value >= 3.3 && value <= 3.7) return 3.5;
-  if (value >= 3.8 && value <= 4.2) return 4;
-
-  return Math.round(value * 2) / 2;
+function normalizeRating(rating) {
+  if (rating >= 3.3 && rating <= 3.7) return 3.5;
+  if (rating >= 3.8 && rating <= 4.2) return 4;
+  return Math.round(rating * 2) / 2;
 }
 
 // ==========================
-// 🔥 РЕНДЕР КАРТОК
+// 🔥 CREATE CARD
 // ==========================
-function createCard({ author, text, rating }) {
-  const normalized = normalizeRating(rating);
+function createCard({ author, text, rate }) {
+  const normalized = normalizeRating(rate);
 
   return `
     <li class="feedback-item swiper-slide">
@@ -34,10 +33,10 @@ function createCard({ author, text, rating }) {
 }
 
 // ==========================
-// ⭐ RATY INIT
+// ⭐ INIT RATING
 // ==========================
-function initRating() {
-  const elements = document.querySelectorAll('.rating');
+function initRating(container) {
+  const elements = container.querySelectorAll('.rating');
 
   elements.forEach(el => {
     const score = Number(el.dataset.score);
@@ -47,100 +46,61 @@ function initRating() {
       score: score,
       half: true,
       starType: 'svg',
-      hints: ['', '', '', '', ''],
     });
   });
 }
 
 // ==========================
-// 🔥 SWIPER
-// ==========================
-let swiper;
-
-function initSwiper() {
-  swiper = new Swiper('.feedback-slider', {
-    slidesPerView: 1,
-    spaceBetween: 16,
-
-    navigation: {
-      nextEl: '.btn-next',
-      prevEl: '.btn-prev',
-    },
-
-    pagination: {
-      el: '.feedback-pagination',
-      clickable: true,
-      bulletClass: 'swiper-pagination-bullet',
-      bulletActiveClass: 'active',
-    },
-
-    breakpoints: {
-      768: {
-        slidesPerView: 2,
-      },
-      1440: {
-        slidesPerView: 3,
-      },
-    },
-
-    on: {
-      init(swiper) {
-        updateButtons(swiper);
-      },
-      slideChange(swiper) {
-        updateButtons(swiper);
-      },
-    },
-  });
-}
-
-// ==========================
-// 🔥 DISABLED КНОПКИ
-// ==========================
-function updateButtons(swiper) {
-  const prevBtn = document.querySelector('.btn-prev');
-  const nextBtn = document.querySelector('.btn-next');
-
-  prevBtn.disabled = swiper.isBeginning;
-  nextBtn.disabled = swiper.isEnd;
-}
-
-// ==========================
-// 🚀 INIT
+// 🚀 INIT REVIEWS
 // ==========================
 export async function initReviews() {
-  const list = document.querySelector('.feedback-list');
+  const container = document.querySelector('.feedback-list');
 
   try {
-    const data = await getFeedbacks();
+    const { reviews } = await getFeedbacks();
 
-    if (!data || data.length === 0) {
-      list.innerHTML = '<p>Немає відгуків</p>';
+    if (!Array.isArray(reviews) || reviews.length === 0) {
+      container.innerHTML = '<p>Немає відгуків</p>';
       return;
     }
 
-    const markup = data.map(createCard).join('');
-    list.innerHTML = markup;
+    const sliced = reviews.slice(0, 10);
 
-    // swiper класи
-    list.classList.add('swiper-wrapper');
+    container.innerHTML = sliced.map(createCard).join('');
 
-    document
-      .querySelectorAll('.feedback-item')
-      .forEach(el => el.classList.add('swiper-slide'));
+    container.classList.add('swiper-wrapper');
 
-    // ініціалізація
-    initSwiper();
-    initRating();
+    initRating(container);
+
+    new Swiper('.feedback-slider', {
+      slidesPerView: 1,
+      spaceBetween: 20,
+
+      navigation: {
+        nextEl: '.btn-next',
+        prevEl: '.btn-prev',
+      },
+
+      pagination: {
+        el: '.feedback-pagination',
+        clickable: true,
+      },
+
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+        1440: {
+          slidesPerView: 3,
+        },
+      },
+    });
 
   } catch (error) {
-    console.error(error);
+    console.error('Помилка:', error);
 
-    list.innerHTML = `
-      <p class="error">
-        Не вдалося завантажити відгуки 😢
-      </p>
+    container.innerHTML = `
+      <p>Не вдалося завантажити відгуки 😢</p>
     `;
   }
 }
-
