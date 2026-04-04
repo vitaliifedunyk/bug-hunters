@@ -1,1 +1,222 @@
+/* =======================
+   FEEDBACK SECTION
+======================= */
 
+.feedback {
+  background-color: var(--color-bg-primary);
+}
+
+.feedback-container {
+  display: flex;
+  flex-direction: column;
+}
+.feedback-title {
+  margin-bottom: 24px;
+  font-size: 36px;
+}
+/* підзаголовок */
+.feedback-subtitle {
+  width: 320px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  margin-bottom: 80px;
+}
+
+/* =======================
+   CARD / SLIDER
+======================= */
+
+.feedback-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feedback-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.feedback-item {
+  list-style: none;
+}
+
+.feedback-card {
+  background-color: var(--color-bg-primary);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+/* =======================
+   STARS
+======================= */
+
+.feedbacks-star-list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.feedbacks-star-item {
+  display: inline-flex;
+}
+
+.feedbacks-star-item.icon-star {
+  fill: var(--color-text-primary, #080c09);
+  stroke: none;
+}
+
+/* неактивна зірка */
+.feedbacks-star-item.is-empty .icon-star {
+  fill: var(--color-bg-primary, #f2f2f2);
+  stroke: none;
+}
+
+/* =======================
+   TEXT
+======================= */
+
+.feedback-text {
+  width: 287px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+
+.feedback-author {
+  font-size: var(--fs-14, 14px);
+  font-weight: var(--fw-bold);
+}
+
+/* =======================
+   CONTROLS
+======================= */
+
+.feedback-controls {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* пагінація (зліва) */
+.feedback-pagination {
+  display: flex;
+  gap: 6px;
+}
+
+.feedback-pagination span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-border, #ccc);
+}
+
+.feedback-pagination .active {
+  background-color: var(--color-text-primary);
+}
+
+/* кнопки (справа) */
+.btn-prev,
+.btn-next {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border, #ddd);
+  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* hover */
+.btn-prev:hover,
+.btn-next:hover,
+.btn-prev:focus-visible,
+.btn-next:focus-visible {
+  background-color: var(--color-brand-primary-hover);
+  color: #fff;
+}
+.btn-prev:hover .btn-icon,
+.btn-next:hover .btn-icon,
+.btn-prev:focus-visible .btn-icon,
+.btn-next:focus-visible .btn-icon {
+  fill: #fff;
+}
+
+/* active */
+.btn-prev:active,
+.btn-next:active {
+  background-color: var(--color-brand-primary-active);
+  color: #fff;
+}
+
+/* disabled */
+.btn-prev:disabled,
+.btn-next:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* =======================
+   TABLET
+======================= */
+
+@media only screen and (min-width: 768px) {
+  .feedback {
+    padding: 32px 0;
+  }
+
+  .feedback-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .feedback-subtitle {
+    width: 560px;
+  }
+
+  .feedback-item {
+    width: calc((100% - 16px) / 2);
+  }
+  .feedback-text {
+    font-size: var(--fs-16);
+  }
+
+  .feedback-controls {
+    justify-content: flex-end;
+    gap: 20px;
+  }
+
+  .feedback-card {
+    margin-bottom: 48px;
+  }
+}
+
+/* =======================
+   DESKTOP
+======================= */
+
+@media only screen and (min-width: 1440px) {
+  .feedback {
+    padding: 64px 0;
+  }
+  .feedback-title {
+    font-size: 48px;
+  }
+
+  .feedback-item {
+    width: calc((100% - 32px) / 3);
+  }
+}
