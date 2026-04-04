@@ -1,1 +1,92 @@
+<section id="product-modal" class="none">
+  <div class="backdrop is-hidden">
+    <div class="product-modal">
+      <!-- кнопка для закриття -->
+      <button class="modal-close-btn" type="button">
+        <svg class="modal-close-icon" width="32" height="32">
+          <use href="/src/images/icons/icons.svg#icon-x"></use>
+        </svg>
+      </button>
 
+      <div class="product-info-block">
+        <!-- блок для картинок -->
+        <div class="product-images">
+          <div class="product-gallery">
+            <!-- велике фото -->
+            <img class="main-img" src="/src/images/categories/tables.webp" width="295" height="297"
+              srcset="/src/images/categories/tables.webp 1x, /src/images/categories/tables@2x.webp 2x"
+              alt="Product image" />
+
+            <!-- маленькі фото -->
+            <div class="thumbs">
+              <img src="/src/images/categories/wardrobe.webp" width="140" height="197"
+                srcset="/src/images/categories/wardrobe.webp 1x, /src/images/categories/wardrobe@2x.webp 2x"
+                alt="Thumbnail 1" />
+              <img src="/src/images/categories/wardrobe.webp" width="140" height="197"
+                srcset="/src/images/categories/wardrobe.webp 1x, /src/images/categories/wardrobe@2x.webp 2x"
+                alt="Thumbnail 2" />
+            </div>
+          </div>
+        </div>
+        <!-- картка продукту -->
+        <div class="product-card">
+          <h3 class="product-title">Софа Oslo</h3>
+          <p class="product-type">Дивани</p>
+          <p class="product-price">9 999 грн</p>
+
+          <!-- зірочки -->
+          <div class="stars-reviews">
+            <div class="stars">
+              <svg width="16" height="20">
+                <use href="/src/images/icons/icons.svg#icon-star"></use>
+              </svg>
+              <svg width="16" height="20">
+                <use href="/src/images/icons/icons.svg#icon-star"></use>
+              </svg>
+              <svg width="16" height="20">
+                <use href="/src/images/icons/icons.svg#icon-star"></use>
+              </svg>
+              <svg width="16" height="20">
+                <use href="/src/images/icons/icons.svg#icon-star"></use>
+              </svg>
+              <svg width="16" height="20">
+                <use href="/src/images/icons/icons.svg#icon-star"></use>
+              </svg>
+            </div>
+          </div>
+
+          <p class="product-color">Колір</p>
+          <ul class="color-list">
+            <li>
+              <label class="color-item">
+                <input type="radio" name="color" value="gray" checked />
+                <span class="color-circle" style="background-color: #c7c3bb;"></span>
+              </label>
+            </li>
+            <li>
+              <label class="color-item">
+                <input type="radio" name="color" value="beige" />
+                <span class="color-circle" style="background-color: #c7aa80;;"></span>
+              </label>
+            </li>
+            <li>
+              <label class="color-item">
+                <input type="radio" name="color" value="blue" />
+                <span class="color-circle" style="background-color: #201a19;;"></span>
+              </label>
+            </li>
+          </ul>
+
+          <p class="product-description">
+            Класичний диван з м'якими подушками та високою спинкою, ідеальний для сімейного відпочинку. Оббивка з
+            якісної
+            зносостійкої тканини.
+          </p>
+          <p class="product-size">Розміри: 280x180x85</p>
+
+          <button class="order-btn">Перейти до замовлення</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
