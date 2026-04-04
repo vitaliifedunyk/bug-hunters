@@ -1,77 +1,55 @@
-const DESKTOP_MEDIA_QUERY = '(min-width: 1440px)';
+import { DESKTOP_MEDIA_QUERY } from '../../utils/constants.js';
+import { refs } from '../../utils/refs.js';
 
 export function initMobileMenu() {
-  const menu = document.querySelector('[data-mobile-menu]');
-  const openButton = document.querySelector('[data-menu-open]');
+  const { mobileMenu, openMenuBtn, closeMenuBtn, menuBackdrop, menuLinks, body } = refs;
 
-  if (!menu || !openButton) {
+  if (!mobileMenu || !openMenuBtn || !closeMenuBtn || !menuBackdrop) {
     return;
   }
 
-  const closeButton = menu.querySelector('[data-menu-close]');
-  const backdrop = menu.querySelector('[data-menu-backdrop]');
-  const navLinks = menu.querySelectorAll('[data-nav-link]');
   const desktopMediaQuery = window.matchMedia(DESKTOP_MEDIA_QUERY);
+  let lastFocusedElement = openMenuBtn;
 
-  if (!closeButton || !backdrop) {
-    return;
-  }
+  const openMenu = () => {
+    if (desktopMediaQuery.matches) return;
 
-  let isMenuOpen = false;
-  let returnFocusElement = openButton;
-
-  const syncMenuState = expanded => {
-    menu.classList.toggle('is-hidden', !expanded);
-    menu.setAttribute('aria-hidden', String(!expanded));
-    openButton.setAttribute('aria-expanded', String(expanded));
-    document.body.classList.toggle('no-scroll', expanded);
-    isMenuOpen = expanded;
+    lastFocusedElement = document.activeElement;
+    mobileMenu.classList.remove('is-hidden');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    openMenuBtn.setAttribute('aria-expanded', 'true');
+    body.classList.add('no-scroll');
+    closeMenuBtn.focus();
   };
 
-  const handleDocumentKeydown = event => {
+  const closeMenu = (returnFocus = true) => {
+    mobileMenu.classList.add('is-hidden');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    openMenuBtn.setAttribute('aria-expanded', 'false');
+    body.classList.remove('no-scroll');
+
+    if (returnFocus && lastFocusedElement instanceof HTMLElement) {
+      lastFocusedElement.focus();
+    }
+  };
+
+  const handleEscape = event => {
     if (event.key === 'Escape') {
       closeMenu();
     }
   };
 
-  const openMenu = () => {
-    if (isMenuOpen || desktopMediaQuery.matches) {
-      return;
-    }
-
-    returnFocusElement = document.activeElement instanceof HTMLElement ? document.activeElement : openButton;
-    syncMenuState(true);
-    document.addEventListener('keydown', handleDocumentKeydown);
-    closeButton.focus();
-  };
-
-  function closeMenu({ shouldReturnFocus = true } = {}) {
-    if (!isMenuOpen) {
-      return;
-    }
-
-    syncMenuState(false);
-    document.removeEventListener('keydown', handleDocumentKeydown);
-
-    if (shouldReturnFocus && returnFocusElement instanceof HTMLElement) {
-      returnFocusElement.focus();
-    }
-  }
-
-  const handleDesktopBreakpointChange = event => {
+  const closeMenuOnDesktop = event => {
     if (event.matches) {
-      closeMenu({ shouldReturnFocus: false });
+      closeMenu(false);
     }
   };
 
-  openButton.addEventListener('click', openMenu);
-  closeButton.addEventListener('click', () => closeMenu());
-  backdrop.addEventListener('click', () => closeMenu());
+  openMenuBtn.addEventListener('click', openMenu);
+  closeMenuBtn.addEventListener('click', () => closeMenu());
+  menuBackdrop.addEventListener('click', () => closeMenu());
+  menuLinks.forEach(link => link.addEventListener('click', () => closeMenu(false)));
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => closeMenu({ shouldReturnFocus: false }));
-  });
-
-  desktopMediaQuery.addEventListener('change', handleDesktopBreakpointChange);
-  syncMenuState(false);
+  document.addEventListener('keydown', handleEscape);
+  desktopMediaQuery.addEventListener('change', closeMenuOnDesktop);
 }
