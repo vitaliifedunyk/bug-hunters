@@ -1,40 +1,55 @@
+import { DESKTOP_MEDIA_QUERY } from '../../utils/constants.js';
 import { refs } from '../../utils/refs.js';
 
-function openMobileMenu() {
-  if (!refs.mobileMenu) return;
-
-  refs.mobileMenu.classList.remove('is-hidden');
-  refs.mobileMenu.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('no-scroll');
-}
-
-function closeMobileMenu() {
-  if (!refs.mobileMenu) return;
-
-  refs.mobileMenu.classList.add('is-hidden');
-  refs.mobileMenu.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('no-scroll');
-}
-
-function handleEscape(event) {
-  if (event.key === 'Escape') {
-    closeMobileMenu();
-  }
-}
-
-function handleBackdropClick(event) {
-  if (event.target === refs.mobileMenu) {
-    closeMobileMenu();
-  }
-}
-
 export function initMobileMenu() {
-  if (!refs.mobileMenuOpenBtn || !refs.mobileMenu || !refs.mobileMenuCloseBtn) {
+  const { mobileMenu, openMenuBtn, closeMenuBtn, menuBackdrop, menuLinks, body } = refs;
+
+  if (!mobileMenu || !openMenuBtn || !closeMenuBtn || !menuBackdrop) {
     return;
   }
 
-  refs.mobileMenuOpenBtn.addEventListener('click', openMobileMenu);
-  refs.mobileMenuCloseBtn.addEventListener('click', closeMobileMenu);
-  refs.mobileMenu.addEventListener('click', handleBackdropClick);
+  const desktopMediaQuery = window.matchMedia(DESKTOP_MEDIA_QUERY);
+  let lastFocusedElement = openMenuBtn;
+
+  const openMenu = () => {
+    if (desktopMediaQuery.matches) return;
+
+    lastFocusedElement = document.activeElement;
+    mobileMenu.classList.remove('is-hidden');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    openMenuBtn.setAttribute('aria-expanded', 'true');
+    body.classList.add('no-scroll');
+    closeMenuBtn.focus();
+  };
+
+  const closeMenu = (returnFocus = true) => {
+    mobileMenu.classList.add('is-hidden');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    openMenuBtn.setAttribute('aria-expanded', 'false');
+    body.classList.remove('no-scroll');
+
+    if (returnFocus && lastFocusedElement instanceof HTMLElement) {
+      lastFocusedElement.focus();
+    }
+  };
+
+  const handleEscape = event => {
+    if (event.key === 'Escape') {
+      closeMenu();
+    }
+  };
+
+  const closeMenuOnDesktop = event => {
+    if (event.matches) {
+      closeMenu(false);
+    }
+  };
+
+  openMenuBtn.addEventListener('click', openMenu);
+  closeMenuBtn.addEventListener('click', () => closeMenu());
+  menuBackdrop.addEventListener('click', () => closeMenu());
+  menuLinks.forEach(link => link.addEventListener('click', () => closeMenu(false)));
+
   document.addEventListener('keydown', handleEscape);
+  desktopMediaQuery.addEventListener('change', closeMenuOnDesktop);
 }

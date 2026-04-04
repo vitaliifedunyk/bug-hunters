@@ -1,11 +1,19 @@
-import { API_BASE_URL } from '../utils/constants.js';
+import axios from "axios";
+import { API_ENDPOINTS } from "../utils/constants";
 
-export async function fetchCategories() {
-  const response = await fetch(`${API_BASE_URL}/categories`);
+axios.defaults.baseURL = 'https://furniture-store-v2.b.goit.study/api';
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch categories.');
-  }
+export async function getCategories() {
+    try {
+        const response = await axios.get(API_ENDPOINTS.CATEGORIES);
 
-  return response.json();
-}
+        if (!Array.isArray(response.data)) {
+            throw new Error('Invalid data format');
+    } 
+        return response.data;
+       
+    } catch (error) {
+        throw error;
+    }
+};
+

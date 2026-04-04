@@ -1,17 +1,19 @@
-import { API_BASE_URL } from '../utils/constants.js';
+import axios from "axios";
+import { API_ENDPOINTS } from "../utils/constants";
 
-export async function createOrder(payload) {
-  const response = await fetch(`${API_BASE_URL}/orders`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  });
+axios.defaults.baseURL = 'https://furniture-store-v2.b.goit.study/api';
 
-  if (!response.ok) {
-    throw new Error('Failed to create order.');
-  }
+export async function createOrder(orderData) {
+    try {
+        if (!orderData) {
+            throw new Error('Order data is required');
+        }
 
-  return response.json();
+        const { data } = await axios.post(API_ENDPOINTS.ORDERS, orderData);
+
+        return data;
+
+    } catch (error) {
+        throw error;
+    }
 }

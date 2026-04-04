@@ -1,36 +1,40 @@
-import { API_BASE_URL, PRODUCTS_PER_PAGE } from '../utils/constants.js';
+import axios from "axios";
+import { API_ENDPOINTS } from "../utils/constants";
 
-export async function fetchFurniture({
-  page = 1,
-  limit = PRODUCTS_PER_PAGE,
-  category = '',
-} = {}) {
-  const params = new URLSearchParams({
-    page: String(page),
-    limit: String(limit),
-  });
+axios.defaults.baseURL = 'https://furniture-store-v2.b.goit.study/api';
 
-  if (category) {
-    params.append('category', category);
-  }
+export async function getFurnitures({ page = 1, limit = 8, category = '' } = {}) {
+    try {
+        const params = { page, limit };
 
-  const response = await fetch(
-    `${API_BASE_URL}/furniture?${params.toString()}`
-  );
+        if (category) {
+            params.category = category;
+        }
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch furniture.');
-  }
+        const { data } = await axios.get(API_ENDPOINTS.FURNITURES, { params });
 
-  return response.json();
-}
+        if (!data || !Array.isArray(data.furnitures)) {
+            throw new Error('Invalid furnitures format');
+        }
 
-export async function fetchFurnitureById(id) {
-  const response = await fetch(`${API_BASE_URL}/furniture/${id}`);
+        return data;
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch furniture by id.');
-  }
+    } catch (error) {
+        throw error;
+    }
+};
 
-  return response.json();
-}
+export async function getFurnitureById(id) {
+    try {
+        if (!id) {
+            throw new Error('ID is required');
+        }
+
+        const { data } = await axios.get(API_ENDPOINTS.FURNITURE_BY_ID(id));
+
+        return data;
+
+    } catch(error) {
+        throw error;
+    }
+};

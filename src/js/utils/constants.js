@@ -1,3 +1,8 @@
-export const API_BASE_URL = 'https://furniture-store-v2.b.goit.study/api';
-export const PRODUCTS_PER_PAGE = 8;
-export const FEEDBACKS_LIMIT = 10;
+export const API_ENDPOINTS = {
+    CATEGORIES: '/categories',
+    FURNITURES: '/furnitures',
+    FURNITURE_BY_ID: (id) => `/furnitures/${id}`,
+    ORDERS: '/orders',
+    FEEDBACKS: '/feedbacks',
+}
+export const DESKTOP_MEDIA_QUERY = '(min-width: 1440px)';
