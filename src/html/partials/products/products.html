@@ -4,30 +4,46 @@
         <ul class="products-list">
 
             <li class="product-card">
-                <img src="/src/images/categories/soft-furniture.webp" alt="Product" class="product-card__img" />
+
+                <img src="/src/images/categories/soft-furniture.webp" alt="Софа Oslo" class="product-card__img" />
+
 
                 <div class="product-card__content">
                     <h3 class="product-card__title">
-                        Назва товару
+                        Софа Oslo
                     </h3>
 
-                    <ul class="product-card__colors">
-                        <li class="product-card__color" style="background-color:#d9d9d9;"></li>
-                        <li class="product-card__color" style="background-color:#a67c52;"></li>
-                        <li class="product-card__color" style="background-color:#000000;"></li>
+                    <ul class="product-card__colors" aria-label="Доступні кольори">
+                        <li class="product-card__color" style="background-color: #c9c4bb;">
+                            <span class="visually-hidden">Світло-сірий</span>
+                        </li>
+                        <li class="product-card__color" style="background-color: #d2b27a;">
+                            <span class="visually-hidden">Пісочний</span>
+                        </li>
+                        <li class="product-card__color product-card__color--dark" style="background-color: #201a19;">
+                            <span class="visually-hidden">Темний шоколад</span>
+                        </li>
                     </ul>
 
                     <p class="product-card__price">
                         9 999 грн
                     </p>
 
-                    <button class="product-card__btn">
-                        Детальніше
-                    </button>
-                </div>
-            </li>
 
+                </div>
+
+                <button class="product-card__btn" type="button">
+                    Детальніше
+                </button>
+            </li>
         </ul>
+
+        <div class="load-more">
+            <button class="btn btn--primary load-more__btn is-hidden" type="button" data-load-more>
+                Показати ще
+            </button>
+        </div>
+
 
     </div>
 </section>
