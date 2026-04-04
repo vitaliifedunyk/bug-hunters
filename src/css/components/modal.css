@@ -21,9 +21,8 @@
   position: relative;
   border-radius: 8px;
   padding: 64px 20px;
-  width: 335px;
-  height: 703px;
-  max-height: calc(100vh - 32px);
+  width: calc(100% - 32px);
+  max-width: 335px;
   overflow-y: auto;
   background-color: var(--color-white);
   box-shadow: var(--shadow-lg);
@@ -74,6 +73,9 @@
   font-size: 24px;
   line-height: 1;
 }
+.modal__close-icon {
+  fill: #111111;
+}
 
 .modal__close:hover,
 .modal__close:focus-visible {
@@ -88,11 +90,14 @@
 @media screen and (min-width: 768px) {
   .modal {
     padding: 64px 32px 32px;
+    max-width: none;
       width: 704px;
       height: 671px;
 }
 .form-submit {
   width: 196px;
+  margin-left: auto;
+  margin-right: auto;
   justify-self: center;
   display: flex;
   align-items: center;
@@ -102,6 +107,7 @@
 @media screen and (min-width: 1440px) {
   .modal {
     width: 866px;
+    max-width: none;
     min-height: 718px;
   }
 

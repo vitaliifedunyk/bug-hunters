@@ -31,10 +31,33 @@
   min-height: 52px;
   padding: 14px 16px;
 }
+.form-error {
+  display: block;
+  color: #7A1315;
+  font-size: 12px;
+  margin-top: 4px;
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+/* 2. Стиль інпуту, якщо він невалідний */
+/* :not(:placeholder-shown) додаємо, щоб форма не світилася червоним відразу при відкритті */
+.form-input:not(:placeholder-shown):invalid {
+  border-color: #7A1315;
+}
 
+/* 3. Показуємо текст помилки тільки для невалідного інпуту */
+.form-input:not(:placeholder-shown):invalid+.form-error {
+  opacity: 1;
+}
+
+/* Додатково: якщо хочеш, щоб рамка ставала зеленою при правильному заповненні */
+.form-input:not(:placeholder-shown):valid {
+  border-color: green;
+}
 .form-textarea {
   min-height: 120px;
-  padding: 14px 16px;
+    resize: vertical;
+    max-height: 200px;
 }
 
 .form-input::placeholder,
@@ -56,9 +79,4 @@
 .form-input.is-error,
 .form-textarea.is-error {
   border-color: var(--color-error);
-}
-
-.form-error {
-  font-size: var(--fs-12);
-  color: var(--color-error);
 }
