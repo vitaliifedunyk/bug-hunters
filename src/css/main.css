@@ -9,6 +9,15 @@
 @import url('./components/card.css');
 @import url('./components/modal.css');
 
+@import url("./layout/header.css");
+@import url("./layout/footer.css");
+@import url("./sections/hero.css");
+@import url("./sections/categories.css");
+@import url("./sections/products.css");
+@import url("./sections/load-more.css");
+@import url("./sections/about.css");
+@import url("./sections/faq.css");
+@import url("./sections/reviews.css");
 @import url('./layout/header.css');
 @import url('./layout/footer.css');
 @import url('./sections/hero.css');
