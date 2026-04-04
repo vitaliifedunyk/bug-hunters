@@ -5,3 +5,4 @@ export const API_ENDPOINTS = {
     ORDERS: '/orders',
     FEEDBACKS: '/feedbacks',
 }
+export const DESKTOP_MEDIA_QUERY = '(min-width: 1440px)';

@@ -1,15 +1,10 @@
-<div
-  class="mobile-menu is-hidden"
-  id="mobile-menu"
-  data-mobile-menu
-  aria-hidden="true"
-  aria-modal="true"
-  aria-label="Мобільне меню"
-  role="dialog"
->
-  <div class="mobile-menu-box">
-    <div class="mobile-menu-inner">
-      <div class="mobile-menu-top">
+<div class="mobile-menu is-hidden " id="mobile-menu" data-mobile-menu aria-hidden="true" aria-modal="true"
+  aria-label="Мобільне меню" role="dialog">
+  <div class="mobile-menu-backdrop" data-menu-backdrop aria-hidden="true"></div>
+
+  <div class="mobile-menu-shell">
+    <div class="mobile-menu-top">
+      <div class="mobile-menu-top-inner">
         <a class="mobile-menu-logo-link" href="./index.html" aria-label="Перейти на головну сторінку Меблерія">
           <img class="mobile-menu-logo" src="./src/images/logo/logo.svg" alt="Меблерія" width="163" height="70" />
         </a>
@@ -20,29 +15,29 @@
           </svg>
         </button>
       </div>
-
-      <aside class="mobile-menu-content" aria-label="Мобільне меню">
-        <nav class="mobile-menu-nav" aria-label="Мобільна навігація">
-          <ul class="mobile-menu-list">
-            <li class="mobile-menu-item">
-              <a class="mobile-menu-link" href="#products" data-nav-link>Наші меблі</a>
-            </li>
-            <li class="mobile-menu-item">
-              <a class="mobile-menu-link" href="#about" data-nav-link>Про нас</a>
-            </li>
-            <li class="mobile-menu-item">
-              <a class="mobile-menu-link" href="#faq" data-nav-link>Часті питання</a>
-            </li>
-            <li class="mobile-menu-item">
-              <a class="mobile-menu-link" href="#reviews" data-nav-link>Відгуки</a>
-            </li>
-          </ul>
-        </nav>
-
-        <a class="mobile-menu-btn btn btn--primary" href="#products" data-nav-link>
-          До покупок
-        </a>
-      </aside>
     </div>
+
+    <aside class="mobile-menu-panel" aria-label="Мобільне меню">
+      <nav class="mobile-menu-nav" aria-label="Мобільна навігація">
+        <ul class="mobile-menu-list">
+          <li class="mobile-menu-item">
+            <a class="mobile-menu-link" href="#products" data-nav-link>Наші меблі</a>
+          </li>
+          <li class="mobile-menu-item">
+            <a class="mobile-menu-link" href="#about" data-nav-link>Про нас</a>
+          </li>
+          <li class="mobile-menu-item">
+            <a class="mobile-menu-link" href="#faq" data-nav-link>Часті питання</a>
+          </li>
+          <li class="mobile-menu-item">
+            <a class="mobile-menu-link" href="#reviews" data-nav-link>Відгуки</a>
+          </li>
+        </ul>
+      </nav>
+
+      <a class="mobile-menu-btn btn btn--primary" href="#products" data-nav-link>
+        До покупок
+      </a>
+    </aside>
   </div>
 </div>
