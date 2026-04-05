@@ -1,10 +1,10 @@
-import iziToast from 'izitoast';
 import 'css-star-rating/css/star-rating.css';
 
 import { getFurnitureById } from '../../api/furniture-api.js';
 import { closeModal } from '../../components/modal/close-modal.js';
 import { openModal } from '../../components/modal/open-modal.js';
 import { hideLoader, showLoader } from '../../services/loader.js';
+import { showError } from '../../services/notifications.js';
 import { openOrderModal } from './order-modal.js';
 import starRatingSpriteMarkup from '../../../images/icons/star-rating.icons.svg?raw';
 
@@ -254,11 +254,7 @@ export async function openProductModal(productId) {
     renderProduct(product);
     openModal(refs.overlay);
   } catch (error) {
-    iziToast.error({
-      title: 'Помилка',
-      message: error.response?.data?.message || 'Не вдалося завантажити деталі товару.',
-      position: 'topRight',
-    });
+    showError(error.response?.data?.message || 'Не вдалося завантажити деталі товару.');
   } finally {
     hideLoader();
   }

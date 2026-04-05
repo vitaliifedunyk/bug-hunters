@@ -1,5 +1,3 @@
-import iziToast from 'izitoast';
-
 import { submitOrderForm } from '../../components/form/form-submit.js';
 import { validateOrderFormData } from '../../components/form/form-validation.js';
 import { closeModal } from '../../components/modal/close-modal.js';
@@ -10,6 +8,7 @@ import {
   setOrderModalState,
 } from '../../components/modal/modal-state.js';
 import { hideLoader, showLoader } from '../../services/loader.js';
+import { showError, showSuccess } from '../../services/notifications.js';
 import { refs } from '../../utils/refs.js';
 
 let isInitialized = false;
@@ -172,11 +171,7 @@ export function initOrderModal() {
     const modalState = getOrderModalState();
 
     if (!modalState.modelId || !modalState.color) {
-      iziToast.error({
-        title: 'Помилка',
-        message: 'Не вдалося визначити товар для замовлення. Відкрийте модалку товару ще раз.',
-        position: 'topRight',
-      });
+      showError('Не вдалося визначити товар для замовлення. Відкрийте модалку товару ще раз.');
       return;
     }
 
@@ -198,19 +193,11 @@ export function initOrderModal() {
 
       await submitOrderForm(payload);
 
-      iziToast.success({
-        title: 'Успіх',
-        message: 'Дякуємо! Ваше замовлення прийнято.',
-        position: 'topRight',
-      });
+      showSuccess('Дякуємо! Ваше замовлення прийнято.');
 
       closeOrderModal();
     } catch (error) {
-      iziToast.error({
-        title: 'Помилка',
-        message: error.response?.data?.message || 'Не вдалося оформити замовлення. Спробуйте ще раз.',
-        position: 'topRight',
-      });
+      showError(error.response?.data?.message || 'Не вдалося оформити замовлення. Спробуйте ще раз.');
     } finally {
       hideLoader();
       setSubmitState(submitButton, false);
