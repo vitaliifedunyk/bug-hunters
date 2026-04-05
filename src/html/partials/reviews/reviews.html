@@ -68,8 +68,7 @@
 <script src="https://cdn.jsdelivr.net/npm/raty-js@3.1.1/lib/raty.min.js"></script> -->
 
 
-
-<section id="feedback" class="feedback">
+<section id="reviews" class="feedback">
   <div class="container feedback-container">
     <h2 class="feedback-title">Відгуки клієнтів</h2>
 
@@ -78,22 +77,24 @@
     </p>
 
     <div class="feedback-slider swiper">
-      <ul class="feedback-list"></ul>
+      <ul class="feedback-list swiper-wrapper"></ul>
     </div>
 
-    <div class="feedback-controls">
-      <button class="btn-prev">
-        <svg class="btn-icon" width="20" height="20">
-          <use href="src/images/icons/icons.svg#icon-left-arrow-alt"></use>
-        </svg>
-      </button>
-      <button class="btn-next">
-        <svg class="btn-icon" width="20" height="20">
-          <use href="src/images/icons/icons.svg#icon-right-arrow-alt"></use>
-        </svg>
-      </button>
-    </div>
+    <div class="feedback-navigation">
+      <div class="feedback-pagination" aria-label="Пагінація відгуків"></div>
 
-    <div class="feedback-pagination"></div>
+      <div class="feedback-controls">
+        <button class="btn-prev" type="button" aria-label="Попередній відгук">
+          <svg class="btn-icon" width="20" height="20" aria-hidden="true">
+            <use href="src/images/icons/icons.svg#icon-left-arrow-alt"></use>
+          </svg>
+        </button>
+        <button class="btn-next" type="button" aria-label="Наступний відгук">
+          <svg class="btn-icon" width="20" height="20" aria-hidden="true">
+            <use href="src/images/icons/icons.svg#icon-right-arrow-alt"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
