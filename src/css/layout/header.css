@@ -1,4 +1,6 @@
 .header {
+  position: relative;
+  z-index: var(--z-header);
   background-color: var(--color-bg-primary);
 }
 
@@ -8,7 +10,7 @@
   justify-content: space-between;
   gap: 16px;
   min-height: 72px;
-  padding-inline: 16px;
+  padding-inline: var(--navbar-inline-mobile);
 }
 
 .header-logo-link {
@@ -84,12 +86,13 @@
 
 @media only screen and (min-width: 768px) {
   .header-box {
-    padding-inline: 8px;
+    padding-inline: var(--navbar-inline-tablet);
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .header-box {
+    padding-inline: var(--navbar-inline-desktop);
   }
 
   .header-nav {
