@@ -1,9 +1,9 @@
-import iziToast from 'izitoast';
 import iconsSprite from '../../../images/icons/icons.svg';
 
 import { getCategories } from '../../api/categories-api.js';
 import { getFurnitures } from '../../api/furniture-api.js';
 import { hideLoader, showLoader } from '../../services/loader.js';
+import { showError } from '../../services/notifications.js';
 import { initProductModal, openProductModal } from '../modals/product-modal.js';
 import {
   ALL_PRODUCTS_CATEGORY_ID,
@@ -187,11 +187,7 @@ async function fetchProducts({ page = 1, append = false } = {}) {
     clearProducts(refs.productsList);
     renderEmptyState('Не вдалося завантажити товари. Спробуйте ще раз.');
 
-    iziToast.error({
-      title: 'Помилка',
-      message: error.response?.data?.message || 'Не вдалося завантажити список меблів.',
-      position: 'topRight',
-    });
+    showError(error.response?.data?.message || 'Не вдалося завантажити список меблів.');
 
     state.totalItems = 0;
     state.totalPages = 0;
@@ -224,11 +220,7 @@ async function bootstrapCategories() {
       await fetchProducts({ page: 1, append: false });
     });
 
-    iziToast.error({
-      title: 'Помилка',
-      message: error.response?.data?.message || 'Не вдалося завантажити категорії. Показуємо всі товари.',
-      position: 'topRight',
-    });
+    showError(error.response?.data?.message || 'Не вдалося завантажити категорії. Показуємо всі товари.');
   } finally {
     hideLoader();
   }
