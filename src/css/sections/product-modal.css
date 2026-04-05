@@ -14,14 +14,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.product-modal-overlay.is-open {
-  opacity: 1;
-  visibility: visible;
+.product-modal-overlay.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .product-modal {
@@ -33,12 +34,12 @@
   overflow-y: auto;
   position: relative;
   padding: 40px;
-  transform: scale(0.9);
+  transform: scale(1);
   transition: transform 0.3s ease;
 }
 
-.product-modal-overlay.is-open .product-modal {
-  transform: scale(1);
+.product-modal-overlay.is-hidden .product-modal {
+  transform: scale(0.9);
 }
 
 /* Close Button */
@@ -59,7 +60,8 @@
   z-index: 10;
 }
 
-.product-modal__close:hover {
+.product-modal__close:hover,
+.product-modal__close:focus-visible {
   background: #e0e0e0;
 }
 
@@ -106,10 +108,12 @@
 .product-modal__thumbnail {
   width: 80px;
   height: 60px;
+  padding: 0;
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
   border: 2px solid transparent;
+  background: transparent;
   transition: border-color 0.2s ease;
   flex-shrink: 0;
 }

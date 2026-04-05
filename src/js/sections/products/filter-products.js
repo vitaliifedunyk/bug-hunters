@@ -24,42 +24,27 @@ import forOutdoor from '../../../images/categories/for-outdoor.webp';
 import forOutdoor2x from '../../../images/categories/for-outdoor@2x.webp';
 import accessories from '../../../images/categories/accessories.webp';
 import accessories2x from '../../../images/categories/accessories@2x.webp';
-import { getCategories } from '../../api/categories-api.js';
 
-const ALL_GOODS_CATEGORY = 'Всі товари';
+export const ALL_PRODUCTS_CATEGORY_ID = 'all';
+export const ALL_PRODUCTS_CATEGORY_NAME = 'Всі товари';
+
 const categoryClickHandlers = new WeakMap();
 
 const categoryImages = {
-  "Всі товари": { img: allGoods, img2x: allGoods2x },
+  'Всі товари': { img: allGoods, img2x: allGoods2x },
   "М'які меблі": { img: softFurniture, img2x: softFurniture2x },
-  "Шафи та системи зберігання": { img: wardrobe, img2x: wardrobe2x },
-  "Ліжка та матраци": { img: beds, img2x: beds2x },
-  "Столи": { img: tables, img2x: tables2x },
-  "Стільці та табурети": { img: chairs, img2x: chairs2x },
-  "Кухні": { img: kitchens, img2x: kitchens2x },
-  "Меблі для дитячої": { img: forKids, img2x: forKids2x },
-  "Меблі для офісу": { img: forOffice, img2x: forOffice2x },
-  "Меблі для передпокою": { img: forHallway, img2x: forHallway2x },
-  "Меблі для ванної кімнати": { img: forBathroom, img2x: forBathroom2x },
-  "Садові та вуличні меблі": { img: forOutdoor, img2x: forOutdoor2x },
-  "Декор та аксесуари": { img: accessories, img2x: accessories2x }
+  'Шафи та системи зберігання': { img: wardrobe, img2x: wardrobe2x },
+  'Ліжка та матраци': { img: beds, img2x: beds2x },
+  'Столи': { img: tables, img2x: tables2x },
+  'Стільці та табурети': { img: chairs, img2x: chairs2x },
+  'Кухні': { img: kitchens, img2x: kitchens2x },
+  'Меблі для дитячої': { img: forKids, img2x: forKids2x },
+  'Меблі для офісу': { img: forOffice, img2x: forOffice2x },
+  'Меблі для передпокою': { img: forHallway, img2x: forHallway2x },
+  'Меблі для ванної кімнати': { img: forBathroom, img2x: forBathroom2x },
+  'Садові та вуличні меблі': { img: forOutdoor, img2x: forOutdoor2x },
+  'Декор та аксесуари': { img: accessories, img2x: accessories2x },
 };
-
-const fallbackCategories = [
-  { name: ALL_GOODS_CATEGORY },
-  { name: "М'які меблі" },
-  { name: 'Шафи та системи зберігання' },
-  { name: 'Ліжка та матраци' },
-  { name: 'Столи' },
-  { name: 'Стільці та табурети' },
-  { name: 'Кухні' },
-  { name: 'Меблі для дитячої' },
-  { name: 'Меблі для офісу' },
-  { name: 'Меблі для передпокою' },
-  { name: 'Меблі для ванної кімнати' },
-  { name: 'Садові та вуличні меблі' },
-  { name: 'Декор та аксесуари' }
-];
 
 function escapeHtml(value) {
   return String(value)
@@ -70,72 +55,40 @@ function escapeHtml(value) {
     .replaceAll("'", '&#39;');
 }
 
-function normalizeCategoryName(category) {
-  if (typeof category === 'string') {
-    return category.trim();
-  }
-
-  if (category && typeof category.name === 'string') {
-    return category.name.trim();
-  }
-
-  if (category && typeof category.title === 'string') {
-    return category.title.trim();
-  }
-
-  if (category && typeof category.category === 'string') {
-    return category.category.trim();
-  }
-
-  return '';
+export function getDefaultCategories() {
+  return [
+    {
+      id: ALL_PRODUCTS_CATEGORY_ID,
+      name: ALL_PRODUCTS_CATEGORY_NAME,
+    },
+  ];
 }
 
-function normalizeCategories(categories) {
+export function normalizeCategories(categories) {
   if (!Array.isArray(categories)) {
-    return [];
+    return getDefaultCategories();
   }
 
-  const uniqueNames = [];
-  const seenNames = new Set();
+  const normalizedCategories = getDefaultCategories();
+  const seenIds = new Set([ALL_PRODUCTS_CATEGORY_ID]);
 
   categories.forEach(category => {
-    const name = normalizeCategoryName(category);
+    const id = String(category?._id ?? category?.id ?? '').trim();
+    const name = String(category?.name ?? '').trim();
 
-    if (!name || seenNames.has(name)) {
+    if (!id || !name || seenIds.has(id)) {
       return;
     }
 
-    seenNames.add(name);
-    uniqueNames.push(name);
+    seenIds.add(id);
+    normalizedCategories.push({ id, name });
   });
 
-  if (!uniqueNames.length) {
-    return [];
-  }
-
-  const categoryNames = uniqueNames.filter(name => name !== ALL_GOODS_CATEGORY);
-  return [{ name: ALL_GOODS_CATEGORY }, ...categoryNames.map(name => ({ name }))];
-}
-
-async function loadCategories() {
-  try {
-    const apiCategories = await getCategories();
-    const normalizedCategories = normalizeCategories(apiCategories);
-
-    if (normalizedCategories.length) {
-      return normalizedCategories;
-    }
-
-    console.warn('Categories API returned an empty or unsupported payload. Using fallback list.');
-  } catch (error) {
-    console.error('Failed to load categories from API. Using fallback list.', error);
-  }
-
-  return fallbackCategories;
+  return normalizedCategories;
 }
 
 function getCategoryImages(categoryName) {
-  return categoryImages[categoryName] || categoryImages[ALL_GOODS_CATEGORY];
+  return categoryImages[categoryName] || categoryImages[ALL_PRODUCTS_CATEGORY_NAME];
 }
 
 export function renderCategoryFilters(categories) {
@@ -145,40 +98,51 @@ export function renderCategoryFilters(categories) {
 
   return categories
     .map(category => {
-      const key = normalizeCategoryName(category);
+      const id = String(category?.id ?? '').trim();
+      const name = String(category?.name ?? '').trim();
 
-      if (!key) {
+      if (!id || !name) {
         return '';
       }
 
-      const images = getCategoryImages(key);
-      const safeCategoryName = escapeHtml(key);
+      const images = getCategoryImages(name);
+      const safeCategoryId = escapeHtml(id);
+      const safeCategoryName = escapeHtml(name);
 
-    return `
-      <li class="categories-list__item">
-        <button class="category-btn ${key === ALL_GOODS_CATEGORY ? 'is-active' : ''}" 
-                type="button" 
-                data-category-filter="${safeCategoryName}" 
-                aria-pressed="${key === ALL_GOODS_CATEGORY}">
-          <img src="${images.img}" srcset="${images.img} 1x, ${images.img2x} 2x" alt="${safeCategoryName}" class="fill-image" />
-          <span>${safeCategoryName}</span>
-        </button>
-      </li>
-    `;
+      return `
+        <li class="categories-list__item">
+          <button
+            class="category-btn ${id === ALL_PRODUCTS_CATEGORY_ID ? 'is-active' : ''}"
+            type="button"
+            data-category-id="${safeCategoryId}"
+            data-category-name="${safeCategoryName}"
+            aria-pressed="${id === ALL_PRODUCTS_CATEGORY_ID}"
+          >
+            <img src="${images.img}" srcset="${images.img} 1x, ${images.img2x} 2x" alt="${safeCategoryName}" class="fill-image" />
+            <span>${safeCategoryName}</span>
+          </button>
+        </li>
+      `;
     })
     .join('');
 }
 
-export function setActiveCategoryButton(container, activeCategory) {
-  container.querySelectorAll('.category-btn').forEach(btn => {
-    const isActive = btn.dataset.categoryFilter === activeCategory;
-    btn.classList.toggle('is-active', isActive);
-    btn.setAttribute('aria-pressed', isActive);
+export function setActiveCategoryButton(container, activeCategoryId) {
+  if (!container) {
+    return;
+  }
+
+  container.querySelectorAll('.category-btn').forEach(button => {
+    const isActive = button.dataset.categoryId === activeCategoryId;
+    button.classList.toggle('is-active', isActive);
+    button.setAttribute('aria-pressed', String(isActive));
   });
 }
 
 export function initCategoryFilters(container, categories, onCategorySelect) {
-  if (!container) return;
+  if (!container) {
+    return;
+  }
 
   container.innerHTML = renderCategoryFilters(categories);
 
@@ -188,11 +152,17 @@ export function initCategoryFilters(container, categories, onCategorySelect) {
   }
 
   const handleCategoryClick = event => {
-    const btn = event.target.closest('.category-btn');
-    if (!btn) return;
+    const button = event.target.closest('.category-btn');
+    if (!button) {
+      return;
+    }
 
-    const selectedCategory = btn.dataset.categoryFilter;
-    setActiveCategoryButton(container, selectedCategory);
+    const selectedCategory = {
+      id: button.dataset.categoryId || ALL_PRODUCTS_CATEGORY_ID,
+      name: button.dataset.categoryName || ALL_PRODUCTS_CATEGORY_NAME,
+    };
+
+    setActiveCategoryButton(container, selectedCategory.id);
 
     if (typeof onCategorySelect === 'function') {
       onCategorySelect(selectedCategory);
@@ -202,10 +172,3 @@ export function initCategoryFilters(container, categories, onCategorySelect) {
   categoryClickHandlers.set(container, handleCategoryClick);
   container.addEventListener('click', handleCategoryClick);
 }
-
-document.addEventListener('DOMContentLoaded', async () => {
-  const container = document.querySelector('[data-categories-list]');
-  const categories = await loadCategories();
-
-  initCategoryFilters(container, categories);
-});
