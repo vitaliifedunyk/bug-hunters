@@ -7,8 +7,9 @@
     <title>Меблерія</title>
     <script type="module" crossorigin src="/bug-hunters/index.js"></script>
     <link rel="modulepreload" crossorigin href="/bug-hunters/assets/rolldown-runtime-p-a1D-qf.js">
-    <link rel="modulepreload" crossorigin href="/bug-hunters/assets/vendor-CVZOE3ky.js">
-    <link rel="stylesheet" crossorigin href="/bug-hunters/assets/index-DnPBqRNK.css">
+    <link rel="modulepreload" crossorigin href="/bug-hunters/assets/vendor-D7UzBdRL.js">
+    <link rel="stylesheet" crossorigin href="/bug-hunters/assets/vendor-Dd7d9Un5.css">
+    <link rel="stylesheet" crossorigin href="/bug-hunters/assets/index-CyjeBHZ0.css">
   </head>
 
   <body>
@@ -105,7 +106,7 @@
         перетворять ваш простір. Наша продукція поєднує в собі елегантність та
         функціональність.
       </h3>
-      <a href="#feedback" class="btn btn--primary hero-btn"
+      <a href="#reviews" class="btn btn--primary hero-btn"
         >Що про нас думають</a
       >
     </div>
@@ -396,8 +397,7 @@
 <script src="https://cdn.jsdelivr.net/npm/raty-js@3.1.1/lib/raty.min.js"></script> -->
 
 
-
-<section id="feedback" class="feedback">
+<section id="reviews" class="feedback">
   <div class="container feedback-container">
     <h2 class="feedback-title">Відгуки клієнтів</h2>
 
@@ -406,23 +406,25 @@
     </p>
 
     <div class="feedback-slider swiper">
-      <ul class="feedback-list"></ul>
+      <ul class="feedback-list swiper-wrapper"></ul>
     </div>
 
-    <div class="feedback-controls">
-      <button class="btn-prev">
-        <svg class="btn-icon" width="20" height="20">
-          <use href="/bug-hunters/assets/icons-B05t0GHi.svg#icon-left-arrow-alt"></use>
-        </svg>
-      </button>
-      <button class="btn-next">
-        <svg class="btn-icon" width="20" height="20">
-          <use href="/bug-hunters/assets/icons-B05t0GHi.svg#icon-right-arrow-alt"></use>
-        </svg>
-      </button>
-    </div>
+    <div class="feedback-navigation">
+      <div class="feedback-pagination" aria-label="Пагінація відгуків"></div>
 
-    <div class="feedback-pagination"></div>
+      <div class="feedback-controls">
+        <button class="btn-prev" type="button" aria-label="Попередній відгук">
+          <svg class="btn-icon" width="20" height="20" aria-hidden="true">
+            <use href="/bug-hunters/assets/icons-B05t0GHi.svg#icon-left-arrow-alt"></use>
+          </svg>
+        </button>
+        <button class="btn-next" type="button" aria-label="Наступний відгук">
+          <svg class="btn-icon" width="20" height="20" aria-hidden="true">
+            <use href="/bug-hunters/assets/icons-B05t0GHi.svg#icon-right-arrow-alt"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
     </main>
