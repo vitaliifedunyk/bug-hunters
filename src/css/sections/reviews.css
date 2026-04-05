@@ -1,8 +1,5 @@
-/* =======================
-   FEEDBACK SECTION
-======================= */
-
 .feedback {
+  padding: var(--section-py-mobile) 0;
   background-color: var(--color-bg-primary);
 }
 
@@ -10,214 +7,231 @@
   display: flex;
   flex-direction: column;
 }
+
 .feedback-title {
-  margin-bottom: 24px;
+  margin-bottom: var(--space-24);
+  font-weight: 700;
   font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: #080c09;
 }
-/* підзаголовок */
+
 .feedback-subtitle {
-  width: 320px;
+  max-width: 320px;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.6;
-  color: var(--color-text-primary);
+  color: #080c09;
   margin-bottom: 80px;
 }
 
-/* =======================
-   CARD / SLIDER
-======================= */
-
 .feedback-slider {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  width: 100%;
+  margin-bottom: 60px;
   overflow: hidden;
 }
 
 .feedback-list {
-  padding: 0;
   margin: 0;
+  padding: 0;
   list-style: none;
 }
 
 .feedback-item {
   list-style: none;
+  height: auto;
 }
 
 .feedback-card {
-  background-color: var(--color-bg-primary);
-  border-radius: 16px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  margin-bottom: 60px;
+  gap: var(--space-24);
+  height: 100%;
+  background-color: var(--color-bg-primary);
 }
 
-/* =======================
-   STARS
-======================= */
+.feedback-item--status {
+  width: 100%;
+}
 
-.feedbacks-star-list {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-
-  padding: 0;
+.feedback-status {
   margin: 0;
-  list-style: none;
+  padding: var(--space-24);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
 }
 
-.feedbacks-star-item {
-  display: inline-flex;
+.feedback-card .rating {
+  justify-content: flex-start;
+  margin-bottom: 0;
 }
 
-.feedbacks-star-item.icon-star {
-  fill: var(--color-text-primary, #080c09);
-  stroke: none;
+.feedback-card .rating .star-container {
+  gap: var(--space-4);
+  margin: 0;
 }
 
-/* неактивна зірка */
-.feedbacks-star-item.is-empty .icon-star {
-  fill: var(--color-bg-primary, #f2f2f2);
-  stroke: none;
+.feedback-card .rating .star {
+  width: 20px;
+  height: 20px;
 }
 
-/* =======================
-   TEXT
-======================= */
+.feedback-card .rating .star svg.star-empty {
+  fill: var(--color-bg-accent) !important;
+}
+
+.feedback-card .rating .star svg.star-half,
+.feedback-card .rating .star svg.star-filled {
+  fill: var(--color-text-primary) !important;
+}
 
 .feedback-text {
   width: 287px;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.6;
-  color: var(--color-text-primary);
+  color: #080c09;
 }
 
 .feedback-author {
-  font-size: var(--fs-14, 14px);
+  margin: 0;
+  font-size: var(--fs-14);
   font-weight: var(--fw-bold);
+  line-height: var(--lh-120);
+  color: var(--color-text-primary);
 }
 
-/* =======================
-   CONTROLS
-======================= */
+.feedback-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+}
+
+.feedback-pagination {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: auto !important;
+}
+
+.feedback-pagination .feedback-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  margin: 0 !important;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  background-color: transparent;
+  opacity: 1;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.feedback-pagination .feedback-pagination-bullet:hover,
+.feedback-pagination .feedback-pagination-bullet:focus-visible {
+  border-color: var(--color-brand-primary);
+  transform: scale(1.1);
+}
+
+.feedback-pagination .feedback-pagination-bullet.is-active {
+  background-color: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+}
+
+.feedback-pagination.swiper-pagination-lock {
+  display: none;
+}
 
 .feedback-controls {
   display: flex;
-  gap: 16px;
   align-items: center;
-  justify-content: flex-end;
+  gap: var(--space-16);
 }
 
-/* пагінація (зліва) */
-.feedback-pagination {
-  display: flex;
-  gap: 6px;
-}
-
-.feedback-pagination span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--color-border, #ccc);
-}
-
-.feedback-pagination .active {
-  background-color: var(--color-text-primary);
-}
-
-/* кнопки (справа) */
 .btn-prev,
 .btn-next {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--color-border, #ddd);
-  background-color: #f2f2f2;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    opacity var(--transition-fast);
 }
 
-/* hover */
+.btn-icon {
+  fill: currentColor;
+}
+
 .btn-prev:hover,
 .btn-next:hover,
 .btn-prev:focus-visible,
 .btn-next:focus-visible {
-  background-color: var(--color-brand-primary-hover);
-  color: #fff;
-}
-.btn-prev:hover .btn-icon,
-.btn-next:hover .btn-icon,
-.btn-prev:focus-visible .btn-icon,
-.btn-next:focus-visible .btn-icon {
-  fill: #fff;
+  border-color: var(--color-brand-primary);
+  background-color: var(--color-brand-primary);
+  color: var(--color-white);
 }
 
-/* active */
 .btn-prev:active,
 .btn-next:active {
+  border-color: var(--color-brand-primary-active);
   background-color: var(--color-brand-primary-active);
-  color: #fff;
+  color: var(--color-white);
 }
 
-/* disabled */
+.btn-prev.is-disabled,
+.btn-next.is-disabled,
 .btn-prev:disabled,
 .btn-next:disabled {
-  opacity: 0.4;
+  border-color: var(--color-border);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-muted);
+  opacity: 0.45;
   pointer-events: none;
 }
-
-/* =======================
-   TABLET
-======================= */
 
 @media only screen and (min-width: 768px) {
   .feedback {
     padding: 32px 0;
   }
 
-  .feedback-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
   .feedback-subtitle {
-    width: 560px;
+    max-width: 560px;
   }
 
-  .feedback-item {
-    width: calc((100% - 16px) / 2);
-  }
-  .feedback-text {
-    font-size: var(--fs-16);
-  }
-
-  .feedback-controls {
-    justify-content: flex-end;
-    gap: 20px;
-  }
-
-  .feedback-card {
+  .feedback-slider {
     margin-bottom: 48px;
   }
-}
 
-/* =======================
-   DESKTOP
-======================= */
+  .feedback-text {
+    width: 294px;
+  }
+}
 
 @media only screen and (min-width: 1440px) {
   .feedback {
     padding: 64px 0;
   }
+
   .feedback-title {
     font-size: 48px;
   }
 
-  .feedback-item {
-    width: calc((100% - 32px) / 3);
+  .feedback-text {
+    width: 374px;
   }
 }
