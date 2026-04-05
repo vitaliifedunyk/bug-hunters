@@ -1,7 +1,9 @@
+export function closeModal(modalElement) {
+  if (!modalElement) {
+    return;
+  }
 
-const productBackdrop = document.querySelector('#product-modal .backdrop');
-const closeBtn = document.querySelector('#product-modal .modal-close-btn');
-
-closeBtn.addEventListener('click', () => {
-  productBackdrop.classList.add('is-hidden');
-});
+  modalElement.classList.add('is-hidden');
+  modalElement.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('no-scroll');
+}
