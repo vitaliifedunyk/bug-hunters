@@ -54,7 +54,12 @@
 .header-nav-link:focus-visible,
 .header-menu-btn:hover,
 .header-menu-btn:focus-visible {
-  color: #6b0609;
+  opacity: 0.5;
+}
+
+.header-nav-link:active,
+.header-menu-btn:active {
+  opacity: 1;
 }
 
 .header-nav-btn {

@@ -44,8 +44,7 @@ textarea {
     background-color 250ms ease,
     border-color 250ms ease,
     box-shadow 250ms ease,
-    opacity 250ms ease,
-    transform 250ms ease;
+    opacity 250ms ease;
 }
 
 input:focus,
@@ -90,7 +89,7 @@ a:focus-visible {
 
 .link-hover:hover,
 .link-hover:focus-visible {
-  color: #6b0609;
+  opacity: 0.5;
 }
 
 .none {

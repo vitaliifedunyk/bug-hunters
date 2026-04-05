@@ -129,13 +129,13 @@
   transition:
     background-color 250ms ease,
     border-color 250ms ease,
-    transform 250ms ease;
+    opacity 250ms ease;
 }
 
 .feedback-pagination .feedback-pagination-bullet:hover,
 .feedback-pagination .feedback-pagination-bullet:focus-visible {
   border-color: #6b0609;
-  transform: scale(1.1);
+  opacity: 0.5;
 }
 
 .feedback-pagination .feedback-pagination-bullet.is-active {
@@ -163,14 +163,15 @@
   padding: 0;
   border: 1px solid rgba(8, 12, 9, 0.22);
   border-radius: 50%;
-  background-color: #ffffff;
+  background-color: #f2f2f2;
   color: #080c09;
   cursor: pointer;
   transition:
     background-color 250ms ease,
     border-color 250ms ease,
     color 250ms ease,
-    opacity 250ms ease;
+    opacity 250ms ease,
+    transform 250ms ease;
 }
 
 .btn-icon {
@@ -181,16 +182,18 @@
 .btn-next:hover,
 .btn-prev:focus-visible,
 .btn-next:focus-visible {
-  border-color: #6b0609;
-  background-color: #6b0609;
+  border-color: #975052;
+  background-color: #975052;
   color: #ffffff;
+  transform: translateY(-1px);
 }
 
 .btn-prev:active,
 .btn-next:active {
-  border-color: #550507;
-  background-color: #550507;
+  border-color: #6b0609;
+  background-color: #6b0609;
   color: #ffffff;
+  transform: translateY(0);
 }
 
 .btn-prev.is-disabled,
@@ -198,9 +201,10 @@
 .btn-prev:disabled,
 .btn-next:disabled {
   border-color: rgba(8, 12, 9, 0.12);
-  background-color: #ffffff;
+  background-color: #f2f2f2;
   color: rgba(8, 12, 9, 0.56);
-  opacity: 0.45;
+  opacity: 0.3;
+  transform: translateY(0);
   pointer-events: none;
 }
 

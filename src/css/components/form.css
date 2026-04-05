@@ -18,9 +18,9 @@
 .form-input,
 .form-textarea {
   width: 100%;
-  border: 1px solid rgba(8, 12, 9, 0.22);
+  border: 1px solid rgba(8, 12, 9, 0.15);
   border-radius: 16px;
-  background-color: #ffffff;
+  background-color: rgba(8, 12, 9, 0.05);
 
   transition:
     border-color 250ms ease,
@@ -59,16 +59,21 @@
 
 .form-input:hover,
 .form-textarea:hover {
-  border-color: #6b0609;
+  border-color: rgba(8, 12, 9, 0.4);
 }
 
 .form-input:focus,
 .form-textarea:focus {
-  border-color: #6b0609;
-  box-shadow: 0 0 0 4px rgba(107, 6, 9, 0.08);
+  border-color: rgba(8, 12, 9, 0.4);
+  box-shadow: none;
 }
 
 .form-input.is-error,
 .form-textarea.is-error {
-  border-color: #b3261e;
+  border-color: #6b0609;
+}
+
+.form-input.is-error::placeholder,
+.form-textarea.is-error::placeholder {
+  color: rgba(107, 6, 9, 0.56);
 }

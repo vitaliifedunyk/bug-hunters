@@ -78,7 +78,12 @@ export function createProductCard(product) {
         <p class="product-card__price">${productPrice}</p>
       </div>
 
-      <button class="product-card__btn" type="button" data-product-details data-product-id="${productId}">
+      <button
+        class="btn btn--secondary btn--small btn--full product-card__btn"
+        type="button"
+        data-product-details
+        data-product-id="${productId}"
+      >
         Детальніше
       </button>
     </li>

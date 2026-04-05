@@ -7,12 +7,12 @@
 
 .card-hover {
   transition:
-    transform 250ms ease,
-    box-shadow 250ms ease;
+    box-shadow 250ms ease,
+    opacity 250ms ease;
 }
 
 .card-hover:hover,
 .card-hover:focus-within {
-  transform: translateY(-2px);
+  opacity: 0.5;
   box-shadow: 0 8px 24px rgba(8, 12, 9, 0.1);
 }

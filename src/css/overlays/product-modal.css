@@ -50,26 +50,31 @@
   right: 20px;
   width: 40px;
   height: 40px;
-  border: none;
-  background: #f5f5f5;
+  border: 1px solid rgba(8, 12, 9, 0.12);
+  background: #ffffff;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 250ms ease;
+  color: #111111;
   z-index: 10;
 }
 
 .product-modal__close:hover,
 .product-modal__close:focus-visible {
-  background: #e0e0e0;
+  opacity: 0.5;
+}
+
+.product-modal__close:active {
+  opacity: 1;
 }
 
 .product-modal__close svg {
   width: 20px;
   height: 20px;
-  color: #333;
+  color: currentColor;
+  fill: currentColor;
 }
 
 /* Content Layout */
@@ -115,12 +120,17 @@
   cursor: pointer;
   border: 2px solid transparent;
   background: transparent;
-  transition: border-color 250ms ease;
+  transition: border-color 250ms ease, opacity 250ms ease;
   flex-shrink: 0;
 }
 
+.product-modal__thumbnail:hover,
+.product-modal__thumbnail:focus-visible {
+  border-color: #975052;
+}
+
 .product-modal__thumbnail.is-active {
-  border-color: #7b1f1f;
+  border-color: #6b0609;
 }
 
 .product-modal__thumbnail img {
@@ -228,7 +238,7 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  transition: transform 250ms ease, background-color 250ms ease;
+  transition: background-color 250ms ease, opacity 250ms ease;
   padding: 0;
   display: inline-flex;
   align-items: center;
@@ -243,12 +253,13 @@
   transition:
     width 250ms ease,
     height 250ms ease,
-    transform 250ms ease;
+    opacity 250ms ease;
   pointer-events: none;
 }
 
-.product-modal__color-btn:hover {
-  transform: scale(1.1);
+.product-modal__color-btn:not(.is-selected):hover,
+.product-modal__color-btn:not(.is-selected):focus-visible {
+  opacity: 0.5;
 }
 
 .product-modal__color-btn.is-selected {
@@ -286,24 +297,7 @@
 .product-modal__order-btn {
   width: 100%;
   padding: 16px 24px;
-  background: #7b1f1f;
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 250ms ease, transform 250ms ease;
   margin-top: auto;
-}
-
-.product-modal__order-btn:hover {
-  background: #5a1717;
-  transform: translateY(-2px);
-}
-
-.product-modal__order-btn:active {
-  transform: translateY(0);
 }
 
 /* ============================================
