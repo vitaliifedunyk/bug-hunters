@@ -151,13 +151,34 @@
   margin-bottom: 24px;
 }
 
+
+
 .stars {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: row;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
   gap: 4px;
   margin-bottom: 24px;
+}
+
+.stars input.star-rating {
+  display: none;
+}
+
+.stars label {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+  user-select: none;
+}
+
+.stars label:hover,
+.stars label:hover ~ label {
+  color: #080c09;
+}
+
+.stars input.star-rating:checked ~ label {
+  color: #080c09;
 }
 
 .product-color {
