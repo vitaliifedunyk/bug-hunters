@@ -54,12 +54,12 @@
   font-family: 'Raleway', sans-serif;
   font-weight: 700;
   font-size: 18px;
-  color: var(--color-white);
+  color: #ffffff;
   background-color: #6e6257;
   text-align: center;
   overflow: hidden;
   cursor: pointer;
-  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
+  transition: box-shadow 250ms ease, transform 250ms ease;
 }
 
 .category-btn:focus-visible {
@@ -91,17 +91,17 @@
   pointer-events: none;
   z-index: 1;
   transition:
-    background var(--transition-normal),
-    box-shadow var(--transition-normal);
+    background 250ms ease,
+    box-shadow 250ms ease;
 }
 
 .category-btn:hover::before,
 .category-btn:focus-visible::before {
-  box-shadow: inset 0 0 0 8px var(--color-brand-primary-hover);
+  box-shadow: inset 0 0 0 8px #8b0b10;
 }
 
 .category-btn.is-active::before {
-  box-shadow: inset 0 0 0 8px var(--color-brand-primary-active);
+  box-shadow: inset 0 0 0 8px #550507;
   background: rgba(0, 0, 0, 0.5);
 }
 
@@ -112,7 +112,7 @@
   line-height: 1.4;
   letter-spacing: 0.01em;
   text-align: center;
-  color: var(--color-white);
+  color: #ffffff;
   position: relative;
   z-index: 2;
   white-space: normal;

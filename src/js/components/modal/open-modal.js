@@ -1,3 +1,5 @@
+import { lockScroll } from '../../utils/scroll-lock.js';
+
 export function openModal(modalElement) {
   if (!modalElement) {
     return;
@@ -5,5 +7,5 @@ export function openModal(modalElement) {
 
   modalElement.classList.remove('is-hidden');
   modalElement.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('no-scroll');
+  lockScroll();
 }

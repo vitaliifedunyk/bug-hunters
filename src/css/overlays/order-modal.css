@@ -1,18 +1,27 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: var(--z-overlay);
+  z-index: 100;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   padding: 16px;
-  background-color: rgba(8, 12, 9, 0.55);
+  background-color: #080c0980;
+  backdrop-filter: blur(4px);
+  opacity: 1;
+  visibility: visible;
 
   transition:
-    opacity var(--transition-fast),
-    visibility var(--transition-fast);
+    opacity 250ms ease,
+    visibility 250ms ease;
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .modal {
@@ -24,8 +33,14 @@
   width: calc(100% - 32px);
   max-width: 335px;
   overflow-y: auto;
-  background-color: var(--color-white);
-  box-shadow: var(--shadow-lg);
+  background-color: #ffffff;
+  box-shadow: 0 16px 40px rgba(8, 12, 9, 0.14);
+  transform: scale(1);
+  transition: transform 250ms ease;
+}
+
+.backdrop.is-hidden .modal {
+  transform: scale(0.9);
 }
 .modal__title {
   display: block;
@@ -35,7 +50,7 @@
     letter-spacing: 0.01em;
     margin-bottom: 48px;
     text-align: center;
-    color: var(--color-scheme-1-text);
+    color: #080c09;
 }
 
 .modal .form-input,
@@ -54,10 +69,10 @@
   padding: 10px;
   border-radius: 100px;
   border: none;
-  margin-top: 24px;
-  box-shadow: 0 1px 2px 0 var(--opacity-neutral-darkest-5), 
-              inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px var(--opacity-neutral-darkest-15), 
-              inset 0 2px 1px 0 rgba(255, 255, 255, 0.25), inset 0 32px 24px 0 var(--opacity-white-5);
+  margin-top: 0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05),
+              inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(0, 0, 0, 0.15),
+              inset 0 2px 1px 0 rgba(255, 255, 255, 0.25), inset 0 32px 24px 0 rgba(255, 255, 255, 0.05);
 }
 .modal__close {
   position: absolute;
@@ -71,9 +86,9 @@
   width: 40px;
   height: 40px;
 
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(8, 12, 9, 0.12);
   border-radius: 50%;
-  background-color: var(--color-white);
+  background-color: #ffffff;
 
   font-size: 24px;
   line-height: 1;
@@ -84,8 +99,8 @@
 
 .modal__close:hover,
 .modal__close:focus-visible {
-  border-color: var(--color-brand-primary);
-  color: var(--color-brand-primary);
+  border-color: #6b0609;
+  color: #6b0609;
 }
 .form-submit:hover,
 .form-submit:focus {
@@ -96,21 +111,24 @@
   .modal {
     padding: 64px 32px 32px;
     max-width: none;
-      width: 704px;
-      height: 671px;
+    width: 704px;
+    min-height: 671px;
+  }
+
+  .form-submit {
+    width: 196px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
-.form-submit {
-  width: 196px;
-  margin-left: auto;
-  margin-right: auto;
-  justify-self: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-}
+
 @media screen and (min-width: 1440px) {
   .modal {
+    padding: 64px;
     width: 866px;
     max-width: none;
     min-height: 718px;

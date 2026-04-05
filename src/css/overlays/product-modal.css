@@ -9,7 +9,7 @@
   width: 100%;
   height: 100%;
   padding: 16px;
-  background: rgba(0, 0, 0, 0.6);
+  background: #080c0980;
   backdrop-filter: blur(4px);
   z-index: 1000;
   display: flex;
@@ -17,7 +17,7 @@
   justify-content: center;
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 250ms ease, visibility 250ms ease;
 }
 
 .product-modal-overlay.is-hidden {
@@ -36,7 +36,7 @@
   position: relative;
   padding: 40px;
   transform: scale(1);
-  transition: transform 0.3s ease;
+  transition: transform 250ms ease;
 }
 
 .product-modal-overlay.is-hidden .product-modal {
@@ -57,7 +57,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease;
+  transition: background 250ms ease;
   z-index: 10;
 }
 
@@ -115,7 +115,7 @@
   cursor: pointer;
   border: 2px solid transparent;
   background: transparent;
-  transition: border-color 0.2s ease;
+  transition: border-color 250ms ease;
   flex-shrink: 0;
 }
 
@@ -194,13 +194,13 @@
 
 .product-modal__rating .rating .star svg.star-empty {
   fill: transparent !important;
-  stroke: var(--color-text-primary);
+  stroke: #080c09;
   stroke-width: 1.5px;
 }
 
 .product-modal__rating .rating .star svg.star-half,
 .product-modal__rating .rating .star svg.star-filled {
-  fill: var(--color-text-primary) !important;
+  fill: #080c09 !important;
 }
 
 /* Colors */
@@ -228,24 +228,23 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: transform 250ms ease, background-color 250ms ease;
   padding: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.product-modal__color-btn::before {
-  content: '';
+.product-modal__color-swatch {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: var(--swatch-color);
   box-shadow: inset 0 0 0 1px rgba(8, 12, 9, 0.18);
   transition:
-    width 0.2s ease,
-    height 0.2s ease,
-    transform 0.2s ease;
+    width 250ms ease,
+    height 250ms ease,
+    transform 250ms ease;
+  pointer-events: none;
 }
 
 .product-modal__color-btn:hover {
@@ -256,7 +255,7 @@
   background-color: #8d8d8d;
 }
 
-.product-modal__color-btn.is-selected::before {
+.product-modal__color-btn.is-selected .product-modal__color-swatch {
   width: 34px;
   height: 34px;
 }
@@ -294,7 +293,7 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 250ms ease, transform 250ms ease;
   margin-top: auto;
 }
 

@@ -4,6 +4,7 @@ import { getCategories } from '../../api/categories-api.js';
 import { getFurnitures } from '../../api/furniture-api.js';
 import { hideLoader, showLoader } from '../../services/loader.js';
 import { showError } from '../../services/notifications.js';
+import { refs } from '../../utils/refs.js';
 import { initProductModal, openProductModal } from '../modals/product-modal.js';
 import {
   ALL_PRODUCTS_CATEGORY_ID,
@@ -21,14 +22,9 @@ import {
 
 const MOBILE_MEDIA_QUERY = '(max-width: 767.98px)';
 
-const refs = {
-  categoriesList: document.querySelector('[data-categories-list]'),
-  productsList: document.querySelector('[data-products-list]'),
-  pagination: document.querySelector('[data-products-pagination]'),
-};
-
 const loadMoreBtn = new LoadMoreBtn({
-  selector: '[data-load-more]',
+  button: refs.products.loadMoreButton,
+  container: refs.products.loadMoreContainer,
   isHidden: true,
 });
 
@@ -69,11 +65,11 @@ function setLoadingState(isLoading) {
 }
 
 function renderEmptyState(message) {
-  if (!refs.productsList) {
+  if (!refs.products.list) {
     return;
   }
 
-  refs.productsList.innerHTML = `
+  refs.products.list.innerHTML = `
     <li class="products-list__empty">
       <p>${message}</p>
     </li>
@@ -81,13 +77,13 @@ function renderEmptyState(message) {
 }
 
 function renderPagination() {
-  if (!refs.pagination) {
+  if (!refs.products.pagination) {
     return;
   }
 
   if (isMobileViewport() || state.totalPages <= 1 || state.totalItems === 0) {
-    refs.pagination.innerHTML = '';
-    refs.pagination.classList.add('is-hidden');
+    refs.products.pagination.innerHTML = '';
+    refs.products.pagination.classList.add('is-hidden');
     return;
   }
 
@@ -99,7 +95,7 @@ function renderPagination() {
       <button
         class="products-pagination__button ${isActive ? 'is-active' : ''}"
         type="button"
-        data-page="${page}"
+        data-products-page="${page}"
         aria-label="Сторінка ${page}"
         aria-current="${isActive ? 'page' : 'false'}"
       >
@@ -108,11 +104,11 @@ function renderPagination() {
     `;
   }).join('');
 
-  refs.pagination.innerHTML = `
+  refs.products.pagination.innerHTML = `
     <button
       class="products-pagination__button products-pagination__button--arrow btn-prev"
       type="button"
-      data-page="${Math.max(1, state.currentPage - 1)}"
+      data-products-page="${Math.max(1, state.currentPage - 1)}"
       aria-label="Попередня сторінка"
       ${state.currentPage === 1 ? 'disabled' : ''}
     >
@@ -124,7 +120,7 @@ function renderPagination() {
     <button
       class="products-pagination__button products-pagination__button--arrow btn-next"
       type="button"
-      data-page="${Math.min(state.totalPages, state.currentPage + 1)}"
+      data-products-page="${Math.min(state.totalPages, state.currentPage + 1)}"
       aria-label="Наступна сторінка"
       ${state.currentPage === state.totalPages ? 'disabled' : ''}
     >
@@ -134,7 +130,7 @@ function renderPagination() {
     </button>
   `;
 
-  refs.pagination.classList.remove('is-hidden');
+  refs.products.pagination.classList.remove('is-hidden');
 }
 
 function updateLoadMoreState() {
@@ -170,21 +166,21 @@ async function fetchProducts({ page = 1, append = false } = {}) {
     updatePaginationState(data);
 
     if (!data.furnitures.length) {
-      clearProducts(refs.productsList);
+      clearProducts(refs.products.list);
       renderEmptyState('За цією категорією товарів поки немає.');
       updateControls();
       return;
     }
 
     if (append) {
-      appendProducts(data.furnitures, refs.productsList);
+      appendProducts(data.furnitures, refs.products.list);
     } else {
-      renderProducts(data.furnitures, refs.productsList);
+      renderProducts(data.furnitures, refs.products.list);
     }
 
     updateControls();
   } catch (error) {
-    clearProducts(refs.productsList);
+    clearProducts(refs.products.list);
     renderEmptyState('Не вдалося завантажити товари. Спробуйте ще раз.');
 
     showError(error.response?.data?.message || 'Не вдалося завантажити список меблів.');
@@ -203,20 +199,20 @@ async function bootstrapCategories() {
   try {
     const categories = normalizeCategories(await getCategories());
 
-    initCategoryFilters(refs.categoriesList, categories, async category => {
+    initCategoryFilters(refs.categories.list, categories, async category => {
       state.activeCategoryId = category.id;
       state.activeCategoryName = category.name;
       state.currentPage = 1;
 
-      clearProducts(refs.productsList);
+      clearProducts(refs.products.list);
       await fetchProducts({ page: 1, append: false });
     });
   } catch (error) {
-    initCategoryFilters(refs.categoriesList, getDefaultCategories(), async category => {
+    initCategoryFilters(refs.categories.list, getDefaultCategories(), async category => {
       state.activeCategoryId = category.id;
       state.activeCategoryName = category.name;
       state.currentPage = 1;
-      clearProducts(refs.productsList);
+      clearProducts(refs.products.list);
       await fetchProducts({ page: 1, append: false });
     });
 
@@ -236,13 +232,13 @@ async function handleLoadMoreClick() {
 }
 
 async function handlePaginationClick(event) {
-  const pageButton = event.target.closest('[data-page]');
+  const pageButton = refs.products.getPaginationButton(event.target);
 
   if (!pageButton || pageButton.disabled || isMobileViewport()) {
     return;
   }
 
-  const targetPage = Number(pageButton.dataset.page);
+  const targetPage = Number(pageButton.dataset.productsPage);
 
   if (!targetPage || targetPage === state.currentPage) {
     return;
@@ -252,7 +248,7 @@ async function handlePaginationClick(event) {
 }
 
 async function handleProductsClick(event) {
-  const detailsButton = event.target.closest('[data-product-details]');
+  const detailsButton = refs.products.getDetailsButton(event.target);
 
   if (!detailsButton) {
     return;
@@ -270,16 +266,16 @@ async function handleProductsClick(event) {
 
 async function handleViewportChange() {
   state.currentPage = 1;
-  clearProducts(refs.productsList);
+  clearProducts(refs.products.list);
   await fetchProducts({ page: 1, append: false });
 }
 
 export async function initProducts() {
   if (
     isInitialized ||
-    !refs.categoriesList ||
-    !refs.productsList ||
-    !refs.pagination
+    !refs.categories.list ||
+    !refs.products.list ||
+    !refs.products.pagination
   ) {
     return;
   }
@@ -288,8 +284,8 @@ export async function initProducts() {
 
   initProductModal();
 
-  refs.productsList.addEventListener('click', handleProductsClick);
-  refs.pagination.addEventListener('click', handlePaginationClick);
+  refs.products.list.addEventListener('click', handleProductsClick);
+  refs.products.pagination.addEventListener('click', handlePaginationClick);
   loadMoreBtn.button?.addEventListener('click', handleLoadMoreClick);
   mobileMediaQuery.addEventListener('change', handleViewportChange);
 

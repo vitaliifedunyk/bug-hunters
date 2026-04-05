@@ -1,10 +1,7 @@
-let loader = null;
+import { refs } from '../utils/refs.js';
 
 function getLoader() {
-  if (!loader) {
-    loader = document.querySelector('.loader');
-  }
-  return loader;
+  return refs.loader;
 }
 
 export function showLoader() {

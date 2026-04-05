@@ -1,30 +1,31 @@
 .form {
   display: grid;
-  gap: 20px;
+  gap: 24px;
 }
 
 .form-field {
   display: grid;
+  position: relative;
   gap: 8px;
 }
 
 .form-label {
-  font-size: var(--fs-14);
-  font-weight: var(--fw-medium);
-  line-height: var(--lh-120);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 .form-input,
 .form-textarea {
   width: 100%;
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-md);
-  background-color: var(--color-white);
+  border: 1px solid rgba(8, 12, 9, 0.22);
+  border-radius: 16px;
+  background-color: #ffffff;
 
   transition:
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    background-color var(--transition-fast);
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    background-color 250ms ease;
 }
 
 .form-input {
@@ -32,28 +33,18 @@
   padding: 14px 16px;
 }
 .form-error {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
   display: block;
-  color: #7A1315;
+  color: #7a1315;
   font-size: 12px;
-  margin-top: 4px;
+  line-height: 1.2;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 250ms ease;
 }
-/* 2. Стиль інпуту, якщо він невалідний */
-/* :not(:placeholder-shown) додаємо, щоб форма не світилася червоним відразу при відкритті */
-.form-input:not(:placeholder-shown):invalid {
-  border-color: #7A1315;
-}
 
-/* 3. Показуємо текст помилки тільки для невалідного інпуту */
-.form-input:not(:placeholder-shown):invalid+.form-error {
-  opacity: 1;
-}
-
-/* Додатково: якщо хочеш, щоб рамка ставала зеленою при правильному заповненні */
-.form-input:not(:placeholder-shown):valid {
-  border-color: green;
-}
 .form-textarea {
   min-height: 120px;
   padding: 12px;
@@ -63,21 +54,21 @@
 
 .form-input::placeholder,
 .form-textarea::placeholder {
-  color: var(--color-text-muted);
+  color: rgba(8, 12, 9, 0.56);
 }
 
 .form-input:hover,
 .form-textarea:hover {
-  border-color: var(--color-brand-primary);
+  border-color: #6b0609;
 }
 
 .form-input:focus,
 .form-textarea:focus {
-  border-color: var(--color-brand-primary);
+  border-color: #6b0609;
   box-shadow: 0 0 0 4px rgba(107, 6, 9, 0.08);
 }
 
 .form-input.is-error,
 .form-textarea.is-error {
-  border-color: var(--color-error);
+  border-color: #b3261e;
 }

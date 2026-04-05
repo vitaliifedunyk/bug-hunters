@@ -7,16 +7,20 @@ import 'swiper/css/pagination';
 
 import { getFeedbacks } from '../../api/feedbacks-api.js';
 import { showError } from '../../services/notifications.js';
+import { refs } from '../../utils/refs.js';
 import starRatingSpriteMarkup from '../../../images/icons/star-rating.icons.svg?raw';
 
 let reviewsSwiperInstance;
 
 function ensureStarRatingSprite() {
-  if (document.getElementById('star-empty')) {
+  if (refs.starRatingSprite || !refs.starRatingSpriteHost) {
     return;
   }
 
-  document.body.insertAdjacentHTML('afterbegin', starRatingSpriteMarkup);
+  refs.starRatingSpriteHost.insertAdjacentHTML(
+    'beforeend',
+    `<div data-star-rating-sprite aria-hidden="true">${starRatingSpriteMarkup}</div>`
+  );
 }
 
 function normalizeRating(rating) {
@@ -95,12 +99,14 @@ function createCard({ author, text, rating }) {
 }
 
 export async function initReviews() {
-  const section = document.querySelector('.feedback');
-  const container = section?.querySelector('.feedback-list');
-  const slider = section?.querySelector('.feedback-slider');
-  const pagination = section?.querySelector('.feedback-pagination');
-  const prevButton = section?.querySelector('.btn-prev');
-  const nextButton = section?.querySelector('.btn-next');
+  const {
+    section,
+    list: container,
+    slider,
+    pagination,
+    prevButton,
+    nextButton,
+  } = refs.reviews;
 
   if (!section || !container || !slider || !pagination || !prevButton || !nextButton) {
     return;

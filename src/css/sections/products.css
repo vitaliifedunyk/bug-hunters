@@ -57,7 +57,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 250ms ease;
 }
 
 .product-card:hover .product-card__img {
@@ -113,7 +113,7 @@
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 250ms ease;
 }
 
 .product-card__btn:hover {
@@ -144,10 +144,10 @@
   color: #1a1a1a;
   cursor: pointer;
   transition:
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
+    border-color 250ms ease,
+    background-color 250ms ease,
+    color 250ms ease,
+    transform 250ms ease;
 }
 
 .products-pagination__button:hover,
@@ -189,7 +189,7 @@
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 250ms ease;
 }
 
 .load-more__btn:hover {

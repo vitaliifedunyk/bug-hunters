@@ -1,8 +1,15 @@
 import { DESKTOP_MEDIA_QUERY } from '../../utils/constants.js';
+import { lockScroll, unlockScroll } from '../../utils/scroll-lock.js';
 import { refs } from '../../utils/refs.js';
 
 export function initMobileMenu() {
-  const { mobileMenu, openMenuBtn, closeMenuBtn, menuBackdrop, menuLinks, body } = refs;
+  const {
+    root: mobileMenu,
+    openButton: openMenuBtn,
+    closeButton: closeMenuBtn,
+    backdrop: menuBackdrop,
+    links: menuLinks,
+  } = refs.mobileMenu;
 
   if (!mobileMenu || !openMenuBtn || !closeMenuBtn || !menuBackdrop) {
     return;
@@ -18,7 +25,7 @@ export function initMobileMenu() {
     mobileMenu.classList.remove('is-hidden');
     mobileMenu.setAttribute('aria-hidden', 'false');
     openMenuBtn.setAttribute('aria-expanded', 'true');
-    body.classList.add('no-scroll');
+    lockScroll();
     closeMenuBtn.focus();
   };
 
@@ -26,7 +33,7 @@ export function initMobileMenu() {
     mobileMenu.classList.add('is-hidden');
     mobileMenu.setAttribute('aria-hidden', 'true');
     openMenuBtn.setAttribute('aria-expanded', 'false');
-    body.classList.remove('no-scroll');
+    unlockScroll();
 
     if (returnFocus && lastFocusedElement instanceof HTMLElement) {
       lastFocusedElement.focus();

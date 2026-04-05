@@ -24,6 +24,7 @@ import forOutdoor from '../../../images/categories/for-outdoor.webp';
 import forOutdoor2x from '../../../images/categories/for-outdoor@2x.webp';
 import accessories from '../../../images/categories/accessories.webp';
 import accessories2x from '../../../images/categories/accessories@2x.webp';
+import { refs } from '../../utils/refs.js';
 
 export const ALL_PRODUCTS_CATEGORY_ID = 'all';
 export const ALL_PRODUCTS_CATEGORY_NAME = 'Всі товари';
@@ -114,6 +115,7 @@ export function renderCategoryFilters(categories) {
           <button
             class="category-btn ${id === ALL_PRODUCTS_CATEGORY_ID ? 'is-active' : ''}"
             type="button"
+            data-category-button
             data-category-id="${safeCategoryId}"
             data-category-name="${safeCategoryName}"
             aria-pressed="${id === ALL_PRODUCTS_CATEGORY_ID}"
@@ -132,7 +134,7 @@ export function setActiveCategoryButton(container, activeCategoryId) {
     return;
   }
 
-  container.querySelectorAll('.category-btn').forEach(button => {
+  refs.categories.getButtons(container).forEach(button => {
     const isActive = button.dataset.categoryId === activeCategoryId;
     button.classList.toggle('is-active', isActive);
     button.setAttribute('aria-pressed', String(isActive));
@@ -152,7 +154,7 @@ export function initCategoryFilters(container, categories, onCategorySelect) {
   }
 
   const handleCategoryClick = event => {
-    const button = event.target.closest('.category-btn');
+    const button = refs.categories.getButton(event.target);
     if (!button) {
       return;
     }

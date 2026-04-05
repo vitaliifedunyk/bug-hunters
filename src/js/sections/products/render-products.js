@@ -1,7 +1,7 @@
-const DEFAULT_PRODUCTS_SELECTOR = '[data-products-list]';
+import { refs } from '../../utils/refs.js';
 
 function getProductsList(container) {
-  return container || document.querySelector(DEFAULT_PRODUCTS_SELECTOR);
+  return container || refs.products.list;
 }
 
 function escapeHtml(value) {
