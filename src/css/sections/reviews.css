@@ -10,21 +10,25 @@
 
 .feedback-title {
   margin-bottom: var(--space-24);
+  font-weight: 700;
   font-size: 36px;
-  line-height: var(--lh-110);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: #080c09;
 }
 
 .feedback-subtitle {
   max-width: 320px;
-  margin-bottom: var(--space-32);
-  font-size: var(--fs-18);
-  line-height: var(--lh-150);
-  color: var(--color-text-secondary);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #080c09;
+  margin-bottom: 80px;
 }
 
 .feedback-slider {
   width: 100%;
-  margin-bottom: var(--space-24);
+  margin-bottom: 60px;
   overflow: hidden;
 }
 
@@ -44,11 +48,7 @@
   flex-direction: column;
   gap: var(--space-24);
   height: 100%;
-  padding: var(--space-24);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
   background-color: var(--color-bg-primary);
-  box-shadow: var(--shadow-sm);
 }
 
 .feedback-item--status {
@@ -88,11 +88,11 @@
 }
 
 .feedback-text {
-  margin: 0;
-  font-weight: var(--fw-medium);
-  font-size: var(--fs-20);
-  line-height: var(--lh-150);
-  color: var(--color-text-primary);
+  width: 287px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #080c09;
 }
 
 .feedback-author {
@@ -206,29 +206,32 @@
 
 @media only screen and (min-width: 768px) {
   .feedback {
-    padding: var(--section-py-tablet) 0;
+    padding: 32px 0;
   }
 
   .feedback-subtitle {
     max-width: 560px;
-    margin-bottom: var(--space-48);
   }
 
   .feedback-slider {
-    margin-bottom: var(--space-32);
+    margin-bottom: 48px;
+  }
+
+  .feedback-text {
+    width: 294px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .feedback {
-    padding: var(--section-py-desktop) 0;
+    padding: 64px 0;
   }
 
   .feedback-title {
     font-size: 48px;
   }
 
-  .feedback-subtitle {
-    margin-bottom: var(--space-64);
+  .feedback-text {
+    width: 374px;
   }
 }
