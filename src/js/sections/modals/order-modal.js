@@ -1,126 +1,36 @@
-import { submitOrderForm } from "../../components/form/form-submit";
-import { validateOrderFormData } from "../../components/form/form-validation";
+import iziToast from 'izitoast';
+
+import { submitOrderForm } from '../../components/form/form-submit.js';
+import { validateOrderFormData } from '../../components/form/form-validation.js';
+import { closeModal } from '../../components/modal/close-modal.js';
+import { openModal } from '../../components/modal/open-modal.js';
 import {
   getOrderModalState,
   resetOrderModalState,
   setOrderModalState,
-} from "../../components/modal/modal-state";
-import { refs } from "../../utils/refs";
+} from '../../components/modal/modal-state.js';
+import { hideLoader, showLoader } from '../../services/loader.js';
+import { refs } from '../../utils/refs.js';
 
-export function initOrderModal() {
-  const { orderModal, closeOrderModalBtn, orderForm } = refs;
-  const openOrderModalBtns = document.querySelectorAll('[data-order-modal-open], .order-btn');
+let isInitialized = false;
 
-  if (!orderModal || !orderForm) {
+function clearErrors(form) {
+  if (!form) {
     return;
   }
 
-  if (openOrderModalBtns && openOrderModalBtns.length > 0) {
-    openOrderModalBtns.forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-        openModal(resolveOrderModalState(btn));
-      });
-    });
-  }
+  const fields = form.querySelectorAll('.form-input, .form-textarea');
+  const errorElements = form.querySelectorAll('.form-error');
 
-  closeOrderModalBtn?.addEventListener('click', closeModal);
-
-  orderModal.addEventListener('click', e => {
-    if (e.target === orderModal) closeModal();
+  fields.forEach(field => field.classList.remove('is-error'));
+  errorElements.forEach(errorElement => {
+    errorElement.textContent = errorElement.dataset.defaultMessage || '';
+    errorElement.style.opacity = '0';
   });
-
-  orderForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    clearErrors(orderForm);
-
-    const formData = getFormData(orderForm);
-    const validationResult = validateOrderFormData(formData);
-
-    if (!validationResult.isValid) {
-      showErrors(orderForm, validationResult.errors);
-      return;
-    }
-
-    const modalState = getOrderModalState();
-
-    if (!modalState.modelId || !modalState.color) {
-      alert('Не вдалося визначити товар для замовлення. Відкрийте модалку товару ще раз.');
-      return;
-    }
-
-    const submitButton = e.currentTarget.querySelector('[type="submit"]');
-
-    try {
-      setSubmitState(submitButton, true);
-
-      await submitOrderForm({
-        ...formData,
-        modelId: modalState.modelId,
-        color: modalState.color,
-      });
-
-      orderForm.reset();
-      clearErrors(orderForm);
-      closeModal();
-      alert('Дякуємо! Ваше замовлення прийнято.');
-    } catch (error) {
-      const message = error.response?.data?.message || 'Не вдалося оформити замовлення. Спробуйте ще раз.';
-      alert(message);
-    } finally {
-      setSubmitState(submitButton, false);
-    }
-  });
-}
-
-function openModal(modalState = {}) {
-  setOrderModalState(modalState);
-  refs.orderModal.classList.remove('is-hidden');
-  document.body.classList.add('no-scroll');
-}
-
-function closeModal() {
-  refs.orderForm?.reset();
-  clearErrors(refs.orderForm);
-  resetOrderModalState();
-  refs.orderModal.classList.add('is-hidden');
-  document.body.classList.remove('no-scroll');
-}
-
-function resolveOrderModalState(triggerButton) {
-  const modalState = {
-    modelId: triggerButton.dataset.modelId || '',
-    color: triggerButton.dataset.color || '',
-    name: triggerButton.dataset.productName || '',
-  };
-
-  const selectedColorInput = document.querySelector('#product-modal input[name="color"]:checked');
-
-  if (!modalState.color && selectedColorInput) {
-    const colorCircle = selectedColorInput.nextElementSibling;
-    modalState.color = colorCircle?.style.backgroundColor || selectedColorInput.value || '';
-  }
-
-  return modalState;
-}
-
-function getFormData(form) {
-  const formData = new FormData(form);
-
-  return {
-    name: String(formData.get('name') || '').trim(),
-    phone: String(formData.get('phone') || '').replace(/\D/g, ''),
-    comment: String(formData.get('comment') || '').trim(),
-  };
-}
-
-function showErrors(form, errors) {
-  showFieldError(form, 'name', errors.name);
-  showFieldError(form, 'phone', errors.phone);
 }
 
 function showFieldError(form, fieldName, message) {
-  if (!message) {
+  if (!message || !form) {
     return;
   }
 
@@ -141,18 +51,10 @@ function showFieldError(form, fieldName, message) {
   }
 }
 
-function clearErrors(form) {
-  if (!form) {
-    return;
-  }
-
-  const fields = form.querySelectorAll('.form-input, .form-textarea');
-  const errorElements = form.querySelectorAll('.form-error');
-
-  fields.forEach(field => field.classList.remove('is-error'));
-  errorElements.forEach(errorElement => {
-    errorElement.style.opacity = '0';
-  });
+function showErrors(form, errors) {
+  showFieldError(form, 'name', errors.name);
+  showFieldError(form, 'phone', errors.phone);
+  showFieldError(form, 'comment', errors.comment);
 }
 
 function setSubmitState(button, isSubmitting) {
@@ -162,4 +64,156 @@ function setSubmitState(button, isSubmitting) {
 
   button.disabled = isSubmitting;
   button.textContent = isSubmitting ? 'Надсилаємо...' : 'Надіслати заявку';
+}
+
+function getFormData(form) {
+  const formData = new FormData(form);
+
+  return {
+    name: String(formData.get('name') || '').trim(),
+    phone: String(formData.get('phone') || '').replace(/\D/g, ''),
+    comment: String(formData.get('comment') || '').trim(),
+  };
+}
+
+function resolveOrderModalState(triggerButton) {
+  return {
+    modelId: triggerButton.dataset.modelId || '',
+    color: triggerButton.dataset.color || '',
+    name: triggerButton.dataset.productName || '',
+  };
+}
+
+function handleDocumentClick(event) {
+  const triggerButton = event.target.closest('[data-order-modal-open]');
+
+  if (!triggerButton) {
+    return;
+  }
+
+  event.preventDefault();
+  openOrderModal(resolveOrderModalState(triggerButton));
+}
+
+function handleEscapeKey(event) {
+  if (event.key === 'Escape' && refs.orderModal && !refs.orderModal.classList.contains('is-hidden')) {
+    closeOrderModal();
+  }
+}
+
+export function openOrderModal(modalState = {}) {
+  if (!refs.orderModal) {
+    return;
+  }
+
+  setOrderModalState({
+    modelId: modalState.modelId || '',
+    color: modalState.color || '',
+    name: modalState.name || '',
+  });
+
+  openModal(refs.orderModal);
+}
+
+export function closeOrderModal({ resetForm = true } = {}) {
+  if (!refs.orderModal) {
+    return;
+  }
+
+  if (resetForm) {
+    refs.orderForm?.reset();
+  }
+
+  clearErrors(refs.orderForm);
+  resetOrderModalState();
+  closeModal(refs.orderModal);
+}
+
+export function initOrderModal() {
+  if (isInitialized) {
+    return;
+  }
+
+  const { orderModal, closeOrderModalBtn, orderForm } = refs;
+
+  if (!orderModal || !orderForm) {
+    return;
+  }
+
+  isInitialized = true;
+
+  orderForm.querySelectorAll('.form-error').forEach(errorElement => {
+    errorElement.dataset.defaultMessage = errorElement.textContent;
+  });
+
+  document.addEventListener('click', handleDocumentClick);
+  document.addEventListener('keydown', handleEscapeKey);
+
+  closeOrderModalBtn?.addEventListener('click', () => closeOrderModal());
+
+  orderModal.addEventListener('click', event => {
+    if (event.target === orderModal) {
+      closeOrderModal();
+    }
+  });
+
+  orderForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    clearErrors(orderForm);
+
+    const formData = getFormData(orderForm);
+    const validationResult = validateOrderFormData(formData);
+
+    if (!validationResult.isValid) {
+      showErrors(orderForm, validationResult.errors);
+      return;
+    }
+
+    const modalState = getOrderModalState();
+
+    if (!modalState.modelId || !modalState.color) {
+      iziToast.error({
+        title: 'Помилка',
+        message: 'Не вдалося визначити товар для замовлення. Відкрийте модалку товару ще раз.',
+        position: 'topRight',
+      });
+      return;
+    }
+
+    const submitButton = event.currentTarget.querySelector('[type="submit"]');
+    const payload = {
+      name: formData.name,
+      phone: formData.phone,
+      modelId: modalState.modelId,
+      color: modalState.color,
+    };
+
+    if (formData.comment) {
+      payload.comment = formData.comment;
+    }
+
+    try {
+      setSubmitState(submitButton, true);
+      showLoader();
+
+      await submitOrderForm(payload);
+
+      iziToast.success({
+        title: 'Успіх',
+        message: 'Дякуємо! Ваше замовлення прийнято.',
+        position: 'topRight',
+      });
+
+      closeOrderModal();
+    } catch (error) {
+      iziToast.error({
+        title: 'Помилка',
+        message: error.response?.data?.message || 'Не вдалося оформити замовлення. Спробуйте ще раз.',
+        position: 'topRight',
+      });
+    } finally {
+      hideLoader();
+      setSubmitState(submitButton, false);
+    }
+  });
 }
