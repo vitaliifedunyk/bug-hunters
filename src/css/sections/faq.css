@@ -1,7 +1,9 @@
 .ac {
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
     overflow: hidden;
-    border-bottom: 1px solid rgba(8, 12, 9, 0.15); 
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(8, 12, 9, 0.15);
 }
 
 .border-item-top {
@@ -11,6 +13,7 @@
 .ac-question {
     display: block;
     flex: 1;
+    min-width: 0;
     font-family: "Raleway", sans-serif;
     font-weight: 700;
     font-size: 18px;
@@ -27,19 +30,34 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 24px;
     padding: 20px 0px;
     border: none;
+    background-color: transparent;
+    cursor: pointer;
     text-align: left;
 }
 
 .ac-trigger .faq-icon-svg {
+    margin-left: auto;
     flex-shrink: 0;
 }
 
-.icon-close {
+.ac-trigger .icon-open {
+    display: block;
+}
+
+.ac-trigger .icon-close {
     display: none;
+}
+
+.ac.is-active .ac-trigger .icon-open {
+    display: none;
+}
+
+.ac.is-active .ac-trigger .icon-close {
+    display: block;
 }
 
 .faq-title {
@@ -55,16 +73,17 @@
 }
 
 .accordion-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
+    width: 100%;
+    max-width: 335px;
+    margin: 0 auto;
 }
 
 
 .ac-text {
     font-family: "Raleway", sans-serif;
 
-    margin-bottom: 24px;
+    margin: 0;
+    padding: 0 0 24px;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.6;
@@ -74,32 +93,13 @@
 .ac-panel {
     overflow: hidden;
     transition-property: height;
-    transition-duration: 300ms;
-    transition-timing-function: ease;
+    transition-timing-function: ease-out;
+    will-change: height;
 }
-
-.ac.is-open .ac-panel {
-    padding-bottom: 24px;
-}
-
-@media (min-width: 375px) {
-    .ac {
-        max-width: 335px;
-    }
-
-    .ac-question {
-        max-width: 279px;
-    }
-}
-
 
 @media (min-width: 768px) {
-    .ac {
+    .accordion-container {
         max-width: 704px;
-    }
-
-    .ac-question {
-        max-width: 649px;
     }
 }
 
@@ -109,12 +109,7 @@
         padding-bottom: 80px;
     }
 
-    .ac {
-        max-width: 865px;
-    }
-
     .ac-question {
-        max-width: 809px;
         font-size: 18px;
     }
 
@@ -124,11 +119,6 @@
 
     .accordion-container {
         max-width: 865px;
-        margin: 0 auto;
-    }
-
-    .test-item {
-        min-width: 865px;
     }
 
 }
