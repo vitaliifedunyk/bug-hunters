@@ -39,9 +39,6 @@ const selectors = {
   orderFormName: '[data-order-form-name]',
   orderFormPhone: '[data-order-form-phone]',
   orderFormComment: '[data-order-form-comment]',
-  orderFormFieldName: '[data-form-field="name"]',
-  orderFormFieldPhone: '[data-form-field="phone"]',
-  orderFormFieldComment: '[data-form-field="comment"]',
   orderFormErrorName: '[data-form-error="name"]',
   orderFormErrorPhone: '[data-form-error="phone"]',
   orderFormErrorComment: '[data-form-error="comment"]',
@@ -89,8 +86,6 @@ const productModalRoot = query(selectors.productModal);
 const productModalThumbnails = query(selectors.productModalThumbnails, productModalRoot);
 
 export const refs = {
-  selectors,
-  body: document.body,
   loader: query(selectors.loader),
   starRatingSpriteHost: query(selectors.starRatingSpriteHost),
   get starRatingSprite() {
@@ -106,7 +101,6 @@ export const refs = {
   },
 
   categories: {
-    section: categoriesSection,
     list: categoriesList,
     getButtons(container = categoriesList) {
       return queryAll(selectors.categoryButton, container);
@@ -117,7 +111,6 @@ export const refs = {
   },
 
   products: {
-    section: productsSection,
     list: productsList,
     pagination: productsPagination,
     loadMoreContainer,
@@ -131,7 +124,6 @@ export const refs = {
   },
 
   faq: {
-    section: faqSection,
     accordion: query(selectors.faqAccordion, faqSection),
   },
 
@@ -153,11 +145,6 @@ export const refs = {
       name: query(selectors.orderFormName, orderForm),
       phone: query(selectors.orderFormPhone, orderForm),
       comment: query(selectors.orderFormComment, orderForm),
-    },
-    formFields: {
-      name: query(selectors.orderFormFieldName, orderForm),
-      phone: query(selectors.orderFormFieldPhone, orderForm),
-      comment: query(selectors.orderFormFieldComment, orderForm),
     },
     errors: {
       name: query(selectors.orderFormErrorName, orderForm),
@@ -181,7 +168,6 @@ export const refs = {
     colors: query(selectors.productModalColors, productModalRoot),
     description: query(selectors.productModalDescription, productModalRoot),
     sizes: query(selectors.productModalSizes, productModalRoot),
-    orderButton: query(selectors.productModalOrder, productModalRoot),
     getThumbnailButtons() {
       return queryAll(selectors.productThumbnail, productModalThumbnails);
     },
