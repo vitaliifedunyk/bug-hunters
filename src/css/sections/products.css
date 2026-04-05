@@ -176,6 +176,10 @@
   margin-top: 48px;
 }
 
+.load-more.is-hidden {
+  display: none;
+}
+
 .load-more__btn {
   padding: 16px 48px;
   background: #7b1f1f;

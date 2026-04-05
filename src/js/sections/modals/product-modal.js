@@ -1,10 +1,12 @@
 import iziToast from 'izitoast';
+import 'css-star-rating/css/star-rating.css';
 
 import { getFurnitureById } from '../../api/furniture-api.js';
 import { closeModal } from '../../components/modal/close-modal.js';
 import { openModal } from '../../components/modal/open-modal.js';
 import { hideLoader, showLoader } from '../../services/loader.js';
 import { openOrderModal } from './order-modal.js';
+import starRatingSpriteMarkup from '../../../images/icons/star-rating.icons.svg?raw';
 
 const refs = {
   overlay: document.querySelector('[data-product-modal]'),
@@ -29,16 +31,70 @@ const state = {
 
 let isInitialized = false;
 
+function ensureStarRatingSprite() {
+  if (document.getElementById('star-empty')) {
+    return;
+  }
+
+  document.body.insertAdjacentHTML('afterbegin', starRatingSpriteMarkup);
+}
+
 function formatPrice(price) {
   return `${Number(price || 0).toLocaleString('uk-UA')} грн`;
 }
 
-function formatRating(rate) {
-  const numericRate = Number(rate || 0);
-  const filledStars = Math.max(0, Math.min(5, Math.round(numericRate)));
-  const emptyStars = Math.max(0, 5 - filledStars);
+function normalizeRating(rating) {
+  const numericRating = Number(rating) || 0;
 
-  return `${'★'.repeat(filledStars)}${'☆'.repeat(emptyStars)} ${numericRate.toFixed(1)}`;
+  if (numericRating >= 3.3 && numericRating <= 3.7) return 3.5;
+  if (numericRating >= 3.8 && numericRating <= 4.2) return 4;
+
+  return Math.max(0, Math.min(5, Math.round(numericRating * 2) / 2));
+}
+
+function createStarsMarkup() {
+  return Array.from(
+    { length: 5 },
+    () => `
+      <div class="star">
+        <svg class="star-empty" aria-hidden="true">
+          <use href="#star-empty"></use>
+        </svg>
+        <svg class="star-half" aria-hidden="true">
+          <use href="#star-half"></use>
+        </svg>
+        <svg class="star-filled" aria-hidden="true">
+          <use href="#star-filled"></use>
+        </svg>
+      </div>
+    `
+  ).join('');
+}
+
+function createRatingMarkup(rating) {
+  const normalized = normalizeRating(rating);
+  const wholePart = Math.floor(normalized);
+  const ratingClasses = [
+    'rating',
+    'medium',
+    'star-svg',
+    'label-hidden',
+    'direction-ltr',
+    `value-${wholePart}`,
+  ];
+
+  if (normalized % 1 !== 0) {
+    ratingClasses.push('half');
+  }
+
+  return `
+    <div class="${ratingClasses.join(' ')}" aria-label="Рейтинг ${normalized} з 5">
+      <div class="label-value">${normalized}</div>
+      <div class="star-container">
+        ${createStarsMarkup()}
+      </div>
+    </div>
+  `;
 }
 
 function getVisibleColors(colors) {
@@ -86,7 +142,7 @@ function renderColors(colors) {
           class="product-modal__color-btn ${isSelected ? 'is-selected' : ''}"
           type="button"
           data-product-color="${color}"
-          style="background-color: ${color};"
+          style="--swatch-color: ${color};"
           aria-label="Обрати колір ${color}"
           aria-pressed="${isSelected}"
         ></button>
@@ -126,7 +182,7 @@ function renderProduct(product) {
   refs.title.textContent = product.name || 'Без назви';
   refs.category.textContent = product.category?.name || product.type || 'Меблі';
   refs.price.textContent = formatPrice(product.price);
-  refs.rating.textContent = formatRating(product.rate);
+  refs.rating.innerHTML = createRatingMarkup(product.rate);
   refs.description.textContent = product.description || 'Опис тимчасово відсутній.';
   refs.sizes.textContent = product.sizes || 'Не вказано';
 
@@ -178,6 +234,7 @@ export function initProductModal() {
   }
 
   isInitialized = true;
+  ensureStarRatingSprite();
 
   refs.closeButton?.addEventListener('click', closeProductModal);
   refs.overlay.addEventListener('click', handleOverlayClick);
