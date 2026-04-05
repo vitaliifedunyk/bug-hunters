@@ -1,7 +1,7 @@
 :root {
   /* Fonts */
-  --font-main: "Raleway", sans-serif;
-  --font-secondary: "Raleway", sans-serif;
+  --font-main: 'Raleway', sans-serif;
+  --font-secondary: 'Raleway', sans-serif;
 
   /* Font weights */
   --fw-regular: 400;
@@ -87,8 +87,8 @@
   --container-tablet: 768px;
   --container-desktop: 1440px;
 
-  --container-padding-mobile: 16px;
-  --container-padding-tablet: 24px;
+  --container-padding-mobile: 20px;
+  --container-padding-tablet: 32px;
   --container-padding-desktop: 64px;
 
   /* Header */
