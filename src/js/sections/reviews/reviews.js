@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { getFeedbacks } from '../../api/feedbacks-api.js';
+import { showError } from '../../services/notifications.js';
 import starRatingSpriteMarkup from '../../../images/icons/star-rating.icons.svg?raw';
 
 let reviewsSwiperInstance;
@@ -161,8 +162,6 @@ export async function initReviews() {
       },
     });
   } catch (error) {
-    console.error('Не вдалося завантажити відгуки:', error);
-
     container.innerHTML = `
       <li class="feedback-item feedback-item--status">
         <p class="feedback-status">Не вдалося завантажити відгуки.</p>
@@ -171,5 +170,6 @@ export async function initReviews() {
     prevButton.disabled = true;
     nextButton.disabled = true;
     pagination.innerHTML = '';
+    showError(error.response?.data?.message || 'Не вдалося завантажити відгуки.');
   }
 }

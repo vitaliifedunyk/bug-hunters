@@ -1,9 +1,13 @@
-import Accordion from "accordion-js";
+import Accordion from 'accordion-js';
 
+export function createFaqAccordion(container) {
+  if (!container) {
+    return null;
+  }
 
-new Accordion(".accordion-container", {
-    duration: 1,
-    showMultiple: false,  
-    collapse: true,   
-});
-
+  return new Accordion(container, {
+    duration: 220,
+    showMultiple: false,
+    collapse: true,
+  });
+}

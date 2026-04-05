@@ -1,4 +1,4 @@
-import Accordion from 'accordion-js';
+import { createFaqAccordion } from '../../components/accordion/accordion.js';
 
 let faqAccordionInstance;
 
@@ -13,9 +13,5 @@ export function initFaq() {
     faqAccordionInstance.destroy();
   }
 
-  faqAccordionInstance = new Accordion(container, {
-    duration: 220,
-    showMultiple: false,
-    collapse: true,
-  });
+  faqAccordionInstance = createFaqAccordion(container);
 }
