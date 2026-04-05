@@ -1,52 +1,87 @@
-<div class="product-modal-overlay is-hidden" data-product-modal aria-hidden="true">
-  <div class="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
-    <button class="product-modal__close" type="button" data-product-modal-close aria-label="Закрити">
-      <svg width="24" height="24">
-        <use href="/src/images/icons/icons.svg#icon-x"></use>
-      </svg>
-    </button>
+<section id="product-modal" class="none">
+  <div class="backdrop is-hidden">
+    <div class="product-modal">
+      <!-- кнопка для закриття -->
+      <button class="modal-close-btn" type="button">
+        <svg class="modal-close-icon" width="32" height="32">
+          <use href="/src/images/icons/icons.svg#icon-x"></use>
+        </svg>
+      </button>
 
-    <div class="product-modal__content">
-      <div class="product-modal__gallery">
-        <div class="product-modal__main-image">
-          <img src="" alt="" data-product-modal-main-image />
-        </div>
+      <div class="product-info-block">
+        <!-- блок для картинок -->
+        <div class="product-images">
+          <div class="product-gallery">
+            <!-- велике фото -->
+            <img class="main-img" src="/src/images/categories/tables.webp" width="295" height="297"
+              srcset="/src/images/categories/tables.webp 1x, /src/images/categories/tables@2x.webp 2x"
+              alt="Product image" />
 
-        <div class="product-modal__thumbnails" data-product-modal-thumbnails></div>
-      </div>
-
-      <div class="product-modal__info">
-        <h2 class="product-modal__title" id="product-modal-title" data-product-modal-title></h2>
-        <p class="product-modal__category" data-product-modal-category></p>
-
-        <div class="product-modal__price-rating">
-          <p class="product-modal__price" data-product-modal-price></p>
-          <div class="product-modal__rating" aria-label="Рейтинг товару">
-            <div class="stars" data-product-modal-rating></div>
+            <!-- маленькі фото -->
+            <div class="thumbs">
+              <img src="/src/images/categories/wardrobe.webp" width="140" height="197"
+                srcset="/src/images/categories/wardrobe.webp 1x, /src/images/categories/wardrobe@2x.webp 2x"
+                alt="Thumbnail 1" />
+              <img src="/src/images/categories/wardrobe.webp" width="140" height="197"
+                srcset="/src/images/categories/wardrobe.webp 1x, /src/images/categories/wardrobe@2x.webp 2x"
+                alt="Thumbnail 2" />
+            </div>
           </div>
         </div>
+        <!-- картка продукту -->
+        <div class="product-card">
+          <h3 class="product-title">Софа Oslo</h3>
+          <p class="product-type">Дивани</p>
+          <p class="product-price">9 999 грн</p>
 
-        <div class="product-modal__colors">
-          <p class="product-modal__label">Колір</p>
-          <div class="product-modal__color-options" data-product-modal-colors></div>
+          <!-- зірочки -->
+          <div class="stars-reviews">
+            <div class="stars">
+              <input type="radio" id="star5" name="rating" value="5" class="star-rating" />
+              <label for="star5">★</label>
+              <input type="radio" id="star4" name="rating" value="4" class="star-rating" />
+              <label for="star4">★</label>
+              <input type="radio" id="star3" name="rating" value="3" class="star-rating" />
+              <label for="star3">★</label>
+              <input type="radio" id="star2" name="rating" value="2" class="star-rating" />
+              <label for="star2">★</label>
+              <input type="radio" id="star1" name="rating" value="1" class="star-rating" />
+              <label for="star1">★</label>
+            </div>
+          </div>
+
+          <p class="product-color">Колір</p>
+          <ul class="color-list">
+            <li>
+              <label class="color-item">
+                <input type="radio" name="color" value="gray" checked />
+                <span class="color-circle" style="background-color: #c7c3bb;"></span>
+              </label>
+            </li>
+            <li>
+              <label class="color-item">
+                <input type="radio" name="color" value="beige" />
+                <span class="color-circle" style="background-color: #c7aa80;;"></span>
+              </label>
+            </li>
+            <li>
+              <label class="color-item">
+                <input type="radio" name="color" value="blue" />
+                <span class="color-circle" style="background-color: #201a19;;"></span>
+              </label>
+            </li>
+          </ul>
+
+          <p class="product-description">
+            Класичний диван з м'якими подушками та високою спинкою, ідеальний для сімейного відпочинку. Оббивка з
+            якісної
+            зносостійкої тканини.
+          </p>
+          <p class="product-size">Розміри: 280x180x85</p>
+
+          <button class="order-btn">Перейти до замовлення</button>
         </div>
-
-        <div class="product-modal__description">
-          <p data-product-modal-description></p>
-        </div>
-
-        <div class="product-modal__dimensions">
-          <p>Розміри: <span data-product-modal-sizes></span></p>
-        </div>
-
-        <button
-          class="btn btn--primary btn--full product-modal__order-btn"
-          type="button"
-          data-product-modal-order
-        >
-          Перейти до замовлення
-        </button>
       </div>
     </div>
   </div>
-</div>
+</section>

@@ -152,32 +152,39 @@
   letter-spacing: 0.5px;
 }
 
-/* Price & Rating */
-.product-modal__price-rating {
+
+
+.stars {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-bottom: 24px;
 }
 
-.product-modal__price {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1a1a1a;
+.stars input.star-rating {
+  display: none;
 }
 
-.product-modal__rating .stars {
-  display: inline-flex;
+.stars label {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+  user-select: none;
 }
 
-.product-modal__rating .rating {
-  justify-content: flex-start;
-  margin-bottom: 0;
+.stars label:hover,
+.stars label:hover ~ label {
+  color: #080c09;
 }
 
-.product-modal__rating .rating .star-container {
-  gap: 6px;
-  margin: 0;
+.stars input.star-rating:checked ~ label {
+  color: #080c09;
+}
+
+.product-color {
+  margin-bottom: 8px;
+  color: #080c09;
 }
 
 .product-modal__rating .rating .star {

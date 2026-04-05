@@ -1,22 +1,4 @@
-const defaultState = {
-  modelId: '',
-  color: '',
-  name: '',
+export const modalState = {
+  currentFurniture: null,
+  selectedColor: null,
 };
-
-let orderModalState = { ...defaultState };
-
-export function setOrderModalState(data = {}) {
-  orderModalState = {
-    ...orderModalState,
-    ...data,
-  };
-}
-
-export function getOrderModalState() {
-  return { ...orderModalState };
-}
-
-export function resetOrderModalState() {
-  orderModalState = { ...defaultState };
-}
