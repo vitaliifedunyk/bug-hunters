@@ -120,7 +120,7 @@ export function renderCategoryFilters(categories) {
             data-category-name="${safeCategoryName}"
             aria-pressed="${id === ALL_PRODUCTS_CATEGORY_ID}"
           >
-            <img src="${images.img}" srcset="${images.img} 1x, ${images.img2x} 2x" alt="${safeCategoryName}" class="fill-image" loading="lazy" />
+            <img src="${images.img}" srcset="${images.img} 1x, ${images.img2x} 2x" alt="${safeCategoryName}" class="fill-image" loading="lazy" width="100" height="100" />
             <span>${safeCategoryName}</span>
           </button>
         </li>

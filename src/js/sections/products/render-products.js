@@ -65,7 +65,7 @@ export function createProductCard(product) {
   return `
     <li class="product-card" data-product-id="${productId}">
       <div class="product-card__image-wrapper">
-        <img src="${productImage}" alt="${productName}" class="product-card__img" loading="lazy" />
+        <img src="${productImage}" alt="${productName}" class="product-card__img" loading="lazy" width="274" height="274" />
       </div>
 
       <div class="product-card__content">
