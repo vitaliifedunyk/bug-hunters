@@ -1,10 +1,3 @@
-import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
-import 'css-star-rating/css/star-rating.css';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-
 import { getFeedbacks } from '../../api/feedbacks-api.js';
 import { showError } from '../../services/notifications.js';
 import { refs } from '../../utils/refs.js';
@@ -111,6 +104,18 @@ export async function initReviews() {
   if (!section || !container || !slider || !pagination || !prevButton || !nextButton) {
     return;
   }
+
+  const [
+    { default: Swiper },
+    { Navigation, Pagination },
+  ] = await Promise.all([
+    import('swiper'),
+    import('swiper/modules'),
+    import('css-star-rating/css/star-rating.css'),
+    import('swiper/css'),
+    import('swiper/css/navigation'),
+    import('swiper/css/pagination'),
+  ]);
 
   try {
     ensureStarRatingSprite();

@@ -19,10 +19,22 @@ export default defineConfig(({ command }) => {
     root: '.',
     build: {
       sourcemap: true,
+      cssCodeSplit: true,
+      minify: 'esbuild',
+      cssMinify: true,
       rollupOptions: {
         input: glob.sync('./*.html'),
         output: {
           manualChunks(id) {
+            if (id.includes('swiper')) {
+              return 'vendor-swiper';
+            }
+            if (id.includes('izitoast')) {
+              return 'vendor-izitoast';
+            }
+            if (id.includes('accordion-js')) {
+              return 'vendor-accordion';
+            }
             if (id.includes('node_modules')) {
               return 'vendor';
             }

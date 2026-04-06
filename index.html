@@ -7,9 +7,19 @@
   <title>Меблерія — інтернет-магазин меблів</title>
   <meta name="description"
     content="Меблерія — інтернет-магазин стильних та комфортних меблів. Дивани, ліжка, шафи, декор та аксесуари для вашого дому з доставкою по Україні." />
+
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="preload" as="image" href="/img/hero.webp" />
+
+  <link rel="preload" as="image" href="./src/images/hero/mobile/hero.webp" media="(max-width: 767px)"
+    fetchpriority="high" />
+  <link rel="preload" as="image" href="./src/images/hero/tablet/hero.webp"
+    media="(min-width: 768px) and (max-width: 1439px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="./src/images/hero/desktop/hero.webp" media="(min-width: 1440px)"
+    fetchpriority="high" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://furniture-store-v2.b.goit.study" />
+
   <link rel="stylesheet" href="./src/css/main.css" />
 </head>
 

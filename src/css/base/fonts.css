@@ -5,8 +5,7 @@
   font-display: swap;
   src:
     local("Raleway"),
-    url("https://fonts.gstatic.com/s/raleway/v37/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaooCP.ttf")
-      format("truetype");
+    url("https://fonts.gstatic.com/s/raleway/v37/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaooCP.woff2") format("woff2");
 }
 
 @font-face {
@@ -16,8 +15,7 @@
   font-display: swap;
   src:
     local("Raleway"),
-    url("https://fonts.gstatic.com/s/raleway/v37/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvoooCP.ttf")
-      format("truetype");
+    url("https://fonts.gstatic.com/s/raleway/v37/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvoooCP.woff2") format("woff2");
 }
 
 @font-face {
@@ -27,8 +25,7 @@
   font-display: swap;
   src:
     local("Raleway"),
-    url("https://fonts.gstatic.com/s/raleway/v37/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVsEpYCP.ttf")
-      format("truetype");
+    url("https://fonts.gstatic.com/s/raleway/v37/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVsEpYCP.woff2") format("woff2");
 }
 
 @font-face {
@@ -38,6 +35,5 @@
   font-display: swap;
   src:
     local("Raleway"),
-    url("https://fonts.gstatic.com/s/raleway/v37/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVs9pYCP.ttf")
-      format("truetype");
+    url("https://fonts.gstatic.com/s/raleway/v37/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVs9pYCP.woff2") format("woff2");
 }
