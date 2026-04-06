@@ -31,6 +31,7 @@
   padding: 64px 20px;
   width: calc(100% - 32px);
   max-width: 335px;
+  max-height: calc(100vh - 48px);
   overflow-y: auto;
   background-color: #ffffff;
   box-shadow: 0 16px 40px rgba(8, 12, 9, 0.14);

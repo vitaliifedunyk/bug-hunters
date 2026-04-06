@@ -5,6 +5,10 @@ export function closeModal(modalElement) {
     return;
   }
 
+  if (modalElement.contains(document.activeElement)) {
+    document.activeElement.blur();
+  }
+
   modalElement.classList.add('is-hidden');
   modalElement.setAttribute('aria-hidden', 'true');
   unlockScroll();

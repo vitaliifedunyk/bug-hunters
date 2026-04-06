@@ -55,11 +55,18 @@
 npm run build
 ```
 
-## 👥 Ролі в команді "Bug Hunters"
+## 👥 Склад команди "Bug Hunters"
 
-- **Team Lead** — налаштування архітектури проєкту, Code Review, реалізація ключових модулів та модальних вікон.
-- **Scrum Master** — організація процесу розробки, ведення канбан-дошки, контроль дедлайнів.
-- **Developers** — верстка секцій проєкту, написання логіки слайдерів/акордеонів, стилізація адаптиву.
+- Vitalii Fedunyk — Team Lead 
+- Alina Kozlyuk — Scrum Master
+- Slava Sobchuk — Developer
+- Andriy Proshak — Developer
+- Sergio Shambir — Developer
+- Kateryna Ognieva — Developer
+- Vladislav Petrov — Developer
+- Stanislaw Skilskyy — Developer
+- Наталія Мишенкова — Developer
+- Катерина Негода — Developer
 
 ## 🔗 Важливі посилання
 
