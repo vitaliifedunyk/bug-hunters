@@ -69,14 +69,14 @@ import{r as e}from"./assets/rolldown-runtime-Cq0jCQ29.js";import{t}from"./assets
             data-category-name="${a}"
             aria-pressed="${t===`all`}"
           >
-            <img src="${r.img}" srcset="${r.img} 1x, ${r.img2x} 2x" alt="${a}" class="fill-image" loading="lazy" />
+            <img src="${r.img}" srcset="${r.img} 1x, ${r.img2x} 2x" alt="${a}" class="fill-image" loading="lazy" width="100" height="100" />
             <span>${a}</span>
           </button>
         </li>
       `}).join(``):``}function Ot(e,t){e&&x.categories.getButtons(e).forEach(e=>{let n=e.dataset.categoryId===t;e.classList.toggle(`is-active`,n),e.setAttribute(`aria-pressed`,String(n))})}function kt(e,t,n){if(!e)return;e.innerHTML=Dt(t);let r=St.get(e);r&&e.removeEventListener(`click`,r);let i=t=>{let r=x.categories.getButton(t.target);if(!r)return;let i={id:r.dataset.categoryId||`all`,name:r.dataset.categoryName||`Всі товари`};Ot(e,i.id),typeof n==`function`&&n(i)};St.set(e,i),e.addEventListener(`click`,i)}var At=class{constructor({button:e,container:t,isHidden:n=!0}){this.button=e||null,this.container=t||null,this.button&&n&&this.hide()}show(){this.button&&this.button.classList.remove(`is-hidden`),this.container&&this.container.classList.remove(`is-hidden`)}hide(){this.button&&this.button.classList.add(`is-hidden`),this.container&&this.container.classList.add(`is-hidden`)}disable(){this.button&&(this.button.disabled=!0)}enable(){this.button&&(this.button.disabled=!1)}checkHasMore(e,t){return e>=t?(this.hide(),!1):(this.show(),!0)}};function G(e){return e||x.products.list}function K(e){return String(e).replaceAll(`&`,`&amp;`).replaceAll(`<`,`&lt;`).replaceAll(`>`,`&gt;`).replaceAll(`"`,`&quot;`).replaceAll(`'`,`&#39;`)}function jt(e){return`${Number(e||0).toLocaleString(`uk-UA`)} грн`}function Mt(e){return Array.isArray(e)?[...new Set(e)].slice(0,3):[]}function Nt(e){let t=e.replace(`#`,``);if(![3,6].includes(t.length))return!1;let n=t.length===3?t.split(``).map(e=>`${e}${e}`).join(``):t,r=parseInt(n.slice(0,2),16),i=parseInt(n.slice(2,4),16),a=parseInt(n.slice(4,6),16);return(r*299+i*587+a*114)/1e3<128}function Pt(e){let t=K(e?._id??e?.id??``),n=K(e?.name??`Без назви`),r=K(e?.images?.[0]??``),i=jt(e?.price);return`
     <li class="product-card" data-product-id="${t}">
       <div class="product-card__image-wrapper">
-        <img src="${r}" alt="${n}" class="product-card__img" loading="lazy" />
+        <img src="${r}" alt="${n}" class="product-card__img" loading="lazy" width="274" height="274" />
       </div>
 
       <div class="product-card__content">
