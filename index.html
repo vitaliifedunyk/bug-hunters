@@ -1,19 +1,24 @@
 <!doctype html>
 <html lang="uk">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/bug-hunters/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Меблерія</title>
-    <script type="module" crossorigin src="/bug-hunters/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/bug-hunters/assets/rolldown-runtime-Cq0jCQ29.js">
-    <link rel="modulepreload" crossorigin href="/bug-hunters/assets/vendor-C848ls2K.js">
-    <link rel="stylesheet" crossorigin href="/bug-hunters/assets/vendor-CqcfryLi.css">
-    <link rel="stylesheet" crossorigin href="/bug-hunters/assets/index-MNQF17H7.css">
-  </head>
 
-  <body>
-    <header class="header">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Меблерія — інтернет-магазин меблів</title>
+  <meta name="description"
+    content="Меблерія — інтернет-магазин стильних та комфортних меблів. Дивани, ліжка, шафи, декор та аксесуари для вашого дому з доставкою по Україні." />
+  <link rel="icon" type="image/svg+xml" href="/bug-hunters/favicon.svg" />
+  <link rel="preload" as="image" href="/img/hero.webp" />
+  <link rel="preconnect" href="https://furniture-store-v2.b.goit.study" />
+  <script type="module" crossorigin src="/bug-hunters/index.js"></script>
+  <link rel="modulepreload" crossorigin href="/bug-hunters/assets/rolldown-runtime-Cq0jCQ29.js">
+  <link rel="modulepreload" crossorigin href="/bug-hunters/assets/vendor-C848ls2K.js">
+  <link rel="stylesheet" crossorigin href="/bug-hunters/assets/vendor-CqcfryLi.css">
+  <link rel="stylesheet" crossorigin href="/bug-hunters/assets/index-BLFdCpBf.css">
+</head>
+
+<body>
+  <header class="header">
   <div class="container header-box">
     <a class="header-logo-link" href="./index.html" aria-label="Перейти на головну сторінку Меблерія">
       <img class="header-logo" src="/bug-hunters/assets/logo-D5WLGvhc.svg" alt="Меблерія" width="163" height="70" />
@@ -50,7 +55,7 @@
   </div>
 </header>
 
-    <div class="mobile-menu is-hidden " id="mobile-menu" data-mobile-menu aria-hidden="true" aria-modal="true"
+  <div class="mobile-menu is-hidden " id="mobile-menu" data-mobile-menu aria-hidden="true" aria-modal="true"
   aria-label="Мобільне меню" role="dialog">
   <div class="mobile-menu-backdrop" data-menu-backdrop aria-hidden="true"></div>
 
@@ -95,8 +100,8 @@
 </div>
 
 
-    <main class="main">
-      <section id="hero" class="hero">
+  <main class="main">
+    <section id="hero" class="hero">
   <div class="container">
     <div class="hero-title-wrapper">
       <h2 class="hero-title">Створіть свій ідеальний дім</h2>
@@ -114,24 +119,23 @@
   </div>
 </section>
 
-      <section class="furniture container" id="products" data-categories-section aria-labelledby="categories-title">
+    <section class="furniture container" id="products" data-categories-section aria-labelledby="categories-title">
   <div class="section-header">
     <h2 class="furniture-title" id="categories-title">Наші меблі</h2>
     <p class="furniture-subtitle">
       Знайдіть ідеальні рішення для вашого інтер'єру
     </p>
 
-    <div class="furniture-filters" aria-label="Фільтр товарів за категоріями">
+    <div class="furniture-filters">
       <ul class="categories-list" data-categories-list></ul>
     </div>
   </div>
 </section>
-
-      <div class="products" data-products-section>
+    <div class="products" data-products-section>
   <div>
     <ul class="products-list" data-products-list></ul>
 
-    <div class="products-pagination is-hidden" data-products-pagination aria-label="Пагінація товарів"></div>
+    <div class="products-pagination is-hidden" data-products-pagination></div>
 
     <div class="load-more" data-load-more-container>
       <button class="btn btn--primary btn--load-more is-hidden" type="button" data-load-more>
@@ -140,7 +144,7 @@
     </div>
   </div>
 </div>
-      <section class="about" id="about">
+    <section class="about" id="about">
   <div class="container about-container">
     <div class="about-content">
       <h2 class="about-title">Про Меблерію</h2>
@@ -178,7 +182,7 @@
   </div>
 </section>
 
-      <section class="faq" id="faq" data-faq-section>
+    <section class="faq" id="faq" data-faq-section>
   <div class="container">
     <h2 class="faq-title">Часті питання</h2>
 
@@ -352,7 +356,7 @@
   </div>
 </section>
 
-      <section id="reviews" class="feedback" data-reviews-section>
+    <section id="reviews" class="feedback" data-reviews-section>
   <div class="container feedback-container">
     <h2 class="feedback-title">Відгуки клієнтів</h2>
 
@@ -365,7 +369,7 @@
     </div>
 
     <div class="feedback-navigation">
-      <div class="feedback-pagination" data-reviews-pagination aria-label="Пагінація відгуків"></div>
+      <div class="feedback-pagination" data-reviews-pagination></div>
 
       <div class="feedback-controls">
         <button class="btn-prev" type="button" data-reviews-prev aria-label="Попередній відгук">
@@ -382,10 +386,9 @@
     </div>
   </div>
 </section>
+  </main>
 
-    </main>
-
-    <footer class="footer">
+  <footer class="footer">
   <div class="container footer-container">
     <a href="./index.html" class="footer-logo" aria-label="На головну">
       <svg class="footer-logo-icon" width="112" height="48" aria-hidden="true">
@@ -435,7 +438,8 @@
   </div>
 </footer>
 
-    <div class="backdrop is-hidden" data-order-modal>
+
+  <div class="backdrop is-hidden" data-order-modal>
   <div class="modal">
     <button type="button" class="modal__close" data-order-modal-close aria-label="Закрити">
       <svg class="modal__close-icon" width="24" height="24">
@@ -473,7 +477,7 @@
     </form>
   </div>
 </div>
-    <div class="product-modal-overlay is-hidden" data-product-modal aria-hidden="true">
+  <div class="product-modal-overlay is-hidden" data-product-modal aria-hidden="true">
   <div class="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
     <button class="product-modal__close" type="button" data-product-modal-close aria-label="Закрити">
       <svg width="24" height="24">
@@ -484,7 +488,7 @@
     <div class="product-modal__content">
       <div class="product-modal__gallery">
         <div class="product-modal__main-image">
-          <img src="" alt="" data-product-modal-main-image />
+          <img src="" alt="" data-product-modal-main-image loading="lazy" />
         </div>
 
         <div class="product-modal__thumbnails" data-product-modal-thumbnails></div>
@@ -496,7 +500,7 @@
 
         <div class="product-modal__price-rating">
           <p class="product-modal__price" data-product-modal-price></p>
-          <div class="product-modal__rating" aria-label="Рейтинг товару">
+          <div class="product-modal__rating">
             <div class="stars" data-product-modal-rating></div>
           </div>
         </div>
@@ -514,24 +518,21 @@
           <p>Розміри: <span data-product-modal-sizes></span></p>
         </div>
 
-        <button
-          class="btn btn--primary btn--product-order"
-          type="button"
-          data-product-modal-order
-        >
+        <button class="btn btn--primary btn--product-order" type="button" data-product-modal-order>
           Перейти до замовлення
         </button>
       </div>
     </div>
   </div>
 </div>
-
-    <div class="loader" data-loader>
+  <div class="loader" data-loader>
   <div class="spinner"></div>
 </div>
 
 <div class="visually-hidden" data-star-rating-sprite-host aria-hidden="true"></div>
 
 
-  </body>
+
+</body>
+
 </html>

@@ -69,7 +69,7 @@ import{r as e}from"./assets/rolldown-runtime-Cq0jCQ29.js";import{a as t,i as n,n
             data-category-name="${a}"
             aria-pressed="${t===`all`}"
           >
-            <img src="${r.img}" srcset="${r.img} 1x, ${r.img2x} 2x" alt="${a}" class="fill-image" />
+            <img src="${r.img}" srcset="${r.img} 1x, ${r.img2x} 2x" alt="${a}" class="fill-image" loading="lazy" />
             <span>${a}</span>
           </button>
         </li>
