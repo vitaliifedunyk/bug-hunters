@@ -7,9 +7,9 @@
     <title>Меблерія</title>
     <script type="module" crossorigin src="/bug-hunters/index.js"></script>
     <link rel="modulepreload" crossorigin href="/bug-hunters/assets/rolldown-runtime-Cq0jCQ29.js">
-    <link rel="modulepreload" crossorigin href="/bug-hunters/assets/vendor-Bu8pUOGg.js">
-    <link rel="stylesheet" crossorigin href="/bug-hunters/assets/vendor-C5sw22uw.css">
-    <link rel="stylesheet" crossorigin href="/bug-hunters/assets/index--cqxxhmf.css">
+    <link rel="modulepreload" crossorigin href="/bug-hunters/assets/vendor-C848ls2K.js">
+    <link rel="stylesheet" crossorigin href="/bug-hunters/assets/vendor-CqcfryLi.css">
+    <link rel="stylesheet" crossorigin href="/bug-hunters/assets/index-MNQF17H7.css">
   </head>
 
   <body>
@@ -34,7 +34,7 @@
           <a class="header-nav-link" href="#reviews" data-nav-link>Відгуки</a>
         </li>
         <li class="header-nav-item">
-          <a class="header-nav-btn btn btn--primary btn--small" href="#products" data-nav-link>
+          <a class="btn btn--primary btn--shop" href="#products" data-nav-link>
             До покупок
           </a>
         </li>
@@ -49,6 +49,7 @@
     </button>
   </div>
 </header>
+
     <div class="mobile-menu is-hidden " id="mobile-menu" data-mobile-menu aria-hidden="true" aria-modal="true"
   aria-label="Мобільне меню" role="dialog">
   <div class="mobile-menu-backdrop" data-menu-backdrop aria-hidden="true"></div>
@@ -86,7 +87,7 @@
         </ul>
       </nav>
 
-      <a class="mobile-menu-btn btn btn--primary" href="#products" data-nav-link>
+      <a class="mobile-menu-btn btn btn--primary btn--shop" href="#products" data-nav-link>
         До покупок
       </a>
     </aside>
@@ -106,14 +107,14 @@
         перетворять ваш простір. Наша продукція поєднує в собі елегантність та
         функціональність.
       </h3>
-      <a href="#reviews" class="btn btn--primary hero-btn"
+      <a href="#reviews" class="btn btn--primary btn--hero"
         >Що про нас думають</a
       >
     </div>
   </div>
 </section>
 
-      <section class="furniture container" id="categories" aria-labelledby="categories-title">
+      <section class="furniture container" id="products" data-categories-section aria-labelledby="categories-title">
   <div class="section-header">
     <h2 class="furniture-title" id="categories-title">Наші меблі</h2>
     <p class="furniture-subtitle">
@@ -126,20 +127,19 @@
   </div>
 </section>
 
-      <section class="products">
-  <div class="container">
+      <div class="products" data-products-section>
+  <div>
     <ul class="products-list" data-products-list></ul>
 
     <div class="products-pagination is-hidden" data-products-pagination aria-label="Пагінація товарів"></div>
 
-    <div class="load-more">
-      <button class="btn btn--primary load-more__btn is-hidden" type="button" data-load-more>
+    <div class="load-more" data-load-more-container>
+      <button class="btn btn--primary btn--load-more is-hidden" type="button" data-load-more>
         Показати ще
       </button>
     </div>
   </div>
-</section>
-
+</div>
       <section class="about" id="about">
   <div class="container about-container">
     <div class="about-content">
@@ -178,11 +178,11 @@
   </div>
 </section>
 
-      <section class="faq" id="faq">
+      <section class="faq" id="faq" data-faq-section>
   <div class="container">
     <h2 class="faq-title">Часті питання</h2>
 
-    <ul class="accordion-container">
+    <ul class="accordion-container" data-faq-accordion>
       <li class="ac border-item-top">
         <h3 class="ac-header">
           <button class="ac-trigger" type="button">
@@ -352,7 +352,7 @@
   </div>
 </section>
 
-      <section id="reviews" class="feedback">
+      <section id="reviews" class="feedback" data-reviews-section>
   <div class="container feedback-container">
     <h2 class="feedback-title">Відгуки клієнтів</h2>
 
@@ -360,20 +360,20 @@
       Дізнайтеся, що кажуть наші задоволені клієнти про наші меблі.
     </p>
 
-    <div class="feedback-slider swiper">
-      <ul class="feedback-list swiper-wrapper"></ul>
+    <div class="feedback-slider swiper" data-reviews-slider>
+      <ul class="feedback-list swiper-wrapper" data-reviews-list></ul>
     </div>
 
     <div class="feedback-navigation">
-      <div class="feedback-pagination" aria-label="Пагінація відгуків"></div>
+      <div class="feedback-pagination" data-reviews-pagination aria-label="Пагінація відгуків"></div>
 
       <div class="feedback-controls">
-        <button class="btn-prev" type="button" aria-label="Попередній відгук">
+        <button class="btn-prev" type="button" data-reviews-prev aria-label="Попередній відгук">
           <svg class="btn-icon" width="20" height="20" aria-hidden="true">
             <use href="/bug-hunters/assets/icons-B05t0GHi.svg#icon-left-arrow-alt"></use>
           </svg>
         </button>
-        <button class="btn-next" type="button" aria-label="Наступний відгук">
+        <button class="btn-next" type="button" data-reviews-next aria-label="Наступний відгук">
           <svg class="btn-icon" width="20" height="20" aria-hidden="true">
             <use href="/bug-hunters/assets/icons-B05t0GHi.svg#icon-right-arrow-alt"></use>
           </svg>
@@ -390,11 +390,12 @@
     <a href="./index.html" class="footer-logo" aria-label="На головну">
       <svg class="footer-logo-icon" width="112" height="48" aria-hidden="true">
         <use href="/bug-hunters/assets/icons-B05t0GHi.svg#icon-logo"></use>
+      </svg>
     </a>
 
     <nav class="footer-nav" aria-label="Навігація по сайту">
       <ul class="footer-nav-list">
-        <li><a href="#furniture" class="footer-link">Наші меблі</a></li>
+        <li><a href="#products" class="footer-link">Наші меблі</a></li>
         <li><a href="#about" class="footer-link">Про нас</a></li>
         <li><a href="#faq" class="footer-link">Часті питання</a></li>
         <li><a href="#reviews" class="footer-link">Відгуки</a></li>
@@ -433,6 +434,7 @@
     <p class="footer-copy">© 2026 Меблерія. Всі права захищені.</p>
   </div>
 </footer>
+
     <div class="backdrop is-hidden" data-order-modal>
   <div class="modal">
     <button type="button" class="modal__close" data-order-modal-close aria-label="Закрити">
@@ -444,56 +446,33 @@
     <p class="modal__title">Замовити зворотний зв'язок</p>
 
     <form class="form js-order-form" data-order-form>
-      <div class="form-field">
+      <div class="form-field" data-form-field="name">
         <label for="user-name" class="form-label">Ім'я*</label>
-        <input
-          type="text"
-          name="name"
-          id="user-name"
-          class="form-input"
-          placeholder="Дмитро"
-          minlength="2"
-          maxlength="64"
-          required
-        />
-        <span class="form-error">Це поле є обов'язковим</span>
+        <input type="text" name="name" id="user-name" class="form-input" data-order-form-name placeholder="Дмитро"
+          minlength="2" maxlength="64" required />
+        <span class="form-error" data-form-error="name">Введіть ім'я</span>
       </div>
 
-      <div class="form-field">
+      <div class="form-field" data-form-field="phone">
         <label for="user-tel" class="form-label">Телефон*</label>
-        <input
-          type="tel"
-          name="phone"
-          id="user-tel"
-          class="form-input"
-          placeholder="380991232211"
-          pattern="^[0-9]{12}$"
-          inputmode="tel"
-          required
-        />
-        <span class="form-error">Введіть коректний номер телефону</span>
+        <input type="tel" name="phone" id="user-tel" class="form-input" data-order-form-phone
+          placeholder="+39 347 123 4567" inputmode="tel" autocomplete="tel" required />
+        <span class="form-error" data-form-error="phone">10-15 цифр</span>
       </div>
 
-      <div class="form-field">
+      <div class="form-field" data-form-field="comment">
         <label for="user-comment" class="form-label">Коментар</label>
-        <textarea
-          name="comment"
-          id="user-comment"
-          class="form-textarea"
-          placeholder="Введіть ваш коментар"
-          minlength="5"
-          maxlength="256"
-        ></textarea>
-        <span class="form-error">Коментар має містити від 5 до 256 символів</span>
+        <textarea name="comment" id="user-comment" class="form-textarea" data-order-form-comment
+          placeholder="Введіть ваш коментар" minlength="5" maxlength="256"></textarea>
+        <span class="form-error" data-form-error="comment">5-256 символів</span>
       </div>
 
-      <button type="submit" class="btn btn--primary form-submit">
+      <button type="submit" class="btn btn--primary btn--order-form" data-order-form-submit>
         Надіслати заявку
       </button>
     </form>
   </div>
 </div>
-
     <div class="product-modal-overlay is-hidden" data-product-modal aria-hidden="true">
   <div class="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
     <button class="product-modal__close" type="button" data-product-modal-close aria-label="Закрити">
@@ -536,7 +515,7 @@
         </div>
 
         <button
-          class="btn btn--primary btn--full product-modal__order-btn"
+          class="btn btn--primary btn--product-order"
           type="button"
           data-product-modal-order
         >
@@ -547,9 +526,11 @@
   </div>
 </div>
 
-    <div class="loader">
+    <div class="loader" data-loader>
   <div class="spinner"></div>
 </div>
+
+<div class="visually-hidden" data-star-rating-sprite-host aria-hidden="true"></div>
 
 
   </body>
