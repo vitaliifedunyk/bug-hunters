@@ -20,8 +20,7 @@ export default defineConfig(({ command }) => {
     build: {
       sourcemap: true,
       cssCodeSplit: true,
-      minify: 'esbuild',
-      cssMinify: true,
+
       rollupOptions: {
         input: glob.sync('./*.html'),
         output: {
