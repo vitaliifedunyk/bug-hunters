@@ -1,7 +1,7 @@
 .header {
   position: relative;
-  z-index: var(--z-header);
-  background-color: var(--color-bg-primary);
+  z-index: 10;
+  background-color: #ffffff;
 }
 
 .header-box {
@@ -10,7 +10,7 @@
   justify-content: space-between;
   gap: 16px;
   min-height: 72px;
-  padding-inline: var(--navbar-inline-mobile);
+  padding-inline: 20px;
 }
 
 .header-logo-link {
@@ -44,26 +44,22 @@
 .header-nav-link {
   display: inline-flex;
   align-items: center;
-  font-size: var(--fs-16);
+  font-size: 16px;
   font-weight: 400;
-  line-height: var(--lh-150);
-  color: var(--color-text-primary);
+  line-height: 1.6;
+  color: #080c09;
 }
 
 .header-nav-link:hover,
 .header-nav-link:focus-visible,
 .header-menu-btn:hover,
 .header-menu-btn:focus-visible {
-  color: var(--color-brand-primary);
+  opacity: 0.5;
 }
 
-.header-nav-btn {
-  min-width: 129px;
-  min-height: 42px;
-  padding: 8px 20px;
-  font-size: var(--fs-16);
-  font-weight: var(--fw-medium);
-  line-height: var(--lh-150);
+.header-nav-link:active,
+.header-menu-btn:active {
+  opacity: 1;
 }
 
 .header-menu-btn {
@@ -76,7 +72,7 @@
   margin-left: auto;
   border: none;
   background-color: transparent;
-  color: var(--color-text-primary);
+  color: #080c09;
 }
 
 .header-menu-icon {
@@ -86,13 +82,13 @@
 
 @media only screen and (min-width: 768px) {
   .header-box {
-    padding-inline: var(--navbar-inline-tablet);
+    padding-inline: 32px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .header-box {
-    padding-inline: var(--navbar-inline-desktop);
+    padding-inline: 64px;
   }
 
   .header-nav {

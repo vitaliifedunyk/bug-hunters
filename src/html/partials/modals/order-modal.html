@@ -9,50 +9,28 @@
     <p class="modal__title">Замовити зворотний зв'язок</p>
 
     <form class="form js-order-form" data-order-form>
-      <div class="form-field">
+      <div class="form-field" data-form-field="name">
         <label for="user-name" class="form-label">Ім'я*</label>
-        <input
-          type="text"
-          name="name"
-          id="user-name"
-          class="form-input"
-          placeholder="Дмитро"
-          minlength="2"
-          maxlength="64"
-          required
-        />
-        <span class="form-error">Це поле є обов'язковим</span>
+        <input type="text" name="name" id="user-name" class="form-input" data-order-form-name placeholder="Дмитро"
+          minlength="2" maxlength="64" required />
+        <span class="form-error" data-form-error="name">Введіть ім'я</span>
       </div>
 
-      <div class="form-field">
+      <div class="form-field" data-form-field="phone">
         <label for="user-tel" class="form-label">Телефон*</label>
-        <input
-          type="tel"
-          name="phone"
-          id="user-tel"
-          class="form-input"
-          placeholder="380991232211"
-          pattern="^[0-9]{12}$"
-          inputmode="tel"
-          required
-        />
-        <span class="form-error">Введіть коректний номер телефону</span>
+        <input type="tel" name="phone" id="user-tel" class="form-input" data-order-form-phone
+          placeholder="+39 347 123 4567" inputmode="tel" autocomplete="tel" required />
+        <span class="form-error" data-form-error="phone">10-15 цифр</span>
       </div>
 
-      <div class="form-field">
+      <div class="form-field" data-form-field="comment">
         <label for="user-comment" class="form-label">Коментар</label>
-        <textarea
-          name="comment"
-          id="user-comment"
-          class="form-textarea"
-          placeholder="Введіть ваш коментар"
-          minlength="5"
-          maxlength="256"
-        ></textarea>
-        <span class="form-error">Коментар має містити від 5 до 256 символів</span>
+        <textarea name="comment" id="user-comment" class="form-textarea" data-order-form-comment
+          placeholder="Введіть ваш коментар" minlength="5" maxlength="256"></textarea>
+        <span class="form-error" data-form-error="comment">5-256 символів</span>
       </div>
 
-      <button type="submit" class="btn btn--primary form-submit">
+      <button type="submit" class="btn btn--primary btn--order-form" data-order-form-submit>
         Надіслати заявку
       </button>
     </form>

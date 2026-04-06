@@ -1,6 +1,6 @@
 .footer {
-  background-color: var(--color-brand-primary);
-  color: var(--color-white);
+  background-color: #6b0609;
+  color: #ffffff;
 }
 
 .footer-container {
@@ -34,16 +34,19 @@
 }
 
 .footer-link {
-  font-size: var(--fs-16);
-  line-height: var(--lh-150);
-  color: var(--color-white);
-  transition: color 250ms ease;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
   cursor: pointer;
 }
 
 .footer-link:hover,
 .footer-link:focus-visible {
-  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.5;
+}
+
+.footer-link:active {
+  opacity: 1;
 }
 
 .footer-socials {
@@ -59,9 +62,6 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  transition:
-    color 250ms ease,
-    transform 250ms ease;
   cursor: pointer;
 }
 
@@ -71,17 +71,15 @@
 
 .footer-social-link:hover,
 .footer-social-link:focus-visible {
-  color: rgba(255, 255, 255, 0.7);
-  transform: translateY(-2px);
+  opacity: 0.5;
 }
 
-.footer-social-link:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 2px;
+.footer-social-link:active {
+  opacity: 1;
 }
 
 .footer-copy {
-  font-size: var(--fs-14);
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.7);
 }
 

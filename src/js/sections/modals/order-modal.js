@@ -13,27 +13,28 @@ import { refs } from '../../utils/refs.js';
 
 let isInitialized = false;
 
-function clearErrors(form) {
-  if (!form) {
-    return;
-  }
+function clearErrors() {
+  Object.values(refs.orderModal.fields).forEach(field => {
+    field?.classList.remove('is-error');
+  });
 
-  const fields = form.querySelectorAll('.form-input, .form-textarea');
-  const errorElements = form.querySelectorAll('.form-error');
+  Object.values(refs.orderModal.errors).forEach(errorElement => {
+    if (!errorElement) {
+      return;
+    }
 
-  fields.forEach(field => field.classList.remove('is-error'));
-  errorElements.forEach(errorElement => {
     errorElement.textContent = errorElement.dataset.defaultMessage || '';
     errorElement.style.opacity = '0';
   });
 }
 
-function showFieldError(form, fieldName, message) {
-  if (!message || !form) {
+function showFieldError(fieldName, message) {
+  if (!message) {
     return;
   }
 
-  const field = form.elements.namedItem(fieldName);
+  const field = refs.orderModal.fields[fieldName];
+  const errorText = refs.orderModal.errors[fieldName];
 
   if (!(field instanceof HTMLElement)) {
     return;
@@ -41,19 +42,16 @@ function showFieldError(form, fieldName, message) {
 
   field.classList.add('is-error');
 
-  const formField = field.closest('.form-field');
-  const errorText = formField?.querySelector('.form-error');
-
   if (errorText) {
     errorText.textContent = message;
     errorText.style.opacity = '1';
   }
 }
 
-function showErrors(form, errors) {
-  showFieldError(form, 'name', errors.name);
-  showFieldError(form, 'phone', errors.phone);
-  showFieldError(form, 'comment', errors.comment);
+function showErrors(errors) {
+  showFieldError('name', errors.name);
+  showFieldError('phone', errors.phone);
+  showFieldError('comment', errors.comment);
 }
 
 function setSubmitState(button, isSubmitting) {
@@ -65,7 +63,15 @@ function setSubmitState(button, isSubmitting) {
   button.textContent = isSubmitting ? 'Надсилаємо...' : 'Надіслати заявку';
 }
 
-function getFormData(form) {
+function getFormData(form = refs.orderModal.form) {
+  if (!form) {
+    return {
+      name: '',
+      phone: '',
+      comment: '',
+    };
+  }
+
   const formData = new FormData(form);
 
   return {
@@ -84,7 +90,7 @@ function resolveOrderModalState(triggerButton) {
 }
 
 function handleDocumentClick(event) {
-  const triggerButton = event.target.closest('[data-order-modal-open]');
+  const triggerButton = refs.orderModal.getTrigger(event.target);
 
   if (!triggerButton) {
     return;
@@ -95,13 +101,13 @@ function handleDocumentClick(event) {
 }
 
 function handleEscapeKey(event) {
-  if (event.key === 'Escape' && refs.orderModal && !refs.orderModal.classList.contains('is-hidden')) {
+  if (event.key === 'Escape' && refs.orderModal.root && !refs.orderModal.root.classList.contains('is-hidden')) {
     closeOrderModal();
   }
 }
 
 export function openOrderModal(modalState = {}) {
-  if (!refs.orderModal) {
+  if (!refs.orderModal.root) {
     return;
   }
 
@@ -111,21 +117,21 @@ export function openOrderModal(modalState = {}) {
     name: modalState.name || '',
   });
 
-  openModal(refs.orderModal);
+  openModal(refs.orderModal.root);
 }
 
 export function closeOrderModal({ resetForm = true } = {}) {
-  if (!refs.orderModal) {
+  if (!refs.orderModal.root) {
     return;
   }
 
   if (resetForm) {
-    refs.orderForm?.reset();
+    refs.orderModal.form?.reset();
   }
 
-  clearErrors(refs.orderForm);
+  clearErrors();
   resetOrderModalState();
-  closeModal(refs.orderModal);
+  closeModal(refs.orderModal.root);
 }
 
 export function initOrderModal() {
@@ -133,7 +139,12 @@ export function initOrderModal() {
     return;
   }
 
-  const { orderModal, closeOrderModalBtn, orderForm } = refs;
+  const {
+    root: orderModal,
+    closeButton: closeOrderModalBtn,
+    form: orderForm,
+    submitButton,
+  } = refs.orderModal;
 
   if (!orderModal || !orderForm) {
     return;
@@ -141,7 +152,11 @@ export function initOrderModal() {
 
   isInitialized = true;
 
-  orderForm.querySelectorAll('.form-error').forEach(errorElement => {
+  Object.values(refs.orderModal.errors).forEach(errorElement => {
+    if (!errorElement) {
+      return;
+    }
+
     errorElement.dataset.defaultMessage = errorElement.textContent;
   });
 
@@ -158,13 +173,13 @@ export function initOrderModal() {
 
   orderForm.addEventListener('submit', async event => {
     event.preventDefault();
-    clearErrors(orderForm);
+    clearErrors();
 
     const formData = getFormData(orderForm);
     const validationResult = validateOrderFormData(formData);
 
     if (!validationResult.isValid) {
-      showErrors(orderForm, validationResult.errors);
+      showErrors(validationResult.errors);
       return;
     }
 
@@ -175,7 +190,6 @@ export function initOrderModal() {
       return;
     }
 
-    const submitButton = event.currentTarget.querySelector('[type="submit"]');
     const payload = {
       name: formData.name,
       phone: formData.phone,

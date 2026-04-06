@@ -5,23 +5,9 @@ import { closeModal } from '../../components/modal/close-modal.js';
 import { openModal } from '../../components/modal/open-modal.js';
 import { hideLoader, showLoader } from '../../services/loader.js';
 import { showError } from '../../services/notifications.js';
+import { refs } from '../../utils/refs.js';
 import { openOrderModal } from './order-modal.js';
 import starRatingSpriteMarkup from '../../../images/icons/star-rating.icons.svg?raw';
-
-const refs = {
-  overlay: document.querySelector('[data-product-modal]'),
-  closeButton: document.querySelector('[data-product-modal-close]'),
-  mainImage: document.querySelector('[data-product-modal-main-image]'),
-  thumbnails: document.querySelector('[data-product-modal-thumbnails]'),
-  title: document.querySelector('[data-product-modal-title]'),
-  category: document.querySelector('[data-product-modal-category]'),
-  price: document.querySelector('[data-product-modal-price]'),
-  rating: document.querySelector('[data-product-modal-rating]'),
-  colors: document.querySelector('[data-product-modal-colors]'),
-  description: document.querySelector('[data-product-modal-description]'),
-  sizes: document.querySelector('[data-product-modal-sizes]'),
-  orderButton: document.querySelector('[data-product-modal-order]'),
-};
 
 const state = {
   product: null,
@@ -32,11 +18,14 @@ const state = {
 let isInitialized = false;
 
 function ensureStarRatingSprite() {
-  if (document.getElementById('star-empty')) {
+  if (refs.starRatingSprite || !refs.starRatingSpriteHost) {
     return;
   }
 
-  document.body.insertAdjacentHTML('afterbegin', starRatingSpriteMarkup);
+  refs.starRatingSpriteHost.insertAdjacentHTML(
+    'beforeend',
+    `<div data-star-rating-sprite aria-hidden="true">${starRatingSpriteMarkup}</div>`
+  );
 }
 
 function formatPrice(price) {
@@ -106,17 +95,18 @@ function getVisibleColors(colors) {
 }
 
 function renderThumbnails(images, activeImage) {
-  if (!refs.thumbnails) {
+  if (!refs.productModal.thumbnails) {
     return;
   }
 
-  refs.thumbnails.innerHTML = images
-    .map(image => {
-      const isActive = image === activeImage;
+  // Exclude the currently displayed main image from thumbnails
+  const thumbnailImages = images.filter(img => img !== activeImage);
 
+  refs.productModal.thumbnails.innerHTML = thumbnailImages
+    .map(image => {
       return `
         <button
-          class="product-modal__thumbnail ${isActive ? 'is-active' : ''}"
+          class="product-modal__thumbnail"
           type="button"
           data-product-thumbnail="${image}"
           aria-label="Переглянути інше фото товару"
@@ -129,11 +119,11 @@ function renderThumbnails(images, activeImage) {
 }
 
 function renderColors(colors) {
-  if (!refs.colors) {
+  if (!refs.productModal.colors) {
     return;
   }
 
-  refs.colors.innerHTML = colors
+  refs.productModal.colors.innerHTML = colors
     .map(color => {
       const isSelected = color === state.selectedColor;
 
@@ -142,33 +132,36 @@ function renderColors(colors) {
           class="product-modal__color-btn ${isSelected ? 'is-selected' : ''}"
           type="button"
           data-product-color="${color}"
-          style="--swatch-color: ${color};"
           aria-label="Обрати колір ${color}"
           aria-pressed="${isSelected}"
-        ></button>
+        >
+          <span class="product-modal__color-swatch" style="background-color: ${color};" aria-hidden="true"></span>
+        </button>
       `;
     })
     .join('');
 }
 
 function setMainImage(image) {
-  if (!refs.mainImage) {
+  if (!refs.productModal.mainImage) {
     return;
   }
 
   state.mainImage = image;
 
   if (image) {
-    refs.mainImage.src = image;
+    refs.productModal.mainImage.src = image;
   } else {
-    refs.mainImage.removeAttribute('src');
+    refs.productModal.mainImage.removeAttribute('src');
   }
 
-  refs.mainImage.alt = state.product?.name || 'Товар';
+  refs.productModal.mainImage.alt = state.product?.name || 'Товар';
 
-  refs.thumbnails?.querySelectorAll('[data-product-thumbnail]').forEach(button => {
-    button.classList.toggle('is-active', button.dataset.productThumbnail === image);
-  });
+  // Re-render thumbnails excluding the new active image
+  const images = Array.isArray(state.product?.images)
+    ? state.product.images.filter(Boolean)
+    : [];
+  renderThumbnails(images, image);
 }
 
 function renderProduct(product) {
@@ -179,12 +172,12 @@ function renderProduct(product) {
   state.selectedColor = visibleColors[0] || '';
   state.mainImage = images[0] || '';
 
-  refs.title.textContent = product.name || 'Без назви';
-  refs.category.textContent = product.category?.name || product.type || 'Меблі';
-  refs.price.textContent = formatPrice(product.price);
-  refs.rating.innerHTML = createRatingMarkup(product.rate);
-  refs.description.textContent = product.description || 'Опис тимчасово відсутній.';
-  refs.sizes.textContent = product.sizes || 'Не вказано';
+  refs.productModal.title.textContent = product.name || 'Без назви';
+  refs.productModal.category.textContent = product.category?.name || product.type || 'Меблі';
+  refs.productModal.price.textContent = formatPrice(product.price);
+  refs.productModal.rating.innerHTML = createRatingMarkup(product.rate);
+  refs.productModal.description.textContent = product.description || 'Опис тимчасово відсутній.';
+  refs.productModal.sizes.textContent = product.sizes || 'Не вказано';
 
   setMainImage(state.mainImage);
   renderThumbnails(images, state.mainImage);
@@ -192,26 +185,26 @@ function renderProduct(product) {
 }
 
 function handleOverlayClick(event) {
-  if (event.target === refs.overlay) {
+  if (event.target === refs.productModal.root) {
     closeProductModal();
   }
 }
 
 function handleInteractiveClick(event) {
-  const thumbnailButton = event.target.closest('[data-product-thumbnail]');
+  const thumbnailButton = refs.productModal.getThumbnailButton(event.target);
   if (thumbnailButton) {
     setMainImage(thumbnailButton.dataset.productThumbnail || '');
     return;
   }
 
-  const colorButton = event.target.closest('[data-product-color]');
+  const colorButton = refs.productModal.getColorButton(event.target);
   if (colorButton) {
     state.selectedColor = colorButton.dataset.productColor || '';
     renderColors(getVisibleColors(state.product?.color));
     return;
   }
 
-  const orderButton = event.target.closest('[data-product-modal-order]');
+  const orderButton = refs.productModal.getOrderButton(event.target);
   if (orderButton && state.product?._id && state.selectedColor) {
     closeProductModal();
     openOrderModal({
@@ -223,27 +216,27 @@ function handleInteractiveClick(event) {
 }
 
 function handleEscapeKey(event) {
-  if (event.key === 'Escape' && refs.overlay && !refs.overlay.classList.contains('is-hidden')) {
+  if (event.key === 'Escape' && refs.productModal.root && !refs.productModal.root.classList.contains('is-hidden')) {
     closeProductModal();
   }
 }
 
 export function initProductModal() {
-  if (isInitialized || !refs.overlay) {
+  if (isInitialized || !refs.productModal.root) {
     return;
   }
 
   isInitialized = true;
   ensureStarRatingSprite();
 
-  refs.closeButton?.addEventListener('click', closeProductModal);
-  refs.overlay.addEventListener('click', handleOverlayClick);
-  refs.overlay.addEventListener('click', handleInteractiveClick);
+  refs.productModal.closeButton?.addEventListener('click', closeProductModal);
+  refs.productModal.root.addEventListener('click', handleOverlayClick);
+  refs.productModal.root.addEventListener('click', handleInteractiveClick);
   document.addEventListener('keydown', handleEscapeKey);
 }
 
 export async function openProductModal(productId) {
-  if (!productId || !refs.overlay) {
+  if (!productId || !refs.productModal.root) {
     return;
   }
 
@@ -252,7 +245,7 @@ export async function openProductModal(productId) {
   try {
     const product = await getFurnitureById(productId);
     renderProduct(product);
-    openModal(refs.overlay);
+    openModal(refs.productModal.root);
   } catch (error) {
     showError(error.response?.data?.message || 'Не вдалося завантажити деталі товару.');
   } finally {
@@ -261,9 +254,9 @@ export async function openProductModal(productId) {
 }
 
 export function closeProductModal() {
-  if (!refs.overlay) {
+  if (!refs.productModal.root) {
     return;
   }
 
-  closeModal(refs.overlay);
+  closeModal(refs.productModal.root);
 }

@@ -1,7 +1,7 @@
 export class LoadMoreBtn {
-  constructor({ selector, isHidden = true }) {
-    this.button = document.querySelector(selector);
-    this.container = this.button?.closest('.load-more') || null;
+  constructor({ button, container, isHidden = true }) {
+    this.button = button || null;
+    this.container = container || null;
     
     if (this.button && isHidden) {
       this.hide();

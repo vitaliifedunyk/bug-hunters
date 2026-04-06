@@ -11,17 +11,18 @@ export function validateOrderFormData({
   if (!clearName) {
     errors.name = "Введіть ім'я";
   } else if (clearName.length < 2 || clearName.length > 64) {
-    errors.name = "Ім'я має містити 2-64 символи";
+    errors.name = '2-64 символи';
   }
 
+  // Accept international phone numbers without forcing a specific country code.
   if (!clearPhone) {
-    errors.phone = 'Введіть номер телефону';
-  } else if (clearPhone.length !== 12) {
-    errors.phone = 'Телефон має містити рівно 12 цифр';
+    errors.phone = 'Введіть телефон';
+  } else if (clearPhone.length < 10 || clearPhone.length > 15) {
+    errors.phone = '10-15 цифр';
   }
 
   if (clearComment && (clearComment.length < 5 || clearComment.length > 256)) {
-    errors.comment = 'Коментар має містити від 5 до 256 символів';
+    errors.comment = '5-256 символів';
   }
 
   return {

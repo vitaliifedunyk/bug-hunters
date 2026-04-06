@@ -16,4 +16,3 @@ export async function getCategories() {
         throw error;
     }
 };
-

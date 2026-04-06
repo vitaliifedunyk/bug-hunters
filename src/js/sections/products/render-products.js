@@ -1,7 +1,7 @@
-const DEFAULT_PRODUCTS_SELECTOR = '[data-products-list]';
+import { refs } from '../../utils/refs.js';
 
 function getProductsList(container) {
-  return container || document.querySelector(DEFAULT_PRODUCTS_SELECTOR);
+  return container || refs.products.list;
 }
 
 function escapeHtml(value) {
@@ -78,7 +78,12 @@ export function createProductCard(product) {
         <p class="product-card__price">${productPrice}</p>
       </div>
 
-      <button class="product-card__btn" type="button" data-product-details data-product-id="${productId}">
+      <button
+        class="btn btn--secondary btn--product-card"
+        type="button"
+        data-product-details
+        data-product-id="${productId}"
+      >
         Детальніше
       </button>
     </li>
