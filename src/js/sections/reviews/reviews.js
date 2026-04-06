@@ -105,19 +105,19 @@ export async function initReviews() {
     return;
   }
 
-  const [
-    { default: Swiper },
-    { Navigation, Pagination },
-  ] = await Promise.all([
-    import('swiper'),
-    import('swiper/modules'),
-    import('css-star-rating/css/star-rating.css'),
-    import('swiper/css'),
-    import('swiper/css/navigation'),
-    import('swiper/css/pagination'),
-  ]);
-
   try {
+    const [
+      { default: Swiper },
+      { Navigation, Pagination },
+    ] = await Promise.all([
+      import('swiper'),
+      import('swiper/modules'),
+      import('css-star-rating/css/star-rating.css'),
+      import('swiper/css'),
+      import('swiper/css/navigation'),
+      import('swiper/css/pagination'),
+    ]);
+
     ensureStarRatingSprite();
 
     const { reviews } = await getFeedbacks();
