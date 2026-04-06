@@ -99,13 +99,14 @@ function renderThumbnails(images, activeImage) {
     return;
   }
 
-  refs.productModal.thumbnails.innerHTML = images
-    .map(image => {
-      const isActive = image === activeImage;
+  // Exclude the currently displayed main image from thumbnails
+  const thumbnailImages = images.filter(img => img !== activeImage);
 
+  refs.productModal.thumbnails.innerHTML = thumbnailImages
+    .map(image => {
       return `
         <button
-          class="product-modal__thumbnail ${isActive ? 'is-active' : ''}"
+          class="product-modal__thumbnail"
           type="button"
           data-product-thumbnail="${image}"
           aria-label="Переглянути інше фото товару"
@@ -156,9 +157,11 @@ function setMainImage(image) {
 
   refs.productModal.mainImage.alt = state.product?.name || 'Товар';
 
-  refs.productModal.getThumbnailButtons().forEach(button => {
-    button.classList.toggle('is-active', button.dataset.productThumbnail === image);
-  });
+  // Re-render thumbnails excluding the new active image
+  const images = Array.isArray(state.product?.images)
+    ? state.product.images.filter(Boolean)
+    : [];
+  renderThumbnails(images, image);
 }
 
 function renderProduct(product) {

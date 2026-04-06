@@ -79,7 +79,7 @@ export function createProductCard(product) {
       </div>
 
       <button
-        class="btn btn--secondary btn--small btn--full product-card__btn"
+        class="btn btn--secondary btn--product-card"
         type="button"
         data-product-details
         data-product-id="${productId}"

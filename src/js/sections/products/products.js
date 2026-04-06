@@ -20,7 +20,7 @@ import {
   renderProducts,
 } from './render-products.js';
 
-const MOBILE_MEDIA_QUERY = '(max-width: 767.98px)';
+const DESKTOP_MEDIA_QUERY = '(min-width: 768px)';
 
 const loadMoreBtn = new LoadMoreBtn({
   button: refs.products.loadMoreButton,
@@ -39,12 +39,12 @@ const state = {
   selectedColor: '',
 };
 
-const mobileMediaQuery = window.matchMedia(MOBILE_MEDIA_QUERY);
+const desktopMediaQuery = window.matchMedia(DESKTOP_MEDIA_QUERY);
 
 let isInitialized = false;
 
-function isMobileViewport() {
-  return mobileMediaQuery.matches;
+function isDesktopViewport() {
+  return desktopMediaQuery.matches;
 }
 
 function getCategoryParam() {
@@ -81,17 +81,34 @@ function renderPagination() {
     return;
   }
 
-  if (isMobileViewport() || state.totalPages <= 1 || state.totalItems === 0) {
+  if (!isDesktopViewport() || state.totalPages <= 1 || state.totalItems === 0) {
     refs.products.pagination.innerHTML = '';
     refs.products.pagination.classList.add('is-hidden');
     return;
   }
 
-  const pageButtonsMarkup = Array.from({ length: state.totalPages }, (_, index) => {
-    const page = index + 1;
-    const isActive = page === state.currentPage;
+  const { currentPage, totalPages } = state;
 
-    return `
+  // Build the set of page numbers to show (always first, last, and window around current)
+  const pageNumbers = new Set([1, totalPages]);
+  for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+    if (i >= 1 && i <= totalPages) {
+      pageNumbers.add(i);
+    }
+  }
+  const sorted = [...pageNumbers].sort((a, b) => a - b);
+
+  // Build page buttons with ellipsis gaps
+  let pageButtonsMarkup = '';
+  let prev = null;
+  for (const page of sorted) {
+    if (prev !== null && page - prev > 1) {
+      pageButtonsMarkup += `
+        <span class="products-pagination__ellipsis" aria-hidden="true">…</span>
+      `;
+    }
+    const isActive = page === currentPage;
+    pageButtonsMarkup += `
       <button
         class="products-pagination__button ${isActive ? 'is-active' : ''}"
         type="button"
@@ -102,15 +119,16 @@ function renderPagination() {
         ${page}
       </button>
     `;
-  }).join('');
+    prev = page;
+  }
 
   refs.products.pagination.innerHTML = `
     <button
       class="products-pagination__button products-pagination__button--arrow btn-prev"
       type="button"
-      data-products-page="${Math.max(1, state.currentPage - 1)}"
+      data-products-page="${Math.max(1, currentPage - 1)}"
       aria-label="Попередня сторінка"
-      ${state.currentPage === 1 ? 'disabled' : ''}
+      ${currentPage === 1 ? 'disabled' : ''}
     >
       <svg class="btn-icon" width="20" height="20" aria-hidden="true">
         <use href="${iconsSprite}#icon-left-arrow-alt"></use>
@@ -120,9 +138,9 @@ function renderPagination() {
     <button
       class="products-pagination__button products-pagination__button--arrow btn-next"
       type="button"
-      data-products-page="${Math.min(state.totalPages, state.currentPage + 1)}"
+      data-products-page="${Math.min(totalPages, currentPage + 1)}"
       aria-label="Наступна сторінка"
-      ${state.currentPage === state.totalPages ? 'disabled' : ''}
+      ${currentPage === totalPages ? 'disabled' : ''}
     >
       <svg class="btn-icon" width="20" height="20" aria-hidden="true">
         <use href="${iconsSprite}#icon-right-arrow-alt"></use>
@@ -134,7 +152,7 @@ function renderPagination() {
 }
 
 function updateLoadMoreState() {
-  if (!isMobileViewport() || state.totalItems === 0) {
+  if (isDesktopViewport() || state.totalItems === 0) {
     loadMoreBtn.hide();
     return;
   }
@@ -223,7 +241,7 @@ async function bootstrapCategories() {
 }
 
 async function handleLoadMoreClick() {
-  if (!isMobileViewport() || state.currentPage >= state.totalPages) {
+  if (isDesktopViewport() || state.currentPage >= state.totalPages) {
     return;
   }
 
@@ -234,7 +252,7 @@ async function handleLoadMoreClick() {
 async function handlePaginationClick(event) {
   const pageButton = refs.products.getPaginationButton(event.target);
 
-  if (!pageButton || pageButton.disabled || isMobileViewport()) {
+  if (!pageButton || pageButton.disabled || !isDesktopViewport()) {
     return;
   }
 
@@ -287,7 +305,7 @@ export async function initProducts() {
   refs.products.list.addEventListener('click', handleProductsClick);
   refs.products.pagination.addEventListener('click', handlePaginationClick);
   loadMoreBtn.button?.addEventListener('click', handleLoadMoreClick);
-  mobileMediaQuery.addEventListener('change', handleViewportChange);
+  desktopMediaQuery.addEventListener('change', handleViewportChange);
 
   await bootstrapCategories();
   await fetchProducts({ page: 1, append: false });

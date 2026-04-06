@@ -32,6 +32,7 @@
   min-height: 52px;
   padding: 14px 16px;
 }
+
 .form-error {
   position: absolute;
   top: calc(100% + 4px);
@@ -46,7 +47,7 @@
 }
 
 .form-textarea {
-  min-height: 120px;
+  min-height: 180px;
   padding: 12px;
   resize: vertical;
   max-height: 200px;

@@ -34,13 +34,6 @@ color: #fff;
 margin-bottom: 32px;
 }
 
-.hero-btn{
-  width: 100%;
-  max-width: 335px;
-  font-weight: 500;
-  padding: 10px 0;
-}
-
 /* Tablet styles */
 @media only screen and (min-width: 768px) {
 .hero {
@@ -59,10 +52,6 @@ margin-bottom: 32px;
      max-width: 655px;
  }
 
-.hero-btn{
-  max-width: 209px;
-}
-   
 }
 
 /* Desktop styles */
