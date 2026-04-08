@@ -1,5 +1,7 @@
 # Меблерія — Furniture Store Catalog
 
+[English version](./README.en.md)
+
 Проєкт команди розробників **Bug Hunters**. Це сучасний фронтенд-додаток для онлайн-каталогу меблевого магазину, розроблений з акцентом на зручність інтерфейсу, повну адаптивність (Mobile-First) та продуктивність.
 
 ## 📋 Опис проєкту
@@ -31,6 +33,20 @@
   - Динамічний вибір кольору товару.
   - Блок рейтингу (css-star-rating).
   - Валідація інпутів у формах (з візуальними підказками про помилки).
+
+## 📸 Скріншоти
+
+### Головний екран
+
+![Головний екран](./docs/screenshots/home-hero-desktop.png)
+
+### [Каталог і фільтрація](./docs/screenshots/catalog-desktop.png)
+
+### [Модальне вікно товару](./docs/screenshots/product-modal-desktop.png)
+
+### [FAQ та відгуки](./docs/screenshots/faq-reviews-desktop.png)
+
+### [Мобільна версія](./docs/screenshots/mobile-home.png)
 
 ## 💻 Інструкція із запуску
 
