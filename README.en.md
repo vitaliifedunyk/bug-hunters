@@ -40,21 +40,33 @@ The project is built with a vanilla frontend stack and modern tooling:
 
 ![Home screen](./docs/screenshots/home-hero-desktop.png)
 
-### Catalog and Filtering
+<details>
+<summary>Catalog and Filtering</summary>
 
-[Open screenshot](./docs/screenshots/catalog-desktop.png)
+![Catalog view](./docs/screenshots/catalog-desktop.png)
 
-### Product Modal
+</details>
 
-[Open screenshot](./docs/screenshots/product-modal-desktop.png)
+<details>
+<summary>Product Modal</summary>
 
-### FAQ and Reviews
+![Product modal](./docs/screenshots/product-modal-desktop.png)
 
-[Open screenshot](./docs/screenshots/faq-reviews-desktop.png)
+</details>
 
-### Mobile Version
+<details>
+<summary>FAQ and Reviews</summary>
 
-[Open screenshot](./docs/screenshots/mobile-home.png)
+![FAQ and reviews](./docs/screenshots/faq-reviews-desktop.png)
+
+</details>
+
+<details>
+<summary>Mobile Version</summary>
+
+![Mobile version](./docs/screenshots/mobile-home.png)
+
+</details>
 
 ## 💻 Run Locally
 

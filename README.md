@@ -40,21 +40,33 @@
 
 ![Головний екран](./docs/screenshots/home-hero-desktop.png)
 
-### Каталог і фільтрація
+<details>
+<summary>Каталог і фільтрація</summary>
 
-[Відкрити скріншот](./docs/screenshots/catalog-desktop.png)
+![Каталог товарів](./docs/screenshots/catalog-desktop.png)
 
-### Модальне вікно товару
+</details>
 
-[Відкрити скріншот](./docs/screenshots/product-modal-desktop.png)
+<details>
+<summary>Модальне вікно товару</summary>
 
-### FAQ та відгуки
+![Модальне вікно товару](./docs/screenshots/product-modal-desktop.png)
 
-[Відкрити скріншот](./docs/screenshots/faq-reviews-desktop.png)
+</details>
 
-### Мобільна версія
+<details>
+<summary>FAQ та відгуки</summary>
 
-[Відкрити скріншот](./docs/screenshots/mobile-home.png)
+![FAQ та відгуки](./docs/screenshots/faq-reviews-desktop.png)
+
+</details>
+
+<details>
+<summary>Мобільна версія</summary>
+
+![Мобільна версія сайту](./docs/screenshots/mobile-home.png)
+
+</details>
 
 ## 💻 Інструкція із запуску
 
