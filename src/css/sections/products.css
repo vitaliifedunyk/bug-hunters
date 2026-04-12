@@ -1,5 +1,5 @@
 .products {
-  padding: 20px 20px 48px;
+  padding: 20px clamp(12px, 4vw, 20px) 48px;
 }
 
 .products__title {
@@ -18,7 +18,7 @@
 .products-list {
   display: grid;
   justify-content: center;
-  grid-template-columns: 335px;
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
   list-style: none;
   padding: 0;
@@ -51,8 +51,9 @@
 }
 
 .product-card__image-wrapper {
-  width: 335px;
-  height: 277px;
+  width: 100%;
+  aspect-ratio: 335 / 277;
+  height: auto;
   border-radius: 16px;
   overflow: hidden;
   background: #f5f5f5;
